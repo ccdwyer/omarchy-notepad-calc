@@ -3,6 +3,12 @@ name: test
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+# Least privilege by default. Only the maintainer-triggered bootstrap job
+# below elevates to contents:write, and it never checks out a PR head.
+permissions:
+  contents: read
 
 jobs:
   node-offline:
@@ -60,17 +66,16 @@ jobs:
             sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && export QML_BIN='"$QML_BIN"' REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen && tests/run-qml.sh'
           fi
 
+  # Runs on every push and PR with a READ-ONLY token. It never commits.
+  # When goldens are absent it generates them and uploads them as an artifact
+  # only; when they are present it runs the real pixel-diff gate and fails on
+  # divergence. Safe to run untrusted PR code because there is no write token.
   qml-ui-soak-demo:
     name: Panel.qml UI + soak + fresh demo (Linux Qt, network off)
     runs-on: ubuntu-latest
     timeout-minutes: 100
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.head_ref || github.ref_name }}
       - name: Install qt6-declarative, Nix Quickshell, matching QML runtime
         run: |
           sudo apt-get update
@@ -122,8 +127,72 @@ jobs:
             tests/goldens/ui/*.png
             /tmp/notepad-calc-ui-captures/*.png
           if-no-files-found: ignore
+
+  # Maintainer-only golden bootstrap. Runs ONLY on a manual workflow_dispatch
+  # or a push to the repo's own default branch — never on a pull_request, so a
+  # fork PR can never obtain the write token. It checks out a trusted repo
+  # branch (github.ref_name), regenerates the 12 Item.grabToImage baselines if
+  # they are missing, and commits them.
+  bootstrap-ui-goldens:
+    name: Bootstrap UI goldens (maintainer only)
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+       github.ref == format('refs/heads/{0}', github.event.repository.default_branch))
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Trusted ref only: the dispatched or pushed repo branch. This job
+          # never runs for pull_request, so this is never a fork PR head.
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Install qt6-declarative, Nix Quickshell, matching QML runtime
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            qt6-declarative-dev qml6-module-qtquick qml6-module-qtqml qml6-module-qtquick-window \
+            qml6-module-qtquick-layouts qt6-wayland python3
+          if ! command -v quickshell >/dev/null 2>&1; then
+            curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+            . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#quickshell
+            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#kdePackages.qtdeclarative \
+              || nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#qt6.qtdeclarative \
+              || true
+            command -v quickshell >/dev/null
+          fi
+      - name: Generate goldens if absent
+        env:
+          REQUIRE_QML_UI: "1"
+          QT_QPA_PLATFORM: offscreen
+          NOTEPAD_CALC_UI_ARTIFACT_DIR: /tmp/notepad-calc-ui-captures
+        run: |
+          if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+            . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+          fi
+          chmod +x tests/ui/run.sh tests/ui/demo.sh tests/ui/soak.sh \
+            tests/ui/pixeldiff.py tests/ui/setup-qml-env.sh tests/ui/ci-linux.sh
+          if unshare --net --map-root-user true >/dev/null 2>&1; then
+            unshare --net --map-root-user env \
+              HOME="$HOME" USER="${USER:-runner}" PATH="$PATH" \
+              REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen \
+              NOTEPAD_CALC_UI_ARTIFACT_DIR=/tmp/notepad-calc-ui-captures \
+              bash -c "ip link set lo up 2>/dev/null || true; cd \"$PWD\" && tests/ui/ci-linux.sh"
+          elif sudo unshare --net true >/dev/null 2>&1; then
+            sudo unshare --net env \
+              HOME="$HOME" USER="${USER:-runner}" PATH="$PATH" \
+              REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen \
+              NOTEPAD_CALC_UI_ARTIFACT_DIR=/tmp/notepad-calc-ui-captures \
+              bash -c "ip link set lo up 2>/dev/null || true; cd \"$PWD\" && tests/ui/ci-linux.sh"
+          else
+            echo "FAIL cannot establish network isolation (unshare --net / sudo unshare --net)"
+            exit 1
+          fi
       - name: Commit bootstrapped UI goldens
-        if: always()
         run: |
           set -e
           if ! ls tests/goldens/ui/*.png >/dev/null 2>&1; then
@@ -138,11 +207,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: bootstrap Linux Item.grabToImage UI goldens"
-          if git push; then
-            echo "UI baselines bootstrapped and pushed"
-          else
-            echo "WARN could not push (fork PR?); artifact notepad-calc-ui-captures has the PNGs"
-          fi
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "UI baselines bootstrapped and pushed to ${GITHUB_REF_NAME}"
 
   rust-helper:
     name: rust rates helper (cargo test + build)

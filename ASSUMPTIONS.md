@@ -44,13 +44,20 @@ Those three run in **GitHub Actions on Ubuntu**:
 | Script | What it actually does |
 |---|---|
 | `tests/run-qml.sh` | Same ≥200-case corpus under `qml6` (qt6-declarative) |
-| `tests/ui/run.sh` | Loads **Panel.qml**, `grabToImage` on the **chrome Item**, writes 12 PNGs to a **temp dir**. If committed goldens exist, pixel-diffs against them. If they are **absent**, macOS skip-warns; Linux CI **bootstraps** (`UPDATE_UI_GOLDENS=1`), prints `UI baselines bootstrapped`, **exits 0**, and the workflow commits the PNGs. |
+| `tests/ui/run.sh` | Loads **Panel.qml**, `grabToImage` on the **chrome Item**, writes 12 PNGs to a **temp dir**. If committed goldens exist, pixel-diffs against them. If they are **absent**, macOS skip-warns; Linux CI **bootstraps** (`UPDATE_UI_GOLDENS=1`), prints `UI baselines bootstrapped`, **exits 0**, and uploads the PNGs as an artifact. Committing them back is a separate **maintainer-only** job (see below). |
 | `tests/ui/soak.sh` | Instantiates Panel with **real Quickshell**, 500-line keystroke replay, **1 hour**, RSS growth **< 5 MB**, **exactly one** `RATES_ATTEMPT`. |
 | `tests/ui/demo.sh` | Empty `HOME`, installs the plugin to `~/.config/omarchy/plugins/<id>`, writes `shell.json` with a **single** bar-layout entry, loads **`$DEST/BarWidget.qml`** (not the checkout Panel.qml). Requires real Quickshell. |
 
 `qs.Commons` / `qs.Ui` are Omarchy-only; CI injects `tests/stubs/qs` (theme tokens). **Quickshell I/O stubs live in `tests/unit-stubs/` and are not on the acceptance import path.** `tests/ui/setup-qml-env.sh` puts the **Nix Quickshell** `…/qml` directory (the parent of `Quickshell/qmldir`) and a **Nix-compatible `qml` binary** on `QML2_IMPORT_PATH` / `QML_BIN` before UI, demo, and soak. The job **fails** if that module cannot be imported. Network isolation uses `unshare --net` or `sudo unshare --net`; if neither works the job **fails**. `tests/offline.sh` also **fails closed** when a net namespace cannot be created.
 
-Golden PNGs must be Linux `Item.grabToImage` captures of `Panel.qml`. There is no stand-in generator. **This Mac cannot produce them** (no Quickshell/Qt6). **First Linux CI run** generates the 12 PNGs (`UPDATE_UI_GOLDENS=1`), prints `UI baselines bootstrapped`, uploads artifact `notepad-calc-ui-captures`, commits them via the workflow, and **exits 0** (the submitted branch is not guaranteed-red). **Later runs**, with PNGs in git, pixel-diff a fresh temp capture against those baselines (2% AE) and **fail on divergence**.
+Golden PNGs must be Linux `Item.grabToImage` captures of `Panel.qml`. There is no stand-in generator. **This Mac cannot produce them** (no Quickshell/Qt6).
+
+The CI is split into two jobs to avoid a GitHub Actions pwn-request (never combine `contents: write` with a checkout of untrusted PR code):
+
+- **`qml-ui-soak-demo`** runs on every push and pull_request with a **read-only** token and the default checkout. When goldens are **absent** it generates the 12 PNGs (`UPDATE_UI_GOLDENS=1`), prints `UI baselines bootstrapped`, **uploads** them as artifact `notepad-calc-ui-captures`, and **exits 0** (the submitted branch is not guaranteed-red). When PNGs are **present** in git it pixel-diffs a fresh temp capture against those baselines (2% AE) and **fails on divergence**. This job **never commits** — safe to run PR code because it holds no write token.
+- **`bootstrap-ui-goldens`** commits the baselines. It runs **only** on a manual `workflow_dispatch` or a push to the repo's **own default branch** — never on `pull_request` — with `contents: write`, checking out a **trusted repo branch** (`github.ref_name`, never a fork PR head). A maintainer runs it once to seed the goldens; thereafter the read-only PR job enforces the real diff.
+
+Manual seed (any Linux runner with Quickshell): `UPDATE_UI_GOLDENS=1 REQUIRE_QML_UI=1 tests/ui/run.sh` then commit `tests/goldens/ui/*.png`.
 
 CI also runs `cargo test` and `cargo build --release` for `src/rates-refresh`.
 
