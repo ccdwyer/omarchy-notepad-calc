@@ -1,0 +1,13 @@
+# Belt-and-suspenders for `git archive` / pack.sh. These paths are also
+# gitignored; export-ignore keeps them out if they are ever force-added.
+bin/ export-ignore
+**/target/ export-ignore
+src/rates-refresh/target/ export-ignore
+.serena/ export-ignore
+.impl_prompt.md export-ignore
+.fix_prompt* export-ignore
+.gpt_review* export-ignore
+.review_prompt* export-ignore
+.*_review* export-ignore
+*.log export-ignore
+**/__pycache__/ export-ignore

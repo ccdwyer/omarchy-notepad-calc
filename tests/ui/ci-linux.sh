@@ -1,7 +1,8 @@
 #!/bin/bash
 # Linux CI entry for UI + demo + soak. Run inside unshare --net.
-# Discovers Nix Quickshell, bootstraps grabToImage goldens if missing,
-# then independently recaptures and diffs. Soak is one hour.
+# Discovers Nix Quickshell. Pixel-diffs temp grabToImage captures against
+# committed tests/goldens/ui (missing golden fails; no same-run bootstrap).
+# Soak is one hour.
 set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
@@ -22,21 +23,6 @@ export NOTEPAD_CALC_UI_ARTIFACT_DIR="${NOTEPAD_CALC_UI_ARTIFACT_DIR:-/tmp/notepa
 if [ -z "${QS_QML_ROOT:-}" ] || [ ! -f "$QS_QML_ROOT/Quickshell/qmldir" ]; then
   echo "FAIL Nix Quickshell QML module path not exported; cannot import Quickshell"
   exit 1
-fi
-
-gold_ok=1
-for f in demo-1x.png demo-1p25x.png demo-2x.png \
-         longline-1x.png longline-1p25x.png longline-2x.png \
-         emoji-1x.png emoji-1p25x.png emoji-2x.png \
-         url-1x.png url-1p25x.png url-2x.png; do
-  if [ ! -f "$ROOT/tests/goldens/ui/$f" ]; then
-    gold_ok=0
-  fi
-done
-
-if [ "$gold_ok" -eq 0 ]; then
-  echo "bootstrapping tests/goldens/ui from Panel.qml Item.grabToImage"
-  UPDATE_UI_GOLDENS=1 "$ROOT/tests/ui/run.sh"
 fi
 
 "$ROOT/tests/ui/run.sh"

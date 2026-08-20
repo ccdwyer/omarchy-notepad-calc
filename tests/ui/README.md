@@ -14,8 +14,9 @@ tests/ui/soak.sh    # 500-line keystroke replay, RSS, exactly one rate attempt, 
 and a compatible `qml` binary, and exports both on `QML2_IMPORT_PATH` / `QML_BIN`.
 `qs.Commons` / `qs.Ui` stubs under `tests/stubs/qs` stand in for Omarchy theme tokens only.
 
-Refresh goldens on a Linux runner (real `Item.grabToImage`, not a generator):
+Refresh goldens on a Linux runner (real `Item.grabToImage`, not a generator), then **commit** the PNGs. CI does not mint baselines:
 
 ```sh
 UPDATE_UI_GOLDENS=1 REQUIRE_QML_UI=1 tests/ui/run.sh
+git add tests/goldens/ui/*.png
 ```

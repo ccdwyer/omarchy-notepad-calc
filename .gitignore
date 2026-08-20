@@ -16,3 +16,4 @@ src/rates-refresh/target/
 .serena/
 .*.log
 **/__pycache__/
+notepad-calc-src.tar.gz

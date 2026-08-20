@@ -9,7 +9,7 @@ Conservative choices where the Omarchy / Quickshell API was not 100% certain. Au
 - **Settings are inline** on the `shell.json` bar entry (`defaultCurrency`). No plugin-owned settings file. Sheets and rates live under `~/.local/share/notepad-calc/` as *documents / cache*, not settings. `defaultCurrency` is passed through `makeCtx()`; a dimensionless `100 in EUR` converts **100 of the default currency** through the ECB snapshot (not “100 EUR as a label”).
 - **`keepLoaded` is omitted.** The chip stays mounted while the widget is on the bar, so the nested `PanelWindow` can remain instantiated (`Loader { active: true }`) without a second kind.
 - **Injected properties:** `bar`, `shell`, `manifest`, `pluginRegistry`, plus schema keys (`defaultCurrency`). The widget still functions if some of these are missing.
-- **IPC.** Quattro `call <id> <method> <arg>` requires a final argument. Documented keybinds always pass `'{}'`. IpcHandler verbs are `toggle` / `summon` / `hide` on the already-loaded bar widget. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used here.
+- **IPC.** Quattro `call <id> <method> <arg>` invokes a method **on the loaded plugin entry point** (`BarWidget.qml` root), not on a nested `IpcHandler`. The root therefore defines string-argument `summon` / `hide` / `toggle` (delegating to `open` / `close`). Documented keybinds always pass `'{}'`. An `IpcHandler` on the same object is an additional direct IPC surface with the same verbs. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used here.
 - **Third-party id** is `io.github.chris.notepad-calc` (not `omarchy.*`).
 - **Hot-reload:** saving under `~/.config/omarchy/plugins/` reloads; we do not call `rescanPlugins` ourselves.
 
@@ -49,7 +49,9 @@ Those three run in **GitHub Actions on Ubuntu**:
 
 `qs.Commons` / `qs.Ui` are Omarchy-only; CI injects `tests/stubs/qs` (theme tokens). **Quickshell I/O stubs live in `tests/unit-stubs/` and are not on the acceptance import path.** `tests/ui/setup-qml-env.sh` puts the **Nix Quickshell** `…/qml` directory (the parent of `Quickshell/qmldir`) and a **Nix-compatible `qml` binary** on `QML2_IMPORT_PATH` / `QML_BIN` before UI, demo, and soak. The job **fails** if that module cannot be imported. Network isolation uses `unshare --net` or `sudo unshare --net`; if neither works the job **fails**. `tests/offline.sh` also **fails closed** when a net namespace cannot be created.
 
-Golden PNGs must be Linux `Item.grabToImage` captures of `Panel.qml`. There is no stand-in generator. If the twelve files are absent, Linux CI bootstraps them from a grab, independently recaptures, and pixel-diffs (2% AE); commit the artifact to pin a regression baseline. This Mac cannot produce those grabs.
+Golden PNGs must be Linux `Item.grabToImage` captures of `Panel.qml`. There is no stand-in generator. The UI job pixel-diffs a **fresh temp capture** against **committed** `tests/goldens/ui/*.png` (missing golden fails; it does not mint a baseline in the same run). Refresh with `UPDATE_UI_GOLDENS=1 tests/ui/run.sh` on Linux, then commit the PNGs. This Mac cannot produce those grabs.
+
+Ship source with `./pack.sh` (`git archive`), never a working-tree tarball. `bin/`, `target/`, review logs, and `.serena/` are gitignored and `export-ignore`.
 
 ## Engine / data
 

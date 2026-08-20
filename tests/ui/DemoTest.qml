@@ -63,8 +63,12 @@ Window {
         bar.notepad.testWidth = 980
         bar.notepad.testHeight = 640
       }
-      if (typeof bar.open === "function")
-        bar.open()
+      if (typeof bar.summon !== "function" || typeof bar.hide !== "function" || typeof bar.toggle !== "function") {
+        console.log("FAIL loaded BarWidget root lacks summon/hide/toggle(arg)")
+        Qt.exit(1)
+        return
+      }
+      bar.summon("{}")
       var p = bar.notepad
       if (!p) {
         runner.tries += 1

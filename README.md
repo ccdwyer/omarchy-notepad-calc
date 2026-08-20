@@ -51,7 +51,7 @@ bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-ca
 bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide '{}'
 ```
 
-`summon` / `hide` / `toggle` here are IpcHandler methods on the already-loaded bar widget, invoked through `shell call`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget.
+`summon` / `hide` / `toggle` are string-argument methods on the loaded **bar-widget entry point** (`BarWidget.qml` root). Quattro `shell call <id> <method> <arg>` invokes those directly. An `IpcHandler` on the same object exposes the same verbs as an additional direct IPC surface. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget.
 
 ## Grammar (v1, frozen)
 
@@ -125,8 +125,10 @@ Local:
 
 ```sh
 node tests/run.js                  # shared engine corpus (≥200 cases)
+tests/helper.test.sh               # helper parse + IPC surface + archive excludes
 ./build.sh && cargo test --manifest-path src/rates-refresh/Cargo.toml
 compat/rates-refresh.sh fetch --xml tests/fixtures/ecb-daily.xml --out /tmp/rates-out.json
+./pack.sh                          # git archive tarball (not a working-tree dump)
 ```
 
 Linux CI (`.github/workflows/test.yml`, network disabled):

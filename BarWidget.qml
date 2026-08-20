@@ -59,11 +59,23 @@ BarWidget {
     root.panelOpen = false
   }
 
-  function toggle() {
+  // shell call <id> <method> <arg> dispatches onto this entry point.
+  function summon(arg) {
+    root.open()
+    return "ok"
+  }
+
+  function hide(arg) {
+    root.close()
+    return "ok"
+  }
+
+  function toggle(arg) {
     if (root.panelOpen)
       root.close()
     else
       root.open()
+    return "ok"
   }
 
   function evalCtx() {
@@ -134,9 +146,9 @@ BarWidget {
 
   IpcHandler {
     target: "io.github.chris.notepad-calc"
-    function toggle(arg: string): string { root.toggle(); return "ok" }
-    function summon(arg: string): string { root.open(); return "ok" }
-    function hide(arg: string): string { root.close(); return "ok" }
+    function toggle(arg: string): string { return root.toggle(arg) }
+    function summon(arg: string): string { return root.summon(arg) }
+    function hide(arg: string): string { return root.hide(arg) }
     function ping(arg: string): string { return "ok" }
   }
 }
