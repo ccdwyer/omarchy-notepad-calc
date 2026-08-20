@@ -11,7 +11,7 @@ The catalog already has one-shot `=expr` and a single-pair currency overlay. Not
 ## Install
 
 ```sh
-omarchy plugin add <git-url> --enable
+omarchy plugin add https://github.com/ccdwyer/omarchy-notepad-calc.git --enable
 ```
 
 Optional helper (daily ECB rate refresh). The plugin works without it — it ships a dated snapshot:
@@ -110,6 +110,12 @@ ECB daily reference rates — about **30 currencies**, not 170. Cross-rates give
 Sheets are yours. Git them. Nothing proprietary can corrupt them.
 
 Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). There is no plugin config file.
+
+## Remove
+
+```sh
+omarchy plugin remove io.github.chris.notepad-calc
+```
 
 ## Honest limitations
 
