@@ -3,31 +3,31 @@
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
 
-if [ "${REQUIRE_QML_UI:-}" != "1" ] && ! command -v qml6 >/dev/null 2>&1 && ! command -v qml >/dev/null 2>&1; then
+# shellcheck disable=SC1091
+. "$ROOT/tests/ui/setup-qml-env.sh"
+
+if [ "${REQUIRE_QML_UI:-}" != "1" ] && [ -z "${QML_BIN:-}" ]; then
   echo "skip demo: no qml runtime (CI-only)"
   exit 0
 fi
 
-QML="${QML_BIN:-}"
-if [ -z "$QML" ]; then
-  for c in qml6 qml qmlscene; do
-    if command -v "$c" >/dev/null 2>&1; then QML="$c"; break; fi
-  done
-fi
-if [ -n "${QML_BIN:-}" ] && [ -x "$QML_BIN" ]; then
-  QML="$QML_BIN"
-  PATH="$(CDPATH= cd -- "$(dirname "$QML_BIN")" && pwd):$PATH"
-fi
-if [ -z "$QML" ]; then
+if [ -z "${QML_BIN:-}" ]; then
   echo "FAIL no qml runtime"
   exit 1
 fi
 if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
-  if ! command -v quickshell >/dev/null 2>&1 && ! ls "$HOME/.nix-profile/lib"/qt-*/qml/Quickshell/qmldir >/dev/null 2>&1; then
-    echo "FAIL real Quickshell is required for the fresh-machine acceptance run"
+  if [ -z "${QS_QML_ROOT:-}" ] || [ ! -f "$QS_QML_ROOT/Quickshell/qmldir" ]; then
+    echo "FAIL real Quickshell QML module is required for the fresh-machine acceptance run"
     exit 1
   fi
 fi
+
+case ":${QML2_IMPORT_PATH:-}:" in
+  *unit-stubs*)
+    echo "FAIL tests/unit-stubs must not be on the demo acceptance import path"
+    exit 1
+    ;;
+esac
 
 FRESH=$(mktemp -d)
 export HOME="$FRESH"
@@ -35,9 +35,6 @@ export XDG_DATA_HOME="$FRESH/.local/share"
 export XDG_CONFIG_HOME="$FRESH/.config"
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export NOTEPAD_CALC_TEST=1
-# Theme tokens only. Real Quickshell FileView/Process — not unit-stubs.
-export QML2_IMPORT_PATH="$ROOT/tests/stubs${QML2_IMPORT_PATH:+:$QML2_IMPORT_PATH}"
-export QML_IMPORT_PATH="$QML2_IMPORT_PATH"
 
 ID="io.github.chris.notepad-calc"
 DEST="$HOME/.config/omarchy/plugins/$ID"
@@ -59,9 +56,16 @@ cat > "$HOME/.config/omarchy/shell.json" <<EOF
 }
 EOF
 
+I_FLAGS="-I $DEST"
+if [ -n "${QS_QML_ROOT:-}" ]; then
+  I_FLAGS="$I_FLAGS -I $QS_QML_ROOT"
+fi
+I_FLAGS="$I_FLAGS -I $ROOT/tests/stubs"
+
 LOG=$(mktemp)
 set +e
-"$QML" -I "$DEST" -I "$ROOT/tests/stubs" "$ROOT/tests/ui/DemoTest.qml" "$DEST" >"$LOG" 2>&1
+# shellcheck disable=SC2086
+"$QML_BIN" $I_FLAGS "$ROOT/tests/ui/DemoTest.qml" "$DEST" >"$LOG" 2>&1
 STATUS=$?
 set -e
 cat "$LOG"

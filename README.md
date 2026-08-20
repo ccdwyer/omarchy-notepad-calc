@@ -135,5 +135,5 @@ Linux CI (`.github/workflows/test.yml`, network disabled):
 tests/run-qml.sh                   # same corpus under qml6
 tests/ui/run.sh                    # loads Panel.qml, synthetic edits, grabToImage 1×/1.25×/2×, pixel-diff
 tests/ui/demo.sh                   # fresh HOME, plugin install, battlestation demo
-tests/ui/soak.sh                   # 500-line keystroke replay, RSS < 5MB, ≤1 rate attempt
+tests/ui/soak.sh                   # 500-line keystroke replay, RSS < 5MB, exactly one rate attempt, 1 hour
 ```

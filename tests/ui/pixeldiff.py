@@ -52,6 +52,31 @@ def read_png(path: Path):
     return width, height, bpp, b"".join(rows)
 
 
+def is_standin(path: Path) -> bool:
+    """True for gen_goldens-style rasters (every sampled scanline is one RGB)."""
+    try:
+        w, h, bpp, pixels = read_png(path)
+    except Exception:
+        return False
+    if w < 2 or h < 2 or bpp < 3:
+        return False
+    stride = w * bpp
+    if len(pixels) < stride * h:
+        return False
+    uniform = 0
+    checked = 0
+    step = max(h // 24, 1)
+    for y in range(0, h, step):
+        row = pixels[y * stride : (y + 1) * stride]
+        pix0 = row[:bpp]
+        checked += 1
+        if row == pix0 * w:
+            uniform += 1
+        else:
+            return False
+    return checked > 0 and uniform == checked
+
+
 def ae(a: Path, b: Path):
     try:
         w1, h1, bpp1, p1 = read_png(a)
@@ -92,6 +117,14 @@ def main() -> int:
             continue
         if not g.exists():
             print("FAIL missing golden baseline", g)
+            failed += 1
+            continue
+        if is_standin(g):
+            print("FAIL", name, "golden is a synthetic stand-in, not a grabToImage capture")
+            failed += 1
+            continue
+        if is_standin(c):
+            print("FAIL", name, "capture is a synthetic stand-in, not a grabToImage capture")
             failed += 1
             continue
         d, px, info = ae(c, g)

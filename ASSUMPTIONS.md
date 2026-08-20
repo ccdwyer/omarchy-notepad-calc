@@ -43,13 +43,13 @@ Those three run in **GitHub Actions on Ubuntu**:
 | Script | What it actually does |
 |---|---|
 | `tests/run-qml.sh` | Same ≥200-case corpus under `qml6` (qt6-declarative) |
-| `tests/ui/run.sh` | Loads **Panel.qml**, `grabToImage` on the **chrome Item**, writes 12 PNGs to a **temp dir**, pixel-diffs against **committed** `tests/goldens/ui/*.png` (missing golden fails). `UPDATE_UI_GOLDENS=1` refreshes baselines on a Linux runner. |
-| `tests/ui/soak.sh` | Instantiates Panel with **real Quickshell**, 500-line keystroke replay, RSS growth **< 5 MB**, **exactly one** `RATES_ATTEMPT`. |
+| `tests/ui/run.sh` | Loads **Panel.qml**, `grabToImage` on the **chrome Item**, writes 12 PNGs to a **temp dir**, pixel-diffs against **committed** `tests/goldens/ui/*.png` (missing golden fails; synthetic stand-ins fail). `UPDATE_UI_GOLDENS=1` refreshes baselines from a real grab on a Linux runner. |
+| `tests/ui/soak.sh` | Instantiates Panel with **real Quickshell**, 500-line keystroke replay, **1 hour**, RSS growth **< 5 MB**, **exactly one** `RATES_ATTEMPT`. |
 | `tests/ui/demo.sh` | Empty `HOME`, installs the plugin to `~/.config/omarchy/plugins/<id>`, writes `shell.json` with a **single** bar-layout entry, loads **`$DEST/BarWidget.qml`** (not the checkout Panel.qml). Requires real Quickshell. |
 
-`qs.Commons` / `qs.Ui` are Omarchy-only; CI injects `tests/stubs/qs` (theme tokens). **Quickshell I/O stubs live in `tests/unit-stubs/` and are not on the acceptance import path.** The UI/demo/soak job **fails** if Quickshell cannot be installed. Network isolation uses `unshare --net` or `sudo unshare --net`; if neither works the job **fails**.
+`qs.Commons` / `qs.Ui` are Omarchy-only; CI injects `tests/stubs/qs` (theme tokens). **Quickshell I/O stubs live in `tests/unit-stubs/` and are not on the acceptance import path.** `tests/ui/setup-qml-env.sh` puts the **Nix Quickshell** `…/qml` directory (the parent of `Quickshell/qmldir`) and a **Nix-compatible `qml` binary** on `QML2_IMPORT_PATH` / `QML_BIN` before UI, demo, and soak. The job **fails** if that module cannot be imported. Network isolation uses `unshare --net` or `sudo unshare --net`; if neither works the job **fails**. `tests/offline.sh` also **fails closed** when a net namespace cannot be created.
 
-Committed golden PNGs are named baselines. Refresh them from the Linux capture artifact (`UPDATE_UI_GOLDENS=1 tests/ui/run.sh`) when Qt rendering is available. This Mac cannot produce those grabs.
+Golden PNGs must be Linux `Item.grabToImage` captures of `Panel.qml`. There is no stand-in generator. If the twelve files are absent, Linux CI bootstraps them from a grab, independently recaptures, and pixel-diffs (2% AE); commit the artifact to pin a regression baseline. This Mac cannot produce those grabs.
 
 ## Engine / data
 

@@ -63,10 +63,10 @@ jobs:
   qml-ui-soak-demo:
     name: Panel.qml UI + soak + fresh demo (Linux Qt, network off)
     runs-on: ubuntu-latest
-    timeout-minutes: 70
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
-      - name: Install qt6-declarative, quickshell, imagemagick
+      - name: Install qt6-declarative, Nix Quickshell, matching QML runtime
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -76,48 +76,44 @@ jobs:
             curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
             . "$HOME/.nix-profile/etc/profile.d/nix.sh"
             nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#quickshell
+            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#kdePackages.qtdeclarative \
+              || nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#qt6.qtdeclarative \
+              || true
             command -v quickshell >/dev/null
-          fi
-      - name: Locate qml binary
-        run: |
-          QML_BIN=""
-          for c in qml6 qml qmlscene; do
-            if command -v "$c" >/dev/null 2>&1; then QML_BIN=$(command -v "$c"); break; fi
-          done
-          if [ -z "$QML_BIN" ]; then
-            QML_BIN=$(find /usr -type f \( -name qml6 -o -name qml \) 2>/dev/null | head -n 1 || true)
-          fi
-          echo "QML_BIN=$QML_BIN"
-          echo "QML_BIN=$QML_BIN" >> "$GITHUB_ENV"
-          if [ -n "$QML_BIN" ]; then
-            echo "PATH=$(dirname "$QML_BIN"):$PATH" >> "$GITHUB_ENV"
-          fi
-          if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-            echo "NIX_SOURCED=1" >> "$GITHUB_ENV"
           fi
       - name: UI grabs, soak, fresh-machine demo (network isolation required)
         env:
           REQUIRE_QML_UI: "1"
           QT_QPA_PLATFORM: offscreen
-          NOTEPAD_CALC_SOAK_MS: "120000"
+          NOTEPAD_CALC_UI_ARTIFACT_DIR: /tmp/notepad-calc-ui-captures
         run: |
           if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
             . "$HOME/.nix-profile/etc/profile.d/nix.sh"
           fi
-          chmod +x tests/ui/run.sh tests/ui/soak.sh tests/ui/demo.sh tests/ui/pixeldiff.py
-          export QML_BIN REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen NOTEPAD_CALC_SOAK_MS PATH
+          chmod +x tests/ui/run.sh tests/ui/demo.sh tests/ui/soak.sh \
+            tests/ui/pixeldiff.py tests/ui/setup-qml-env.sh tests/ui/ci-linux.sh
           if unshare --net --map-root-user true >/dev/null 2>&1; then
-            unshare --net --map-root-user bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && tests/ui/run.sh && tests/ui/demo.sh && tests/ui/soak.sh '"$NOTEPAD_CALC_SOAK_MS"
+            unshare --net --map-root-user env \
+              HOME="$HOME" USER="${USER:-runner}" PATH="$PATH" \
+              REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen \
+              NOTEPAD_CALC_UI_ARTIFACT_DIR=/tmp/notepad-calc-ui-captures \
+              bash -c "ip link set lo up 2>/dev/null || true; cd \"$PWD\" && tests/ui/ci-linux.sh"
           elif sudo unshare --net true >/dev/null 2>&1; then
-            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && export QML_BIN='"$QML_BIN"' REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen NOTEPAD_CALC_SOAK_MS='"$NOTEPAD_CALC_SOAK_MS"' PATH='"$PATH"' && tests/ui/run.sh && tests/ui/demo.sh && tests/ui/soak.sh '"$NOTEPAD_CALC_SOAK_MS"
+            sudo unshare --net env \
+              HOME="$HOME" USER="${USER:-runner}" PATH="$PATH" \
+              REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen \
+              NOTEPAD_CALC_UI_ARTIFACT_DIR=/tmp/notepad-calc-ui-captures \
+              bash -c "ip link set lo up 2>/dev/null || true; cd \"$PWD\" && tests/ui/ci-linux.sh"
           else
             echo "FAIL cannot establish network isolation (unshare --net / sudo unshare --net)"
             exit 1
           fi
-      - name: Upload UI captures
+      - name: Upload UI captures and grabToImage goldens
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: notepad-calc-ui-captures
-          path: /tmp/notepad-calc-ui-*/*.png
+          path: |
+            tests/goldens/ui/*.png
+            /tmp/notepad-calc-ui-captures/*.png
           if-no-files-found: ignore

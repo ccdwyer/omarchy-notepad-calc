@@ -1,42 +1,51 @@
 #!/bin/sh
 # CI-only 500-line keystroke soak. Samples RSS of the qml process.
-# Duration: first numeric arg or NOTEPAD_CALC_SOAK_MS (default 3600000).
+# Duration: first numeric arg or NOTEPAD_CALC_SOAK_MS (default 3600000 = 1 hour).
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
 MS="${1:-${NOTEPAD_CALC_SOAK_MS:-3600000}}"
 
-QML="${QML_BIN:-}"
-if [ -z "$QML" ]; then
-  for c in qml6 qml qmlscene; do
-    if command -v "$c" >/dev/null 2>&1; then QML="$c"; break; fi
-  done
+# shellcheck disable=SC1091
+. "$ROOT/tests/ui/setup-qml-env.sh"
+
+if [ "${REQUIRE_QML_UI:-}" != "1" ] && [ -z "${QML_BIN:-}" ]; then
+  echo "skip soak: no qml runtime (CI-only)"
+  exit 0
 fi
-if [ -n "${QML_BIN:-}" ] && [ -x "$QML_BIN" ]; then
-  QML="$QML_BIN"
-  PATH="$(CDPATH= cd -- "$(dirname "$QML_BIN")" && pwd):$PATH"
-fi
-if [ -z "$QML" ]; then
+
+if [ -z "${QML_BIN:-}" ]; then
   echo "skip soak: no qml runtime (CI-only)"
   if [ "${REQUIRE_QML_UI:-}" = "1" ]; then exit 1; fi
   exit 0
 fi
 
 if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
-  if ! command -v quickshell >/dev/null 2>&1 && ! ls "$HOME/.nix-profile/lib"/qt-*/qml/Quickshell/qmldir >/dev/null 2>&1; then
-    echo "FAIL real Quickshell is required for soak acceptance"
+  if [ -z "${QS_QML_ROOT:-}" ] || [ ! -f "$QS_QML_ROOT/Quickshell/qmldir" ]; then
+    echo "FAIL real Quickshell QML module is required for soak acceptance"
     exit 1
   fi
 fi
 
+case ":${QML2_IMPORT_PATH:-}:" in
+  *unit-stubs*)
+    echo "FAIL tests/unit-stubs must not be on the soak acceptance import path"
+    exit 1
+    ;;
+esac
+
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export NOTEPAD_CALC_TEST=1
-# Theme tokens only — real Quickshell I/O.
-export QML2_IMPORT_PATH="$ROOT/tests/stubs${QML2_IMPORT_PATH:+:$QML2_IMPORT_PATH}"
-export QML_IMPORT_PATH="$QML2_IMPORT_PATH"
 mkdir -p /tmp/notepad-calc-ci-home/.local/share/notepad-calc
 
+I_FLAGS="-I $ROOT"
+if [ -n "${QS_QML_ROOT:-}" ]; then
+  I_FLAGS="$I_FLAGS -I $QS_QML_ROOT"
+fi
+I_FLAGS="$I_FLAGS -I $ROOT/tests/stubs"
+
 LOG=$(mktemp)
-"$QML" -I "$ROOT" -I "$ROOT/tests/stubs" "$ROOT/tests/ui/SoakTest.qml" "$MS" >"$LOG" 2>&1 &
+# shellcheck disable=SC2086
+"$QML_BIN" $I_FLAGS "$ROOT/tests/ui/SoakTest.qml" "$MS" >"$LOG" 2>&1 &
 PID=$!
 trap 'kill $PID 2>/dev/null || true' EXIT
 
@@ -82,7 +91,7 @@ if [ "$ATTEMPTS" -gt 1 ]; then
   echo "FAIL refresh journal: $ATTEMPTS attempts (want exactly 1)"
   exit 1
 fi
-echo "ok  refresh journal attempts=$ATTEMPTS"
+echo "ok  refresh journal attempts=$ATTEMPTS (exactly 1)"
 
 if [ -n "${START_KB:-}" ] && [ -n "${END_KB:-}" ]; then
   GROWTH=$((END_KB - START_KB))
@@ -95,4 +104,4 @@ if [ -n "${START_KB:-}" ] && [ -n "${END_KB:-}" ]; then
 else
   echo "WARN no /proc RSS (non-Linux); skipped numeric RSS gate"
 fi
-echo "ok  soak"
+echo "ok  soak ${MS}ms"

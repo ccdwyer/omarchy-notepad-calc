@@ -1,56 +1,53 @@
 #!/bin/sh
 # CI-only UI captures. Writes PNGs to a TEMP dir, diffs against committed goldens.
+# Goldens must be Linux Item.grabToImage captures of Panel.qml chrome — not stand-ins.
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
 GOLD="$ROOT/tests/goldens/ui"
 
-require_qml() {
-  QML="${QML_BIN:-}"
-  if [ -z "$QML" ]; then
-    for c in qml6 qml qmlscene; do
-      if command -v "$c" >/dev/null 2>&1; then QML="$c"; break; fi
-    done
-  fi
-  if [ -n "${QML_BIN:-}" ] && [ -x "$QML_BIN" ]; then
-    QML="$QML_BIN"
-    PATH="$(CDPATH= cd -- "$(dirname "$QML_BIN")" && pwd):$PATH"
-  fi
-  if [ -z "$QML" ]; then
-    echo "FAIL no qml runtime (acceptance is Linux CI with qt6-declarative)"
-    exit 1
-  fi
-}
+# shellcheck disable=SC1091
+. "$ROOT/tests/ui/setup-qml-env.sh"
 
-require_quickshell() {
-  if command -v quickshell >/dev/null 2>&1; then return 0; fi
-  if ls "$HOME/.nix-profile/lib"/qt-*/qml/Quickshell/qmldir >/dev/null 2>&1; then return 0; fi
-  if find /nix/store "$HOME/.nix-profile" /usr/lib -name qmldir 2>/dev/null | grep -q '/Quickshell/qmldir'; then return 0; fi
-  echo "FAIL real Quickshell is required for UI acceptance (stubs are unit-only)"
-  exit 1
-}
-
-if [ "${REQUIRE_QML_UI:-}" != "1" ] && ! command -v qml6 >/dev/null 2>&1 && ! command -v qml >/dev/null 2>&1; then
+if [ "${REQUIRE_QML_UI:-}" != "1" ] && [ -z "${QML_BIN:-}" ]; then
   echo "skip ui test: no qml runtime (CI-only on Linux)"
   exit 0
 fi
 
-require_qml
-if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
-  require_quickshell
+if [ -z "${QML_BIN:-}" ]; then
+  echo "FAIL no qml runtime (acceptance is Linux CI with qt6-declarative + Quickshell)"
+  exit 1
 fi
+
+if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
+  if [ -z "${QS_QML_ROOT:-}" ] || [ ! -f "$QS_QML_ROOT/Quickshell/qmldir" ]; then
+    echo "FAIL real Quickshell QML module is required for UI acceptance (stubs are unit-only)"
+    exit 1
+  fi
+fi
+
+case ":${QML2_IMPORT_PATH:-}:" in
+  *unit-stubs*)
+    echo "FAIL tests/unit-stubs must not be on the UI acceptance import path"
+    exit 1
+    ;;
+esac
 
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export NOTEPAD_CALC_TEST=1
-# Omarchy theme tokens only — do NOT import tests/unit-stubs/Quickshell.
-export QML2_IMPORT_PATH="$ROOT/tests/stubs${QML2_IMPORT_PATH:+:$QML2_IMPORT_PATH}"
-export QML_IMPORT_PATH="$QML2_IMPORT_PATH"
 
 CAP=$(mktemp -d)
 trap 'rm -rf "$CAP"' EXIT
 
+I_FLAGS="-I $ROOT"
+if [ -n "${QS_QML_ROOT:-}" ]; then
+  I_FLAGS="$I_FLAGS -I $QS_QML_ROOT"
+fi
+I_FLAGS="$I_FLAGS -I $ROOT/tests/stubs"
+
 LOG=$(mktemp)
 set +e
-"$QML" -I "$ROOT" -I "$ROOT/tests/stubs" "$ROOT/tests/ui/UiTest.qml" "$CAP" >"$LOG" 2>&1
+# shellcheck disable=SC2086
+"$QML_BIN" $I_FLAGS "$ROOT/tests/ui/UiTest.qml" "$CAP" >"$LOG" 2>&1
 STATUS=$?
 set -e
 cat "$LOG"
@@ -73,10 +70,15 @@ if [ "$CAPTURE_COUNT" -lt 12 ]; then
   exit 1
 fi
 
+if [ -n "${NOTEPAD_CALC_UI_ARTIFACT_DIR:-}" ]; then
+  mkdir -p "$NOTEPAD_CALC_UI_ARTIFACT_DIR"
+  cp "$CAP"/*.png "$NOTEPAD_CALC_UI_ARTIFACT_DIR/"
+fi
+
 if [ "${UPDATE_UI_GOLDENS:-}" = "1" ]; then
   mkdir -p "$GOLD"
   cp "$CAP"/*.png "$GOLD/"
-  echo "updated goldens in $GOLD"
+  echo "updated goldens in $GOLD from Item.grabToImage"
   exit 0
 fi
 
