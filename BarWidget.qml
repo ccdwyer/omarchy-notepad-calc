@@ -53,7 +53,7 @@ BarWidget {
     root.panelOpen = false
   }
 
-  // shell call <id> <method> <arg> dispatches onto this entry point.
+  // omarchy-shell io.github.chris.notepad-calc <method> <arg> dispatches here.
   function summon(arg) {
     root.open()
     return "ok"

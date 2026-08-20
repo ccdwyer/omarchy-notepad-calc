@@ -368,7 +368,7 @@ Item {
           root.statusMsg = "wl-copy not found — install wl-clipboard to copy"
       }
     }
-    onExited: {
+    onExited: function(exitCode) {
       if (exitCode !== 0) {
         if (!root.statusMsg || root.statusMsg.indexOf("wl-copy") < 0)
           root.statusMsg = "copy failed (wl-copy)"

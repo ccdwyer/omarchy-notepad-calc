@@ -46,12 +46,12 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument. Bind (the plugin does **not** write `hyprland.conf`):
 
 ```
-bind = SUPER, N, exec, omarchy-shell shell call io.github.chris.notepad-calc toggle '{}'
-bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-calc summon '{}'
-bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide '{}'
+bind = SUPER, N, exec, omarchy-shell io.github.chris.notepad-calc toggle '{}'
+bind = SUPER SHIFT, N, exec, omarchy-shell io.github.chris.notepad-calc summon '{}'
+bind = SUPER SHIFT, Escape, exec, omarchy-shell io.github.chris.notepad-calc hide '{}'
 ```
 
-`summon` / `hide` / `toggle` are string-argument methods on the loaded **bar-widget entry point** (`BarWidget.qml` root). Quattro `shell call <id> <method> <arg>` invokes those directly. An `IpcHandler` on the same object exposes the same verbs as an additional direct IPC surface. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget.
+`summon` / `hide` / `toggle` are string-argument methods on the **bar-widget `IpcHandler`** (`BarWidget.qml`). `omarchy-shell shell call <id>` hits overlay/panel loaders only — this plugin is bar-widget-only, so that returns `unknown`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget. The nested panel is opened by `BarWidget.open`.
 
 ## Grammar (v1, frozen)
 
