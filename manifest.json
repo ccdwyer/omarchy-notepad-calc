@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.chris.notepad-calc",
+  "name": "Notepad Calc",
+  "version": "1.0.0",
+  "author": "chris",
+  "license": "MIT",
+  "description": "A live calculation notepad: prose with numbers, units, currency, dates and variables — every line evaluates as you type.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Notepad Calc",
+    "category": "Tools",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "defaultCurrency": "USD"
+    },
+    "schema": [
+      {
+        "key": "defaultCurrency",
+        "type": "string",
+        "label": "Default currency"
+      }
+    ]
+  }
+}

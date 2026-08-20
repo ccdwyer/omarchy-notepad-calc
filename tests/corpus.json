@@ -1,0 +1,20 @@
+[
+  { "id": "g1", "name": "2 + 2", "sheet": "2 + 2", "kind": "result", "approx": 4 },
+  { "id": "g2", "name": "2 × 3 + 4", "sheet": "2 × 3 + 4", "kind": "result", "approx": 10 },
+  { "id": "g3", "name": "2 + 3 × 4", "sheet": "2 + 3 × 4", "kind": "result", "approx": 14 },
+  { "id": "g4", "name": "(2 + 3) × 4", "sheet": "(2 + 3) × 4", "kind": "result", "approx": 20 },
+  { "id": "g5", "name": "unary minus", "sheet": "-5 + 2", "kind": "result", "approx": -3 },
+  { "id": "g6", "name": "power", "sheet": "2 ^ 8", "kind": "result", "approx": 256 },
+  { "id": "g7", "name": "divide", "sheet": "84 / 2", "kind": "result", "approx": 42 },
+  { "id": "g8", "name": "nested paren", "sheet": "((1 + 2) × (3 + 4))", "kind": "result", "approx": 21 },
+  { "id": "u1", "name": "1 m in cm", "sheet": "1 m in cm", "contains": "100" },
+  { "id": "u2", "name": "12 in in cm", "sheet": "12 in in cm", "contains": "30" },
+  { "id": "u3", "name": "1 acre as m2", "sheet": "1 acre as m2", "kind": "result" },
+  { "id": "u4", "name": "1 gal in L", "sheet": "1 gal in L", "kind": "result" },
+  { "id": "c1", "name": "£10", "sheet": "£10", "kind": "result", "currency": "GBP", "approx": 10 },
+  { "id": "c2", "name": "¥1000", "sheet": "¥1000", "kind": "result", "currency": "JPY", "approx": 1000 },
+  { "id": "c3", "name": "USD code", "sheet": "25 USD", "kind": "result", "currency": "USD", "approx": 25 },
+  { "id": "d1", "name": "today", "sheet": "today", "kind": "result", "display": "today" },
+  { "id": "p1", "name": "blank", "sheet": "", "kind": "blank" },
+  { "id": "p2", "name": "spaces", "sheet": "   ", "kind": "blank" }
+]

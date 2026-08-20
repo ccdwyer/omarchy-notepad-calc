@@ -1,0 +1,1721 @@
+[
+  {
+    "id": "UTC",
+    "cities": [
+      "utc",
+      "gmt"
+    ],
+    "stdOffset": 0,
+    "dstOffset": 0,
+    "stdAbbr": "UTC",
+    "dstAbbr": "UTC",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/New_York",
+    "cities": [
+      "new york",
+      "nyc",
+      "boston",
+      "miami",
+      "atlanta",
+      "detroit",
+      "washington"
+    ],
+    "stdOffset": -18000,
+    "dstOffset": -14400,
+    "stdAbbr": "EST",
+    "dstAbbr": "EDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710054000000,
+        "iso": "2024-03-10T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1730613600000,
+        "iso": "2024-11-03T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1741503600000,
+        "iso": "2025-03-09T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1762063200000,
+        "iso": "2025-11-02T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1772953200000,
+        "iso": "2026-03-08T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1793512800000,
+        "iso": "2026-11-01T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1805007600000,
+        "iso": "2027-03-14T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1825567200000,
+        "iso": "2027-11-07T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1836457200000,
+        "iso": "2028-03-12T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1857016800000,
+        "iso": "2028-11-05T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      }
+    ]
+  },
+  {
+    "id": "America/Chicago",
+    "cities": [
+      "chicago",
+      "dallas",
+      "houston",
+      "minneapolis"
+    ],
+    "stdOffset": -21600,
+    "dstOffset": -18000,
+    "stdAbbr": "CST",
+    "dstAbbr": "CDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710057600000,
+        "iso": "2024-03-10T08:00:00.000Z",
+        "offset": -18000,
+        "abbr": "CDT"
+      },
+      {
+        "at": 1730617200000,
+        "iso": "2024-11-03T07:00:00.000Z",
+        "offset": -21600,
+        "abbr": "CST"
+      },
+      {
+        "at": 1741507200000,
+        "iso": "2025-03-09T08:00:00.000Z",
+        "offset": -18000,
+        "abbr": "CDT"
+      },
+      {
+        "at": 1762066800000,
+        "iso": "2025-11-02T07:00:00.000Z",
+        "offset": -21600,
+        "abbr": "CST"
+      },
+      {
+        "at": 1772956800000,
+        "iso": "2026-03-08T08:00:00.000Z",
+        "offset": -18000,
+        "abbr": "CDT"
+      },
+      {
+        "at": 1793516400000,
+        "iso": "2026-11-01T07:00:00.000Z",
+        "offset": -21600,
+        "abbr": "CST"
+      },
+      {
+        "at": 1805011200000,
+        "iso": "2027-03-14T08:00:00.000Z",
+        "offset": -18000,
+        "abbr": "CDT"
+      },
+      {
+        "at": 1825570800000,
+        "iso": "2027-11-07T07:00:00.000Z",
+        "offset": -21600,
+        "abbr": "CST"
+      },
+      {
+        "at": 1836460800000,
+        "iso": "2028-03-12T08:00:00.000Z",
+        "offset": -18000,
+        "abbr": "CDT"
+      },
+      {
+        "at": 1857020400000,
+        "iso": "2028-11-05T07:00:00.000Z",
+        "offset": -21600,
+        "abbr": "CST"
+      }
+    ]
+  },
+  {
+    "id": "America/Denver",
+    "cities": [
+      "denver",
+      "salt lake city",
+      "salt lake"
+    ],
+    "stdOffset": -25200,
+    "dstOffset": -21600,
+    "stdAbbr": "MST",
+    "dstAbbr": "MDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710061200000,
+        "iso": "2024-03-10T09:00:00.000Z",
+        "offset": -21600,
+        "abbr": "MDT"
+      },
+      {
+        "at": 1730620800000,
+        "iso": "2024-11-03T08:00:00.000Z",
+        "offset": -25200,
+        "abbr": "MST"
+      },
+      {
+        "at": 1741510800000,
+        "iso": "2025-03-09T09:00:00.000Z",
+        "offset": -21600,
+        "abbr": "MDT"
+      },
+      {
+        "at": 1762070400000,
+        "iso": "2025-11-02T08:00:00.000Z",
+        "offset": -25200,
+        "abbr": "MST"
+      },
+      {
+        "at": 1772960400000,
+        "iso": "2026-03-08T09:00:00.000Z",
+        "offset": -21600,
+        "abbr": "MDT"
+      },
+      {
+        "at": 1793520000000,
+        "iso": "2026-11-01T08:00:00.000Z",
+        "offset": -25200,
+        "abbr": "MST"
+      },
+      {
+        "at": 1805014800000,
+        "iso": "2027-03-14T09:00:00.000Z",
+        "offset": -21600,
+        "abbr": "MDT"
+      },
+      {
+        "at": 1825574400000,
+        "iso": "2027-11-07T08:00:00.000Z",
+        "offset": -25200,
+        "abbr": "MST"
+      },
+      {
+        "at": 1836464400000,
+        "iso": "2028-03-12T09:00:00.000Z",
+        "offset": -21600,
+        "abbr": "MDT"
+      },
+      {
+        "at": 1857024000000,
+        "iso": "2028-11-05T08:00:00.000Z",
+        "offset": -25200,
+        "abbr": "MST"
+      }
+    ]
+  },
+  {
+    "id": "America/Los_Angeles",
+    "cities": [
+      "los angeles",
+      "la",
+      "seattle",
+      "san francisco",
+      "portland"
+    ],
+    "stdOffset": -28800,
+    "dstOffset": -25200,
+    "stdAbbr": "PST",
+    "dstAbbr": "PDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710064800000,
+        "iso": "2024-03-10T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1730624400000,
+        "iso": "2024-11-03T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1741514400000,
+        "iso": "2025-03-09T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1762074000000,
+        "iso": "2025-11-02T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1772964000000,
+        "iso": "2026-03-08T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1793523600000,
+        "iso": "2026-11-01T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1805018400000,
+        "iso": "2027-03-14T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1825578000000,
+        "iso": "2027-11-07T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1836468000000,
+        "iso": "2028-03-12T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1857027600000,
+        "iso": "2028-11-05T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      }
+    ]
+  },
+  {
+    "id": "America/Phoenix",
+    "cities": [
+      "phoenix"
+    ],
+    "stdOffset": -25200,
+    "dstOffset": -25200,
+    "stdAbbr": "MST",
+    "dstAbbr": "MST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Anchorage",
+    "cities": [
+      "anchorage"
+    ],
+    "stdOffset": -32400,
+    "dstOffset": -28800,
+    "stdAbbr": "AKST",
+    "dstAbbr": "AKDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710068400000,
+        "iso": "2024-03-10T11:00:00.000Z",
+        "offset": -28800,
+        "abbr": "AKDT"
+      },
+      {
+        "at": 1730628000000,
+        "iso": "2024-11-03T10:00:00.000Z",
+        "offset": -32400,
+        "abbr": "AKST"
+      },
+      {
+        "at": 1741518000000,
+        "iso": "2025-03-09T11:00:00.000Z",
+        "offset": -28800,
+        "abbr": "AKDT"
+      },
+      {
+        "at": 1762077600000,
+        "iso": "2025-11-02T10:00:00.000Z",
+        "offset": -32400,
+        "abbr": "AKST"
+      },
+      {
+        "at": 1772967600000,
+        "iso": "2026-03-08T11:00:00.000Z",
+        "offset": -28800,
+        "abbr": "AKDT"
+      },
+      {
+        "at": 1793527200000,
+        "iso": "2026-11-01T10:00:00.000Z",
+        "offset": -32400,
+        "abbr": "AKST"
+      },
+      {
+        "at": 1805022000000,
+        "iso": "2027-03-14T11:00:00.000Z",
+        "offset": -28800,
+        "abbr": "AKDT"
+      },
+      {
+        "at": 1825581600000,
+        "iso": "2027-11-07T10:00:00.000Z",
+        "offset": -32400,
+        "abbr": "AKST"
+      },
+      {
+        "at": 1836471600000,
+        "iso": "2028-03-12T11:00:00.000Z",
+        "offset": -28800,
+        "abbr": "AKDT"
+      },
+      {
+        "at": 1857031200000,
+        "iso": "2028-11-05T10:00:00.000Z",
+        "offset": -32400,
+        "abbr": "AKST"
+      }
+    ]
+  },
+  {
+    "id": "Pacific/Honolulu",
+    "cities": [
+      "honolulu",
+      "hawaii"
+    ],
+    "stdOffset": -36000,
+    "dstOffset": -36000,
+    "stdAbbr": "HST",
+    "dstAbbr": "HST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Toronto",
+    "cities": [
+      "toronto"
+    ],
+    "stdOffset": -18000,
+    "dstOffset": -14400,
+    "stdAbbr": "EST",
+    "dstAbbr": "EDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710054000000,
+        "iso": "2024-03-10T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1730613600000,
+        "iso": "2024-11-03T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1741503600000,
+        "iso": "2025-03-09T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1762063200000,
+        "iso": "2025-11-02T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1772953200000,
+        "iso": "2026-03-08T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1793512800000,
+        "iso": "2026-11-01T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1805007600000,
+        "iso": "2027-03-14T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1825567200000,
+        "iso": "2027-11-07T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1836457200000,
+        "iso": "2028-03-12T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1857016800000,
+        "iso": "2028-11-05T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      }
+    ]
+  },
+  {
+    "id": "America/Vancouver",
+    "cities": [
+      "vancouver"
+    ],
+    "stdOffset": -28800,
+    "dstOffset": -25200,
+    "stdAbbr": "PST",
+    "dstAbbr": "PDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710064800000,
+        "iso": "2024-03-10T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1730624400000,
+        "iso": "2024-11-03T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1741514400000,
+        "iso": "2025-03-09T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1762074000000,
+        "iso": "2025-11-02T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1772964000000,
+        "iso": "2026-03-08T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1793523600000,
+        "iso": "2026-11-01T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1805018400000,
+        "iso": "2027-03-14T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1825578000000,
+        "iso": "2027-11-07T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      },
+      {
+        "at": 1836468000000,
+        "iso": "2028-03-12T10:00:00.000Z",
+        "offset": -25200,
+        "abbr": "PDT"
+      },
+      {
+        "at": 1857027600000,
+        "iso": "2028-11-05T09:00:00.000Z",
+        "offset": -28800,
+        "abbr": "PST"
+      }
+    ]
+  },
+  {
+    "id": "America/Montreal",
+    "cities": [
+      "montreal"
+    ],
+    "stdOffset": -18000,
+    "dstOffset": -14400,
+    "stdAbbr": "EST",
+    "dstAbbr": "EDT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710054000000,
+        "iso": "2024-03-10T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1730613600000,
+        "iso": "2024-11-03T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1741503600000,
+        "iso": "2025-03-09T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1762063200000,
+        "iso": "2025-11-02T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1772953200000,
+        "iso": "2026-03-08T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1793512800000,
+        "iso": "2026-11-01T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1805007600000,
+        "iso": "2027-03-14T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1825567200000,
+        "iso": "2027-11-07T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      },
+      {
+        "at": 1836457200000,
+        "iso": "2028-03-12T07:00:00.000Z",
+        "offset": -14400,
+        "abbr": "EDT"
+      },
+      {
+        "at": 1857016800000,
+        "iso": "2028-11-05T06:00:00.000Z",
+        "offset": -18000,
+        "abbr": "EST"
+      }
+    ]
+  },
+  {
+    "id": "America/Mexico_City",
+    "cities": [
+      "mexico city"
+    ],
+    "stdOffset": -21600,
+    "dstOffset": -21600,
+    "stdAbbr": "CST",
+    "dstAbbr": "CST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Sao_Paulo",
+    "cities": [
+      "sao paulo",
+      "são paulo"
+    ],
+    "stdOffset": -10800,
+    "dstOffset": -10800,
+    "stdAbbr": "BRT",
+    "dstAbbr": "BRT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Buenos_Aires",
+    "cities": [
+      "buenos aires"
+    ],
+    "stdOffset": -10800,
+    "dstOffset": -10800,
+    "stdAbbr": "ART",
+    "dstAbbr": "ART",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Europe/London",
+    "cities": [
+      "london"
+    ],
+    "stdOffset": 0,
+    "dstOffset": 3600,
+    "stdAbbr": "GMT",
+    "dstAbbr": "BST",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "BST"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "BST"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "BST"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "BST"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "BST"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      }
+    ]
+  },
+  {
+    "id": "Europe/Dublin",
+    "cities": [
+      "dublin"
+    ],
+    "stdOffset": 0,
+    "dstOffset": 3600,
+    "stdAbbr": "GMT",
+    "dstAbbr": "IST",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "IST"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "IST"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "IST"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "IST"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "IST"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "GMT"
+      }
+    ]
+  },
+  {
+    "id": "Europe/Paris",
+    "cities": [
+      "paris",
+      "brussels",
+      "amsterdam",
+      "madrid",
+      "rome",
+      "berlin",
+      "zurich",
+      "vienna",
+      "prague",
+      "stockholm",
+      "oslo",
+      "copenhagen",
+      "warsaw"
+    ],
+    "stdOffset": 3600,
+    "dstOffset": 7200,
+    "stdAbbr": "CET",
+    "dstAbbr": "CEST",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "CEST"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "CET"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "CEST"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "CET"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "CEST"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "CET"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "CEST"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "CET"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "CEST"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "CET"
+      }
+    ]
+  },
+  {
+    "id": "Europe/Lisbon",
+    "cities": [
+      "lisbon"
+    ],
+    "stdOffset": 0,
+    "dstOffset": 3600,
+    "stdAbbr": "WET",
+    "dstAbbr": "WEST",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "WEST"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "WET"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "WEST"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "WET"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "WEST"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "WET"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "WEST"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "WET"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 3600,
+        "abbr": "WEST"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 0,
+        "abbr": "WET"
+      }
+    ]
+  },
+  {
+    "id": "Europe/Helsinki",
+    "cities": [
+      "helsinki",
+      "athens"
+    ],
+    "stdOffset": 7200,
+    "dstOffset": 10800,
+    "stdAbbr": "EET",
+    "dstAbbr": "EEST",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "EEST"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "EET"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "EEST"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "EET"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "EEST"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "EET"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "EEST"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "EET"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "EEST"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "EET"
+      }
+    ]
+  },
+  {
+    "id": "Europe/Moscow",
+    "cities": [
+      "moscow"
+    ],
+    "stdOffset": 10800,
+    "dstOffset": 10800,
+    "stdAbbr": "MSK",
+    "dstAbbr": "MSK",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Europe/Istanbul",
+    "cities": [
+      "istanbul"
+    ],
+    "stdOffset": 10800,
+    "dstOffset": 10800,
+    "stdAbbr": "TRT",
+    "dstAbbr": "TRT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Africa/Cairo",
+    "cities": [
+      "cairo"
+    ],
+    "stdOffset": 7200,
+    "dstOffset": 7200,
+    "stdAbbr": "EET",
+    "dstAbbr": "EET",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Africa/Johannesburg",
+    "cities": [
+      "johannesburg",
+      "cape town"
+    ],
+    "stdOffset": 7200,
+    "dstOffset": 7200,
+    "stdAbbr": "SAST",
+    "dstAbbr": "SAST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Africa/Nairobi",
+    "cities": [
+      "nairobi"
+    ],
+    "stdOffset": 10800,
+    "dstOffset": 10800,
+    "stdAbbr": "EAT",
+    "dstAbbr": "EAT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Dubai",
+    "cities": [
+      "dubai"
+    ],
+    "stdOffset": 14400,
+    "dstOffset": 14400,
+    "stdAbbr": "GST",
+    "dstAbbr": "GST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "cities": [
+      "tel aviv",
+      "jerusalem"
+    ],
+    "stdOffset": 7200,
+    "dstOffset": 10800,
+    "stdAbbr": "IST",
+    "dstAbbr": "IDT",
+    "rule": "eu",
+    "transitions": [
+      {
+        "at": 1711846800000,
+        "iso": "2024-03-31T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "IDT"
+      },
+      {
+        "at": 1729990800000,
+        "iso": "2024-10-27T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "IST"
+      },
+      {
+        "at": 1743296400000,
+        "iso": "2025-03-30T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "IDT"
+      },
+      {
+        "at": 1761440400000,
+        "iso": "2025-10-26T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "IST"
+      },
+      {
+        "at": 1774746000000,
+        "iso": "2026-03-29T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "IDT"
+      },
+      {
+        "at": 1792890000000,
+        "iso": "2026-10-25T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "IST"
+      },
+      {
+        "at": 1806195600000,
+        "iso": "2027-03-28T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "IDT"
+      },
+      {
+        "at": 1824944400000,
+        "iso": "2027-10-31T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "IST"
+      },
+      {
+        "at": 1837645200000,
+        "iso": "2028-03-26T01:00:00.000Z",
+        "offset": 10800,
+        "abbr": "IDT"
+      },
+      {
+        "at": 1856394000000,
+        "iso": "2028-10-29T01:00:00.000Z",
+        "offset": 7200,
+        "abbr": "IST"
+      }
+    ]
+  },
+  {
+    "id": "Asia/Kolkata",
+    "cities": [
+      "mumbai",
+      "delhi",
+      "kolkata",
+      "bangalore",
+      "india"
+    ],
+    "stdOffset": 19800,
+    "dstOffset": 19800,
+    "stdAbbr": "IST",
+    "dstAbbr": "IST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Bangkok",
+    "cities": [
+      "bangkok",
+      "jakarta"
+    ],
+    "stdOffset": 25200,
+    "dstOffset": 25200,
+    "stdAbbr": "ICT",
+    "dstAbbr": "ICT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Singapore",
+    "cities": [
+      "singapore"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "SGT",
+    "dstAbbr": "SGT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Hong_Kong",
+    "cities": [
+      "hong kong"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "HKT",
+    "dstAbbr": "HKT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Shanghai",
+    "cities": [
+      "shanghai",
+      "beijing",
+      "china"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "CST",
+    "dstAbbr": "CST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Taipei",
+    "cities": [
+      "taipei"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "CST",
+    "dstAbbr": "CST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Manila",
+    "cities": [
+      "manila"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "PHT",
+    "dstAbbr": "PHT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Seoul",
+    "cities": [
+      "seoul"
+    ],
+    "stdOffset": 32400,
+    "dstOffset": 32400,
+    "stdAbbr": "KST",
+    "dstAbbr": "KST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Tokyo",
+    "cities": [
+      "tokyo"
+    ],
+    "stdOffset": 32400,
+    "dstOffset": 32400,
+    "stdAbbr": "JST",
+    "dstAbbr": "JST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Australia/Sydney",
+    "cities": [
+      "sydney",
+      "melbourne"
+    ],
+    "stdOffset": 36000,
+    "dstOffset": 39600,
+    "stdAbbr": "AEST",
+    "dstAbbr": "AEDT",
+    "rule": "au-east",
+    "transitions": [
+      {
+        "at": 1712419200000,
+        "iso": "2024-04-06T16:00:00.000Z",
+        "offset": 36000,
+        "abbr": "AEST"
+      },
+      {
+        "at": 1728144000000,
+        "iso": "2024-10-05T16:00:00.000Z",
+        "offset": 39600,
+        "abbr": "AEDT"
+      },
+      {
+        "at": 1743868800000,
+        "iso": "2025-04-05T16:00:00.000Z",
+        "offset": 36000,
+        "abbr": "AEST"
+      },
+      {
+        "at": 1759593600000,
+        "iso": "2025-10-04T16:00:00.000Z",
+        "offset": 39600,
+        "abbr": "AEDT"
+      },
+      {
+        "at": 1775318400000,
+        "iso": "2026-04-04T16:00:00.000Z",
+        "offset": 36000,
+        "abbr": "AEST"
+      },
+      {
+        "at": 1791043200000,
+        "iso": "2026-10-03T16:00:00.000Z",
+        "offset": 39600,
+        "abbr": "AEDT"
+      },
+      {
+        "at": 1806768000000,
+        "iso": "2027-04-03T16:00:00.000Z",
+        "offset": 36000,
+        "abbr": "AEST"
+      },
+      {
+        "at": 1822492800000,
+        "iso": "2027-10-02T16:00:00.000Z",
+        "offset": 39600,
+        "abbr": "AEDT"
+      },
+      {
+        "at": 1838217600000,
+        "iso": "2028-04-01T16:00:00.000Z",
+        "offset": 36000,
+        "abbr": "AEST"
+      },
+      {
+        "at": 1853942400000,
+        "iso": "2028-09-30T16:00:00.000Z",
+        "offset": 39600,
+        "abbr": "AEDT"
+      }
+    ]
+  },
+  {
+    "id": "Australia/Perth",
+    "cities": [
+      "perth"
+    ],
+    "stdOffset": 28800,
+    "dstOffset": 28800,
+    "stdAbbr": "AWST",
+    "dstAbbr": "AWST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Pacific/Auckland",
+    "cities": [
+      "auckland"
+    ],
+    "stdOffset": 43200,
+    "dstOffset": 46800,
+    "stdAbbr": "NZST",
+    "dstAbbr": "NZDT",
+    "rule": "nz",
+    "transitions": [
+      {
+        "at": 1712412000000,
+        "iso": "2024-04-06T14:00:00.000Z",
+        "offset": 43200,
+        "abbr": "NZST"
+      },
+      {
+        "at": 1727532000000,
+        "iso": "2024-09-28T14:00:00.000Z",
+        "offset": 46800,
+        "abbr": "NZDT"
+      },
+      {
+        "at": 1743861600000,
+        "iso": "2025-04-05T14:00:00.000Z",
+        "offset": 43200,
+        "abbr": "NZST"
+      },
+      {
+        "at": 1758981600000,
+        "iso": "2025-09-27T14:00:00.000Z",
+        "offset": 46800,
+        "abbr": "NZDT"
+      },
+      {
+        "at": 1775311200000,
+        "iso": "2026-04-04T14:00:00.000Z",
+        "offset": 43200,
+        "abbr": "NZST"
+      },
+      {
+        "at": 1790431200000,
+        "iso": "2026-09-26T14:00:00.000Z",
+        "offset": 46800,
+        "abbr": "NZDT"
+      },
+      {
+        "at": 1806760800000,
+        "iso": "2027-04-03T14:00:00.000Z",
+        "offset": 43200,
+        "abbr": "NZST"
+      },
+      {
+        "at": 1821880800000,
+        "iso": "2027-09-25T14:00:00.000Z",
+        "offset": 46800,
+        "abbr": "NZDT"
+      },
+      {
+        "at": 1838210400000,
+        "iso": "2028-04-01T14:00:00.000Z",
+        "offset": 43200,
+        "abbr": "NZST"
+      },
+      {
+        "at": 1853330400000,
+        "iso": "2028-09-23T14:00:00.000Z",
+        "offset": 46800,
+        "abbr": "NZDT"
+      }
+    ]
+  },
+  {
+    "id": "America/Bogota",
+    "cities": [
+      "bogota"
+    ],
+    "stdOffset": -18000,
+    "dstOffset": -18000,
+    "stdAbbr": "COT",
+    "dstAbbr": "COT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Lima",
+    "cities": [
+      "lima"
+    ],
+    "stdOffset": -18000,
+    "dstOffset": -18000,
+    "stdAbbr": "PET",
+    "dstAbbr": "PET",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Santiago",
+    "cities": [
+      "santiago"
+    ],
+    "stdOffset": -14400,
+    "dstOffset": -10800,
+    "stdAbbr": "CLT",
+    "dstAbbr": "CLST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "America/Halifax",
+    "cities": [
+      "halifax"
+    ],
+    "stdOffset": -14400,
+    "dstOffset": -10800,
+    "stdAbbr": "AST",
+    "dstAbbr": "ADT",
+    "rule": "us",
+    "transitions": [
+      {
+        "at": 1710050400000,
+        "iso": "2024-03-10T06:00:00.000Z",
+        "offset": -10800,
+        "abbr": "ADT"
+      },
+      {
+        "at": 1730610000000,
+        "iso": "2024-11-03T05:00:00.000Z",
+        "offset": -14400,
+        "abbr": "AST"
+      },
+      {
+        "at": 1741500000000,
+        "iso": "2025-03-09T06:00:00.000Z",
+        "offset": -10800,
+        "abbr": "ADT"
+      },
+      {
+        "at": 1762059600000,
+        "iso": "2025-11-02T05:00:00.000Z",
+        "offset": -14400,
+        "abbr": "AST"
+      },
+      {
+        "at": 1772949600000,
+        "iso": "2026-03-08T06:00:00.000Z",
+        "offset": -10800,
+        "abbr": "ADT"
+      },
+      {
+        "at": 1793509200000,
+        "iso": "2026-11-01T05:00:00.000Z",
+        "offset": -14400,
+        "abbr": "AST"
+      },
+      {
+        "at": 1805004000000,
+        "iso": "2027-03-14T06:00:00.000Z",
+        "offset": -10800,
+        "abbr": "ADT"
+      },
+      {
+        "at": 1825563600000,
+        "iso": "2027-11-07T05:00:00.000Z",
+        "offset": -14400,
+        "abbr": "AST"
+      },
+      {
+        "at": 1836453600000,
+        "iso": "2028-03-12T06:00:00.000Z",
+        "offset": -10800,
+        "abbr": "ADT"
+      },
+      {
+        "at": 1857013200000,
+        "iso": "2028-11-05T05:00:00.000Z",
+        "offset": -14400,
+        "abbr": "AST"
+      }
+    ]
+  },
+  {
+    "id": "Atlantic/Reykjavik",
+    "cities": [
+      "reykjavik",
+      "iceland"
+    ],
+    "stdOffset": 0,
+    "dstOffset": 0,
+    "stdAbbr": "GMT",
+    "dstAbbr": "GMT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Africa/Lagos",
+    "cities": [
+      "lagos"
+    ],
+    "stdOffset": 3600,
+    "dstOffset": 3600,
+    "stdAbbr": "WAT",
+    "dstAbbr": "WAT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Africa/Casablanca",
+    "cities": [
+      "casablanca"
+    ],
+    "stdOffset": 3600,
+    "dstOffset": 3600,
+    "stdAbbr": "WET",
+    "dstAbbr": "WET",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Riyadh",
+    "cities": [
+      "riyadh"
+    ],
+    "stdOffset": 10800,
+    "dstOffset": 10800,
+    "stdAbbr": "AST",
+    "dstAbbr": "AST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Karachi",
+    "cities": [
+      "karachi"
+    ],
+    "stdOffset": 18000,
+    "dstOffset": 18000,
+    "stdAbbr": "PKT",
+    "dstAbbr": "PKT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Dhaka",
+    "cities": [
+      "dhaka"
+    ],
+    "stdOffset": 21600,
+    "dstOffset": 21600,
+    "stdAbbr": "BST",
+    "dstAbbr": "BST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Yangon",
+    "cities": [
+      "yangon",
+      "rangoon"
+    ],
+    "stdOffset": 23400,
+    "dstOffset": 23400,
+    "stdAbbr": "MMT",
+    "dstAbbr": "MMT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Asia/Ho_Chi_Minh",
+    "cities": [
+      "ho chi minh",
+      "saigon",
+      "hanoi"
+    ],
+    "stdOffset": 25200,
+    "dstOffset": 25200,
+    "stdAbbr": "ICT",
+    "dstAbbr": "ICT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Pacific/Guam",
+    "cities": [
+      "guam"
+    ],
+    "stdOffset": 36000,
+    "dstOffset": 36000,
+    "stdAbbr": "ChST",
+    "dstAbbr": "ChST",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Pacific/Fiji",
+    "cities": [
+      "fiji",
+      "suva"
+    ],
+    "stdOffset": 43200,
+    "dstOffset": 43200,
+    "stdAbbr": "FJT",
+    "dstAbbr": "FJT",
+    "rule": "none",
+    "transitions": []
+  },
+  {
+    "id": "Pacific/Port_Moresby",
+    "cities": [
+      "port moresby"
+    ],
+    "stdOffset": 36000,
+    "dstOffset": 36000,
+    "stdAbbr": "PGT",
+    "dstAbbr": "PGT",
+    "rule": "none",
+    "transitions": []
+  }
+]

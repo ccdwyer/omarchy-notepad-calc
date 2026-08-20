@@ -1,0 +1,11 @@
+[package]
+name = "notepad-calc-rates"
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+description = "Fetch ECB daily reference rates for Notepad Calc"
+publish = false
+
+[[bin]]
+name = "notepad-calc-rates"
+path = "src/main.rs"
