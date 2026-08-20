@@ -1,7 +1,7 @@
 // CI-only. 500-line keystroke-replay soak against Panel.qml.
 import QtQuick
 import QtQuick.Window
-import "js/fileurl.js" as FileUrl
+import "../../js/fileurl.js" as FileUrl
 
 Window {
   id: runner

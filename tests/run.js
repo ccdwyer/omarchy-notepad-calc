@@ -563,6 +563,68 @@ test("fileurl decodes percent-escaped paths", () => {
   )
 })
 
+test("nowParts uses local calendar, not UTC", () => {
+  // Same instant: local 2026-08-19 vs UTC 2026-08-20 (west-of-UTC near midnight).
+  const fake = {
+    getFullYear: () => 2026,
+    getMonth: () => 7,
+    getDate: () => 19,
+    getUTCFullYear: () => 2026,
+    getUTCMonth: () => 7,
+    getUTCDate: () => 20
+  }
+  const p = Engine.nowParts({ now: fake })
+  assert.strictEqual(p.y, 2026)
+  assert.strictEqual(p.m, 8)
+  assert.strictEqual(p.d, 19)
+})
+
+test("ctx.nowDate still wins for deterministic tests", () => {
+  const fake = {
+    getFullYear: () => 1999,
+    getMonth: () => 0,
+    getDate: () => 1,
+    getUTCFullYear: () => 1999,
+    getUTCMonth: () => 0,
+    getUTCDate: () => 2
+  }
+  const p = Engine.nowParts({ now: fake, nowDate: { y: 2026, m: 8, d: 19 } })
+  assert.strictEqual(p.d, 19)
+  assert.strictEqual(p.m, 8)
+})
+
+test("today follows local date when nowDate is unset", () => {
+  const fake = new Date(Date.UTC(2026, 7, 20, 3, 0, 0))
+  fake.getFullYear = () => 2026
+  fake.getMonth = () => 7
+  fake.getDate = () => 19
+  const r = evalLines("today", { now: fake, nowDate: null })[0]
+  assert.ok(r.isDate, r.kind)
+  assert.strictEqual(r.date.d, 19)
+  assert.strictEqual(r.date.m, 8)
+})
+
+test("spring-forward gap is rejected, not shifted", () => {
+  const z = Tz.lookupZone("Los Angeles")
+  // 2026-03-08 02:30 does not exist (2am PST -> 3am PDT).
+  assert.strictEqual(Tz.localToUtc(2026, 3, 8, 2, 30, z), null)
+})
+
+test("fall-back fold is rejected, not guessed", () => {
+  const z = Tz.lookupZone("Los Angeles")
+  // 2026-11-01 01:30 occurs twice (PDT then PST).
+  assert.strictEqual(Tz.localToUtc(2026, 11, 1, 1, 30, z), null)
+})
+
+test("unambiguous wall time still converts", () => {
+  const z = Tz.lookupZone("Los Angeles")
+  const utc = Tz.localToUtc(2026, 7, 19, 15, 0, z)
+  assert.ok(utc != null)
+  const loc = Tz.utcToLocal(utc, z)
+  assert.strictEqual(loc.hh, 15)
+  assert.strictEqual(loc.offset, -7 * 3600)
+})
+
 test("unknown zone poisons to prose/unresolved", () => {
   const r = evalLines("3pm in Atlantis → Tokyo")[0]
   assert.ok(r.kind === "prose" || r.kind === "unresolved", r.kind)

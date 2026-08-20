@@ -38,18 +38,47 @@ def read_png(path: Path):
     stride = width * bpp
     rows = []
     i = 0
+    prev = bytearray(stride)
     for y in range(height):
         filt = pixels[i]
         i += 1
-        row = bytearray(pixels[i : i + stride])
+        raw_row = bytearray(pixels[i : i + stride])
         i += stride
-        if filt == 1:
-            for x in range(bpp, stride):
-                row[x] = (row[x] + row[x - bpp]) & 255
-        elif filt not in (0,):
-            pass
+        row = bytearray(stride)
+        if filt == 0:
+            row[:] = raw_row
+        elif filt == 1:
+            for x in range(stride):
+                a = row[x - bpp] if x >= bpp else 0
+                row[x] = (raw_row[x] + a) & 255
+        elif filt == 2:
+            for x in range(stride):
+                row[x] = (raw_row[x] + prev[x]) & 255
+        elif filt == 3:
+            for x in range(stride):
+                a = row[x - bpp] if x >= bpp else 0
+                row[x] = (raw_row[x] + ((a + prev[x]) // 2)) & 255
+        elif filt == 4:
+            for x in range(stride):
+                a = row[x - bpp] if x >= bpp else 0
+                b = prev[x]
+                c = prev[x - bpp] if x >= bpp else 0
+                row[x] = (raw_row[x] + _paeth(a, b, c)) & 255
+        else:
+            raise ValueError("unsupported png filter %s in %s" % (filt, path))
         rows.append(bytes(row))
+        prev = row
     return width, height, bpp, b"".join(rows)
+
+
+def _paeth(a, b, c):
+    p = a + b - c
+    pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+    if pa <= pb and pa <= pc:
+        return a
+    if pb <= pc:
+        return b
+    return c
 
 
 def is_standin(path: Path) -> bool:

@@ -55,7 +55,7 @@ function nowParts(ctx) {
     var d = ctx && ctx.now ? ctx.now : new Date()
     if (ctx && ctx.nowDate) return { y: ctx.nowDate.y, m: ctx.nowDate.m, d: ctx.nowDate.d }
     if (typeof d === "string") d = new Date(d)
-    return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() }
+    return { y: d.getFullYear(), m: d.getMonth() + 1, d: d.getDate() }
 }
 
 function qtyNumber(n) {
@@ -1117,6 +1117,7 @@ Parser.prototype.convertZone = function (left, fromZ, toZ) {
         tagged.hh = hh
         tagged.mm = mm
         var utc0 = tz.localToUtc(y, m, d, hh, mm, fromZ)
+        if (utc0 == null) return unresolvedResult(["time"])
         tagged.local = tz.utcToLocal(utc0, fromZ)
         tagged.isDateTime = true
         return tagged
@@ -1127,6 +1128,7 @@ Parser.prototype.convertZone = function (left, fromZ, toZ) {
     }
     if (fromZ && toZ) {
         var local = tz.convertWall(y, m, d, hh, mm, fromZ, toZ)
+        if (!local) return unresolvedResult(["time"])
         var q = qtyDateTime(local)
         q.tzResolved = toZ.id
         q.fromZone = fromZ
@@ -1561,6 +1563,7 @@ if (typeof module !== "undefined" && module.exports) {
         evalText: evalText,
         sheetTotal: sheetTotal,
         neverThrows: neverThrows,
-        applyFormat: applyFormat
+        applyFormat: applyFormat,
+        nowParts: nowParts
     }
 }

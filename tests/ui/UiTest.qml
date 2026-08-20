@@ -1,7 +1,7 @@
 // CI-only. Loads Panel.qml, synthetic edits, grabToImage on the chrome Item.
 import QtQuick
 import QtQuick.Window
-import "js/fileurl.js" as FileUrl
+import "../../js/fileurl.js" as FileUrl
 
 Window {
   id: runner

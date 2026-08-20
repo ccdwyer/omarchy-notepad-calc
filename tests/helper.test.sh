@@ -84,3 +84,42 @@ if grep -E '^(bin/|src/rates-refresh/target/|\.serena/|\.fix_prompt|\.gpt_review
 fi
 rm -f "$LIST"
 echo "ok  git archive excludes bin/target/review logs"
+
+# PNG filters 2–4 must reconstruct (not leave encoded bytes).
+python3 - <<'PY'
+from pathlib import Path
+import struct, zlib, sys
+sys.path.insert(0, "tests/ui")
+import pixeldiff
+
+def png(filt, w, h, rgb):
+    raw = bytearray()
+    prev = bytes(w * 3)
+    for y in range(h):
+        raw.append(filt)
+        row = bytearray()
+        for x in range(w):
+            row.extend(rgb(x, y))
+        recon = bytes(row)
+        if filt == 0:
+            raw.extend(recon)
+        elif filt == 2:
+            raw.extend(bytes((recon[i] - prev[i]) & 255 for i in range(len(recon))))
+        else:
+            raise SystemExit("bad filt")
+        prev = recon
+    comp = zlib.compress(bytes(raw), 9)
+    def chunk(tag, data):
+        return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
+    ihdr = struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)
+    return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", ihdr) + chunk(b"IDAT", comp) + chunk(b"IEND", b"")
+
+p = Path("/tmp/nc-filter2.png")
+p.write_bytes(png(2, 4, 3, lambda x, y: (10 * x, 20 * y, 30)))
+w, h, bpp, pix = pixeldiff.read_png(p)
+assert (w, h, bpp) == (4, 3, 3)
+# y=1, x=2 -> (20, 20, 30)
+i = 1 * 12 + 2 * 3
+assert pix[i:i+3] == bytes([20, 20, 30]), pix[i:i+3]
+print("ok  png filter 2 reconstructs")
+PY
