@@ -21,8 +21,16 @@ if [ -z "$QML" ]; then
   exit 0
 fi
 
+if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
+  if ! command -v quickshell >/dev/null 2>&1 && ! ls "$HOME/.nix-profile/lib"/qt-*/qml/Quickshell/qmldir >/dev/null 2>&1; then
+    echo "FAIL real Quickshell is required for soak acceptance"
+    exit 1
+  fi
+fi
+
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export NOTEPAD_CALC_TEST=1
+# Theme tokens only — real Quickshell I/O.
 export QML2_IMPORT_PATH="$ROOT/tests/stubs${QML2_IMPORT_PATH:+:$QML2_IMPORT_PATH}"
 export QML_IMPORT_PATH="$QML2_IMPORT_PATH"
 mkdir -p /tmp/notepad-calc-ci-home/.local/share/notepad-calc
@@ -66,8 +74,12 @@ if [ "${LINES:-0}" -lt 500 ]; then
 fi
 
 ATTEMPTS=$(grep -c "RATES_ATTEMPT " "$LOG" || true)
+if [ "$ATTEMPTS" -lt 1 ]; then
+  echo "FAIL refresh journal: daily attempt path never ran"
+  exit 1
+fi
 if [ "$ATTEMPTS" -gt 1 ]; then
-  echo "FAIL refresh journal: $ATTEMPTS attempts (want <= 1)"
+  echo "FAIL refresh journal: $ATTEMPTS attempts (want exactly 1)"
   exit 1
 fi
 echo "ok  refresh journal attempts=$ATTEMPTS"

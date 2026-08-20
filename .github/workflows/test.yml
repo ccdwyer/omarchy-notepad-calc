@@ -75,8 +75,8 @@ jobs:
           if ! command -v quickshell >/dev/null 2>&1; then
             curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
             . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#quickshell || \
-              echo "quickshell nix install failed; tests/stubs/Quickshell will be used"
+            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#quickshell
+            command -v quickshell >/dev/null
           fi
       - name: Locate qml binary
         run: |
@@ -95,7 +95,7 @@ jobs:
           if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
             echo "NIX_SOURCED=1" >> "$GITHUB_ENV"
           fi
-      - name: UI grabs, soak, fresh-machine demo (unshare --net)
+      - name: UI grabs, soak, fresh-machine demo (network isolation required)
         env:
           REQUIRE_QML_UI: "1"
           QT_QPA_PLATFORM: offscreen
@@ -105,19 +105,19 @@ jobs:
             . "$HOME/.nix-profile/etc/profile.d/nix.sh"
           fi
           chmod +x tests/ui/run.sh tests/ui/soak.sh tests/ui/demo.sh tests/ui/pixeldiff.py
-          export QML_BIN REQUIRE_QML_UI QT_QPA_PLATFORM NOTEPAD_CALC_SOAK_MS PATH
-          WRAP=""
+          export QML_BIN REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen NOTEPAD_CALC_SOAK_MS PATH
           if unshare --net --map-root-user true >/dev/null 2>&1; then
-            WRAP="unshare --net --map-root-user"
-            ip link set lo up 2>/dev/null || true
+            unshare --net --map-root-user bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && tests/ui/run.sh && tests/ui/demo.sh && tests/ui/soak.sh '"$NOTEPAD_CALC_SOAK_MS"
+          elif sudo unshare --net true >/dev/null 2>&1; then
+            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && export QML_BIN='"$QML_BIN"' REQUIRE_QML_UI=1 QT_QPA_PLATFORM=offscreen NOTEPAD_CALC_SOAK_MS='"$NOTEPAD_CALC_SOAK_MS"' PATH='"$PATH"' && tests/ui/run.sh && tests/ui/demo.sh && tests/ui/soak.sh '"$NOTEPAD_CALC_SOAK_MS"
+          else
+            echo "FAIL cannot establish network isolation (unshare --net / sudo unshare --net)"
+            exit 1
           fi
-          $WRAP tests/ui/run.sh
-          $WRAP tests/ui/demo.sh
-          $WRAP tests/ui/soak.sh "$NOTEPAD_CALC_SOAK_MS"
       - name: Upload UI captures
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: notepad-calc-ui-captures
-          path: tests/goldens/ui/*.png
+          path: /tmp/notepad-calc-ui-*/*.png
           if-no-files-found: ignore

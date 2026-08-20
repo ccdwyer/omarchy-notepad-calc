@@ -1,12 +1,19 @@
 # QML / Quickshell UI tests (Linux CI only)
 
-These tests **do not run on the macOS dev box**. They load `Panel.qml`, send synthetic edits, `grabToImage` at 1×/1.25×/2×, pixel-diff long-line / emoji / URL / demo captures, replay 500-line keystrokes while sampling RSS, and install the plugin into a fresh `HOME` for the battlestation demo.
+These tests **do not run on the macOS dev box**.
+
+Acceptance (real Quickshell FileView/Process — **not** `tests/unit-stubs`):
 
 ```sh
-# on a Linux runner with qt6-declarative:
-tests/ui/run.sh
-tests/ui/demo.sh
-tests/ui/soak.sh            # default 1 hour; CI passes milliseconds as argv
+tests/ui/run.sh     # grabToImage on chrome Item → temp PNGs → diff vs tests/goldens/ui
+tests/ui/demo.sh    # install to $DEST, load $DEST/BarWidget.qml
+tests/ui/soak.sh    # 500-line keystroke replay, RSS, exactly one rate attempt
 ```
 
-`qs.Commons` / `qs.Ui` are Omarchy shell modules; CI provides `tests/stubs/qs`. Quickshell is installed when nixpkgs succeeds; otherwise `tests/stubs/Quickshell` supplies `FileView` / `Process` / `PanelWindow` so `Panel.qml` still loads.
+`qs.Commons` / `qs.Ui` stubs under `tests/stubs/qs` stand in for Omarchy theme tokens only.
+
+Refresh goldens on a Linux runner:
+
+```sh
+UPDATE_UI_GOLDENS=1 REQUIRE_QML_UI=1 tests/ui/run.sh
+```

@@ -1,4 +1,4 @@
-// CI-only. Fresh HOME, first-run battlestation sheet, frozen demo assertions.
+// CI-only acceptance: load the INSTALLED BarWidget.qml from PLUGIN_DIR ($DEST).
 import QtQuick
 import QtQuick.Window
 
@@ -9,72 +9,95 @@ Window {
   height: 8
   title: "notepad-calc-demo"
 
-  property string pluginDir: {
-    var u = String(Qt.resolvedUrl("../../"))
-    if (u.indexOf("file://") === 0)
-      u = u.slice(7)
-    if (u.length > 1 && u.charAt(u.length - 1) === "/")
-      u = u.slice(0, u.length - 1)
-    return u
+  property string pluginDir: ""
+  property int tries: 0
+
+  function argPluginDir() {
+    var args = Qt.application.arguments
+    var i
+    for (i = args.length - 1; i >= 0; i--) {
+      var a = String(args[i])
+      if (a.indexOf("/") === 0 && a.indexOf(".qml") < 0)
+        return a
+    }
+    return ""
   }
 
   Loader {
-    id: panelLoader
-    source: Qt.resolvedUrl("../../Panel.qml")
-    onLoaded: {
-      item.testHarness = true
-      item.testWidth = 980
-      item.testHeight = 640
-      item.pluginDir = runner.pluginDir
-      item.reduceMotion = true
-    }
-  }
-
-  function loadDemo() {
-    var xhr = new XMLHttpRequest()
-    xhr.open("GET", Qt.resolvedUrl("../../data/first-run.calc"), false)
-    xhr.send()
-    return String(xhr.responseText || "")
+    id: barLoader
   }
 
   Timer {
-    interval: 400
+    id: start
+    interval: 100
     running: true
     onTriggered: {
-      var p = panelLoader.item
+      runner.pluginDir = runner.argPluginDir()
+      if (!runner.pluginDir.length) {
+        console.log("FAIL PLUGIN_DIR argument missing")
+        Qt.exit(1)
+        return
+      }
+      barLoader.source = "file://" + runner.pluginDir + "/BarWidget.qml"
+    }
+  }
+
+  Timer {
+    id: poll
+    interval: 250
+    running: true
+    repeat: true
+    onTriggered: {
+      var bar = barLoader.item
+      if (!bar) {
+        runner.tries += 1
+        if (runner.tries > 20) {
+          console.log("FAIL installed BarWidget.qml did not load from " + runner.pluginDir)
+          Qt.exit(1)
+        }
+        return
+      }
+      bar.defaultCurrency = "USD"
+      if (bar.notepad) {
+        bar.notepad.testHarness = true
+        bar.notepad.testWidth = 980
+        bar.notepad.testHeight = 640
+      }
+      if (typeof bar.open === "function")
+        bar.open()
+      var p = bar.notepad
       if (!p) {
-        console.log("FAIL demo: Panel.qml did not load")
-        Qt.exit(1)
+        runner.tries += 1
+        if (runner.tries > 24) {
+          console.log("FAIL nested Panel did not instantiate")
+          Qt.exit(1)
+        }
         return
       }
-      p.testHarness = true
-      p.pluginDir = runner.pluginDir
-      p.open("{}")
-      var demo = loadDemo()
-      p.setTestText(demo)
-      var text = p.sheetText || demo
-      if (text.indexOf("monitors = 2 × $429") < 0) {
-        console.log("FAIL demo sheet not loaded")
-        Qt.exit(1)
+      var text = p.sheetText || ""
+      if (text.indexOf("monitors = 2") < 0) {
+        runner.tries += 1
+        if (runner.tries > 24) {
+          console.log("FAIL installed plugin did not seed battlestation sheet (got " + text.length + " chars)")
+          Qt.exit(1)
+        }
         return
       }
+      poll.stop()
       var hasEur = false
       var hasSsd = false
-      var hasDate = false
       var i
       for (i = 0; i < p.lineResults.length; i++) {
         var d = p.lineResults[i] && p.lineResults[i].display ? p.lineResults[i].display : ""
         if (d.indexOf("€") >= 0) hasEur = true
         if (d.indexOf("41 min") >= 0) hasSsd = true
-        if (d.indexOf("Oct 3") >= 0) hasDate = true
       }
       if (!hasEur || !hasSsd) {
-        console.log("FAIL demo results missing eur=" + hasEur + " ssd=" + hasSsd + " date=" + hasDate)
+        console.log("FAIL demo results missing eur=" + hasEur + " ssd=" + hasSsd)
         Qt.exit(1)
         return
       }
-      p.setTestText(demo.replace("monitors = 2 × $429", "monitors = 3 × $429"))
-      console.log("ok  fresh-machine offline demo (battlestation + ripple)")
+      console.log("ok  fresh-machine offline demo (installed BarWidget + battlestation)")
       Qt.quit()
     }
   }

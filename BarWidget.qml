@@ -23,6 +23,7 @@ BarWidget {
   property string totalDisplay: ""
   property bool panelOpen: false
   property string rateDate: ""
+  readonly property var notepad: panelLoader.item
 
   readonly property string pluginDir: {
     var u = String(Qt.resolvedUrl("."))

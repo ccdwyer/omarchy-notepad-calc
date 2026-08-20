@@ -1,7 +1,12 @@
 #!/bin/sh
-# CI-only fresh-machine offline demo: empty HOME, install plugin, run battlestation.
+# CI-only fresh-machine acceptance: install plugin to $DEST, load BarWidget.qml from there.
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
+
+if [ "${REQUIRE_QML_UI:-}" != "1" ] && ! command -v qml6 >/dev/null 2>&1 && ! command -v qml >/dev/null 2>&1; then
+  echo "skip demo: no qml runtime (CI-only)"
+  exit 0
+fi
 
 QML="${QML_BIN:-}"
 if [ -z "$QML" ]; then
@@ -14,9 +19,14 @@ if [ -n "${QML_BIN:-}" ] && [ -x "$QML_BIN" ]; then
   PATH="$(CDPATH= cd -- "$(dirname "$QML_BIN")" && pwd):$PATH"
 fi
 if [ -z "$QML" ]; then
-  echo "skip demo: no qml runtime (CI-only)"
-  if [ "${REQUIRE_QML_UI:-}" = "1" ]; then exit 1; fi
-  exit 0
+  echo "FAIL no qml runtime"
+  exit 1
+fi
+if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
+  if ! command -v quickshell >/dev/null 2>&1 && ! ls "$HOME/.nix-profile/lib"/qt-*/qml/Quickshell/qmldir >/dev/null 2>&1; then
+    echo "FAIL real Quickshell is required for the fresh-machine acceptance run"
+    exit 1
+  fi
 fi
 
 FRESH=$(mktemp -d)
@@ -25,17 +35,18 @@ export XDG_DATA_HOME="$FRESH/.local/share"
 export XDG_CONFIG_HOME="$FRESH/.config"
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export NOTEPAD_CALC_TEST=1
-export QML2_IMPORT_PATH="$ROOT/tests/stubs"
+# Theme tokens only. Real Quickshell FileView/Process — not unit-stubs.
+export QML2_IMPORT_PATH="$ROOT/tests/stubs${QML2_IMPORT_PATH:+:$QML2_IMPORT_PATH}"
 export QML_IMPORT_PATH="$QML2_IMPORT_PATH"
 
 ID="io.github.chris.notepad-calc"
 DEST="$HOME/.config/omarchy/plugins/$ID"
 mkdir -p "$DEST"
-# Install the plugin tree without copying tests/build artifacts.
 cp "$ROOT/manifest.json" "$DEST/"
 cp "$ROOT/Panel.qml" "$ROOT/BarWidget.qml" "$ROOT/RatesRefresh.qml" "$DEST/"
 cp -R "$ROOT/js" "$ROOT/data" "$DEST/"
 mkdir -p "$HOME/.config/omarchy"
+# One entry: bar widget in the bar layout. Not also in plugins[].
 cat > "$HOME/.config/omarchy/shell.json" <<EOF
 {
   "version": 1,
@@ -44,14 +55,13 @@ cat > "$HOME/.config/omarchy/shell.json" <<EOF
     "layout": {
       "right": [{ "id": "$ID", "defaultCurrency": "USD" }]
     }
-  },
-  "plugins": [{ "id": "$ID", "defaultCurrency": "USD" }]
+  }
 }
 EOF
 
 LOG=$(mktemp)
 set +e
-"$QML" -I "$DEST" -I "$ROOT/tests/stubs" "$ROOT/tests/ui/DemoTest.qml" >"$LOG" 2>&1
+"$QML" -I "$DEST" -I "$ROOT/tests/stubs" "$ROOT/tests/ui/DemoTest.qml" "$DEST" >"$LOG" 2>&1
 STATUS=$?
 set -e
 cat "$LOG"
@@ -67,4 +77,4 @@ if ! grep -q "ok  fresh-machine offline demo" "$LOG"; then
   echo "FAIL demo completion marker missing"
   exit 1
 fi
-echo "ok  plugin installed to $DEST and demo ran offline"
+echo "ok  installed plugin tree $DEST loaded via BarWidget.qml"

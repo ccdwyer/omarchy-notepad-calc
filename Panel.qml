@@ -198,7 +198,7 @@ Item {
   }
 
   function grabTarget() {
-    return root.testHarness ? testWin : panel
+    return chrome
   }
 
   function loadActiveSheet() {
@@ -581,6 +581,8 @@ Item {
                   root.switcherQuery = ""
                   root.switcherIndex = 0
                   root.listSheets()
+                  if (root.showSwitcher)
+                    Qt.callLater(function () { switcherInput.forceActiveFocus() })
                   event.accepted = true
                 } else if (event.key === Qt.Key_N && (event.modifiers & Qt.ControlModifier) && !(event.modifiers & Qt.ShiftModifier)) {
                   root.newSheet()

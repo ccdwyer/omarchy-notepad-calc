@@ -51,13 +51,7 @@ bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-ca
 bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide '{}'
 ```
 
-Host-level verbs (the `shell` IPC target, not `call`) are separate:
-
-```
-omarchy-shell shell summon io.github.chris.notepad-calc '{}'
-omarchy-shell shell hide io.github.chris.notepad-calc
-omarchy-shell shell toggle io.github.chris.notepad-calc '{}'
-```
+`summon` / `hide` / `toggle` here are IpcHandler methods on the already-loaded bar widget, invoked through `shell call`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget.
 
 ## Grammar (v1, frozen)
 
