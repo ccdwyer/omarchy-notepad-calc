@@ -35,18 +35,9 @@ var CANDIDATES = [
 var offer = {
     needed: true,
     note: "",
-    installed: 0,
+    installed: [],
     toAdd: [],
     skipped: []
-}
-
-var autoClaimed = false
-
-function claimAuto() {
-    if (autoClaimed)
-        return false
-    autoClaimed = true
-    return true
 }
 
 function setOffer(next) {
@@ -144,6 +135,95 @@ function pickCombo(binds, candidate) {
     return { skipped: true, keys: candidate.keys, desc: candidate.desc, conflict: owner.desc }
 }
 
+function keysFromBind(bind) {
+    var m = Number(bind && bind.modmask)
+    var parts = []
+    if (m & SUPER)
+        parts.push("SUPER")
+    if (m & CTRL)
+        parts.push("CTRL")
+    if (m & ALT)
+        parts.push("ALT")
+    if (m & SHIFT)
+        parts.push("SHIFT")
+    var k = keyOf(bind)
+    if (k)
+        parts.push(k)
+    return parts.join(" + ")
+}
+
+function displayKeys(keys) {
+    return String(keys || "")
+        .replace(/SUPER/gi, "Super")
+        .replace(/CTRL/gi, "Ctrl")
+        .replace(/ALT/gi, "Alt")
+        .replace(/SHIFT/gi, "Shift")
+        .replace(/ \+ /g, "+")
+}
+
+function oursList(binds) {
+    var list = []
+    var seen = binds || []
+    for (var i = 0; i < seen.length; i++) {
+        if (!isOurs(seen[i]))
+            continue
+        list.push({
+            keys: keysFromBind(seen[i]),
+            desc: String(seen[i].description || ""),
+            modmask: Number(seen[i].modmask),
+            key: keyOf(seen[i])
+        })
+    }
+    return list
+}
+
+function chipLabel(plan) {
+    var installed = (plan && plan.installed) || []
+    if (!installed.length)
+        return "Set hotkey"
+    for (var i = 0; i < installed.length; i++) {
+        if (installed[i].desc === "Notepad Calc")
+            return displayKeys(installed[i].keys)
+    }
+    return displayKeys(installed[0].keys)
+}
+
+function skippedSuffix(skipped) {
+    var miss = skipped || []
+    var extra = ""
+    for (var s = 0; s < miss.length; s++)
+        extra += " — skipped " + displayKeys(miss[s].keys) + " (" + (miss[s].conflict || "taken") + ")"
+    return extra
+}
+
+function statusNote(plan) {
+    var p = plan || {}
+    var installed = p.installed || []
+    if (installed.length) {
+        var bits = []
+        for (var i = 0; i < installed.length; i++) {
+            var it = installed[i]
+            bits.push(displayKeys(it.keys) + (it.desc ? " — " + it.desc : ""))
+        }
+        return bits.join(" · ") + " — click for Change / Remove"
+    }
+    if (p.toAdd && p.toAdd.length) {
+        var suggest = p.toAdd.map(function(item) { return displayKeys(item.chosen || item.keys) })
+        return "No hotkey. Suggested: " + suggest.join(", ") + skippedSuffix(p.skipped)
+    }
+    if (p.skipped && p.skipped.length)
+        return "No free suggested hotkey" + skippedSuffix(p.skipped)
+    return "No hotkey. Suggested: Super+N, Super+Alt+N"
+}
+
+function optionList(candidate) {
+    var opts = [{ keys: candidate.keys, modmask: candidate.modmask, key: candidate.key }]
+    var alts = candidate.alternates || []
+    for (var i = 0; i < alts.length; i++)
+        opts.push({ keys: alts[i].keys, modmask: alts[i].modmask, key: alts[i].key })
+    return opts
+}
+
 function plan(binds) {
     var toAdd = []
     var skipped = []
@@ -163,18 +243,68 @@ function plan(binds) {
     var needed = already === 0
     if (!needed)
         toAdd = []
-    var note = ""
-    if (!needed)
-        note = ""
-    else if (!toAdd.length && skipped.length)
-        note = skipped.map(function(s) { return s.keys + " is " + (s.conflict || "taken") }).join("; ")
-    else if (toAdd.length) {
-        var bits = toAdd.map(function(p) { return p.chosen || p.keys })
-        note = "Add " + bits.join(", ")
-        for (var s = 0; s < skipped.length; s++)
-            note += " — skipped " + skipped[s].keys + " (" + skipped[s].conflict + ")"
+    var installed = oursList(binds)
+    var result = { needed: needed, already: already, toAdd: toAdd, skipped: skipped, installed: installed, note: "" }
+    result.note = statusNote(result)
+    return result
+}
+
+function rotatePlan(binds) {
+    var toAdd = []
+    var skipped = []
+    var changed = false
+    for (var i = 0; i < CANDIDATES.length; i++) {
+        var candidate = CANDIDATES[i]
+        var opts = optionList(candidate)
+        var currentIdx = -1
+        for (var o = 0; o < opts.length; o++) {
+            var owner = comboOwner(binds, opts[o].modmask, opts[o].key)
+            if (owner && owner.ours)
+                currentIdx = o
+        }
+        if (currentIdx < 0) {
+            var pick = pickCombo(binds, candidate)
+            if (pick.skipped)
+                skipped.push(pick)
+            else if (!pick.already)
+                toAdd.push(pick)
+            continue
+        }
+        var chosen = null
+        for (var step = 1; step <= opts.length; step++) {
+            var idx = (currentIdx + step) % opts.length
+            var opt = opts[idx]
+            var own = comboOwner(binds, opt.modmask, opt.key)
+            if (own && !own.ours) {
+                skipped.push({ skipped: true, keys: opt.keys, desc: candidate.desc, conflict: own.desc })
+                continue
+            }
+            chosen = {
+                keys: opt.keys,
+                modmask: opt.modmask,
+                key: opt.key,
+                desc: candidate.desc,
+                cmd: candidate.cmd,
+                chosen: opt.keys
+            }
+            if (idx !== currentIdx)
+                changed = true
+            break
+        }
+        if (chosen)
+            toAdd.push(chosen)
     }
-    return { needed: needed, already: already, toAdd: toAdd, skipped: skipped, note: note }
+    var note = changed
+        ? ("Change to " + toAdd.map(function(p) { return displayKeys(p.chosen || p.keys) }).join(", ") + skippedSuffix(skipped))
+        : (skipped.length ? "no free alternate" + skippedSuffix(skipped) : "no free alternate")
+    return {
+        needed: false,
+        changed: changed,
+        toAdd: toAdd,
+        skipped: skipped,
+        installed: oursList(binds),
+        note: note
+    }
 }
 
 function luaLine(item) {

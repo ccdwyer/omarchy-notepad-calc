@@ -911,8 +911,13 @@ test("binds: empty live list offers SUPER+N toggle and SUPER+ALT+N summon", () =
   assert.strictEqual(p.toAdd.length, 2)
   assert.strictEqual(p.toAdd[0].chosen, "SUPER + N")
   assert.strictEqual(p.toAdd[1].chosen, "SUPER + ALT + N")
+  assert.strictEqual(Binds.chipLabel(p), "Set hotkey")
+  assert.ok(p.note.indexOf("Super+N") >= 0)
+  assert.ok(p.note.indexOf("Super+Alt+N") >= 0)
   const lua = Binds.luaBlock(p.toAdd)
   assert.ok(lua.indexOf("o.bind(\"SUPER + N\"") === 0)
+  assert.ok(lua.indexOf("unbind") < 0)
+  assert.ok(lua.indexOf("hl.") < 0)
   assert.ok(p.toAdd.every((x) => x.chosen !== "SUPER + SHIFT + N"))
 })
 
@@ -941,6 +946,8 @@ test("binds: already-ours via lua description hides the offer", () => {
   const p = Binds.plan(live)
   assert.strictEqual(p.needed, false)
   assert.strictEqual(p.toAdd.length, 0)
+  assert.strictEqual(Binds.chipLabel(p), "Super+N")
+  assert.ok(p.installed.length >= 1)
 })
 
 test("binds: notify body lists assigned keys", () => {
@@ -954,17 +961,62 @@ test("binds: notify body lists assigned keys", () => {
   assert.strictEqual(argv[7], "Notepad Calc keybindings")
 })
 
-test("binds: claimAuto is one-shot", () => {
-  assert.strictEqual(Binds.claimAuto(), true)
-  assert.strictEqual(Binds.claimAuto(), false)
+test("binds: rotatePlan moves toggle to alternate when preferred is ours", () => {
+  const live = [
+    { modmask: 64, key: "N", dispatcher: "__lua", arg: "15", description: "Notepad Calc" },
+    { modmask: 72, key: "N", dispatcher: "__lua", arg: "16", description: "Notepad Calc summon" }
+  ]
+  const p = Binds.rotatePlan(live)
+  assert.strictEqual(p.changed, true)
+  const toggle = p.toAdd.filter((x) => x.desc === "Notepad Calc")[0]
+  assert.strictEqual(toggle.chosen, "SUPER + ALT + SHIFT + N")
+  const summon = p.toAdd.filter((x) => x.desc === "Notepad Calc summon")[0]
+  assert.strictEqual(summon.chosen, "SUPER + ALT + N")
+  const lua = Binds.luaBlock(p.toAdd)
+  assert.ok(lua.indexOf("unbind") < 0)
 })
 
-test("qml: no keys chip; bar widget auto-claims", () => {
+test("binds: rotatePlan skips occupied alternate and does not unbind", () => {
+  const live = [
+    { modmask: 64, key: "N", dispatcher: "__lua", arg: "15", description: "Notepad Calc" },
+    { modmask: 73, key: "N", dispatcher: "exec", arg: "other", description: "taken" }
+  ]
+  const p = Binds.rotatePlan(live)
+  assert.strictEqual(p.changed, false)
+})
+
+test("binds: rotatePlan does not install on an empty live list", () => {
+  const p = Binds.rotatePlan([])
+  assert.strictEqual(p.changed, false)
+})
+
+test("binds: no claimAuto helper", () => {
+  assert.strictEqual(typeof Binds.claimAuto, "undefined")
+})
+
+test("readme: hotkeys are opt-in and Remove deletes the marked block", () => {
+  const readme = fs.readFileSync(path.join(ROOT, "README.md"), "utf8")
+  assert.ok(readme.indexOf("opt-in from the bar") >= 0)
+  assert.ok(readme.indexOf("Set hotkey") >= 0)
+  assert.ok(readme.indexOf("omarchy plugin remove io.github.chris.notepad-calc") >= 0)
+  assert.ok(readme.indexOf("-- BEGIN io.github.chris.notepad-calc") >= 0)
+  assert.ok(readme.indexOf("-- END io.github.chris.notepad-calc") >= 0)
+  assert.ok(readme.indexOf("auto-assign") < 0)
+})
+
+test("qml: Set hotkey is opt-in; no first-load auto-install", () => {
   const src = fs.readFileSync(path.join(ROOT, "BarWidget.qml"), "utf8")
-  assert.ok(src.indexOf("Add keybindings") < 0)
-  assert.ok(src.indexOf('text: "keys"') < 0)
-  assert.ok(src.indexOf("Binds.claimAuto()") >= 0)
-  assert.ok(src.indexOf("notifyArgv(") >= 0)
+  const bindsSrc = fs.readFileSync(path.join(ROOT, "js/Binds.js"), "utf8")
+  assert.ok(src.indexOf("Set hotkey") >= 0)
+  assert.ok(src.indexOf("changeBinds") >= 0)
+  assert.ok(src.indexOf("removeBinds") >= 0)
+  assert.ok(src.indexOf("claimAuto") < 0)
+  assert.ok(bindsSrc.indexOf("claimAuto") < 0)
+  assert.ok(src.indexOf('installBinds("auto")') < 0)
+  const scan = src.match(/function scanBinds\(\) \{[\s\S]*?\n  \}/)
+  assert.ok(scan, "scanBinds missing")
+  assert.ok(scan[0].indexOf("installBinds") < 0)
+  assert.ok(scan[0].indexOf("install-binds.py") < 0)
 })
 
 process.stdout.write("\n" + passed + " passed, " + failed + " failed\n")

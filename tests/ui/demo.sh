@@ -41,7 +41,7 @@ DEST="$HOME/.config/omarchy/plugins/$ID"
 mkdir -p "$DEST"
 cp "$ROOT/manifest.json" "$DEST/"
 cp "$ROOT/Panel.qml" "$ROOT/BarWidget.qml" "$ROOT/RatesRefresh.qml" "$DEST/"
-cp -R "$ROOT/js" "$ROOT/data" "$DEST/"
+cp -R "$ROOT/js" "$ROOT/data" "$ROOT/compat" "$DEST/"
 mkdir -p "$HOME/.config/omarchy"
 # One entry: bar widget in the bar layout. Not also in plugins[].
 cat > "$HOME/.config/omarchy/shell.json" <<EOF

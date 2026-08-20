@@ -58,6 +58,34 @@ echo "$ROOT_QML" | grep -q 'function hide('
 echo "$ROOT_QML" | grep -q 'function toggle('
 echo "ok  BarWidget root summon/hide/toggle"
 
+if grep -q 'claimAuto' "$ROOT/BarWidget.qml" "$ROOT/js/Binds.js"; then
+  echo "FAIL claimAuto still present (first-load auto-install)"
+  exit 1
+fi
+if grep -q 'installBinds("auto")' "$ROOT/BarWidget.qml"; then
+  echo "FAIL BarWidget still auto-installs binds"
+  exit 1
+fi
+grep -q 'Set hotkey' "$ROOT/BarWidget.qml"
+echo "ok  no first-load auto-install; Set hotkey is opt-in"
+
+BINDHOME=$(mktemp -d)
+export XDG_CONFIG_HOME="$BINDHOME/config"
+mkdir -p "$XDG_CONFIG_HOME/hypr"
+printf '%s\n' '-- other binds' 'o.bind("SUPER + Q", "Quit", "true")' >"$XDG_CONFIG_HOME/hypr/bindings.lua"
+python3 "$ROOT/compat/install-binds.py" io.github.chris.notepad-calc 'o.bind("SUPER + N", "Notepad Calc", "true")'
+grep -q 'BEGIN io.github.chris.notepad-calc' "$XDG_CONFIG_HOME/hypr/bindings.lua"
+grep -q 'SUPER + Q' "$XDG_CONFIG_HOME/hypr/bindings.lua"
+python3 "$ROOT/compat/install-binds.py" io.github.chris.notepad-calc --remove
+if grep -q 'BEGIN io.github.chris.notepad-calc' "$XDG_CONFIG_HOME/hypr/bindings.lua"; then
+  echo "FAIL install-binds.py --remove left the marked block"
+  exit 1
+fi
+grep -q 'SUPER + Q' "$XDG_CONFIG_HOME/hypr/bindings.lua"
+unset XDG_CONFIG_HOME
+rm -rf "$BINDHOME"
+echo "ok  install-binds.py write and remove keep other binds"
+
 # Archive-based submission must not include gitignored review logs, bin/, or target/.
 # Use `git archive` (see pack.sh); never tar the working tree.
 for p in \

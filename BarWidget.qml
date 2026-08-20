@@ -26,7 +26,10 @@ BarWidget {
   property bool panelOpen: false
   property string rateDate: ""
   property bool offerBinds: false
-  property string offerNote: ""
+  property bool bindInstalled: false
+  property bool bindMenuOpen: false
+  property string offerNote: "No hotkey. Suggested: Super+N, Super+Alt+N"
+  property string bindLabel: "Set hotkey"
   property var workQueue: []
   property var workCurrent: null
   readonly property var notepad: panelLoader.item
@@ -81,7 +84,11 @@ BarWidget {
   function applyBindPlan(plan) {
     var p = plan || Binds.offer
     root.offerBinds = !!p.needed
-    root.offerNote = String(p.note || "")
+    root.bindInstalled = !!(p.installed && p.installed.length)
+    if (!root.bindInstalled)
+      root.bindMenuOpen = false
+    root.offerNote = Binds.statusNote(p)
+    root.bindLabel = Binds.chipLabel(p)
     Binds.setOffer(p)
   }
 
@@ -104,10 +111,7 @@ BarWidget {
     enqueueWork(["hyprctl", "-j", "binds"], function(text, code) {
       if (Number(code) !== 0)
         return
-      var plan = Binds.applyScan(text)
-      root.applyBindPlan(plan)
-      if (plan.needed && plan.toAdd && plan.toAdd.length && Binds.claimAuto())
-        root.installBinds("auto")
+      root.applyBindPlan(Binds.applyScan(text))
     })
   }
 
@@ -138,6 +142,45 @@ BarWidget {
         root.notifyNewBinds(plan)
         Qt.callLater(root.scanBinds)
       })
+    })
+    return "ok"
+  }
+
+  function changeBinds(arg) {
+    enqueueWork(["hyprctl", "-j", "binds"], function(text, code) {
+      if (Number(code) !== 0) {
+        root.offerNote = "could not read keybinds"
+        return
+      }
+      var plan = Binds.rotatePlan(Binds.parseBinds(text))
+      Binds.setOffer(plan)
+      if (!plan.changed || !plan.toAdd || !plan.toAdd.length) {
+        root.offerNote = plan.note || "no free alternate"
+        return
+      }
+      var lua = Binds.luaBlock(plan.toAdd)
+      enqueueWork(["python3", root.pluginDir + "/compat/install-binds.py", root.pluginId, lua], function(out, instCode) {
+        if (Number(instCode) !== 0) {
+          root.offerNote = "could not write ~/.config/hypr/bindings.lua"
+          return
+        }
+        root.bindMenuOpen = false
+        root.notifyNewBinds(plan)
+        Qt.callLater(root.scanBinds)
+      })
+    })
+    return "ok"
+  }
+
+  function removeBinds(arg) {
+    enqueueWork(["python3", root.pluginDir + "/compat/install-binds.py", root.pluginId, "--remove"], function(out, instCode) {
+      if (Number(instCode) !== 0) {
+        root.offerNote = "could not update ~/.config/hypr/bindings.lua"
+        return
+      }
+      root.bindMenuOpen = false
+      Quickshell.execDetached(Binds.notifyArgv("Notepad Calc", "Notepad Calc keybindings", "Removed this plugin's bindings.lua block"))
+      Qt.callLater(root.scanBinds)
     })
     return "ok"
   }
@@ -175,18 +218,55 @@ BarWidget {
     id: row
     spacing: Style.space(4)
 
-  WidgetButton {
-    id: button
-    bar: root.bar
-    text: root.chipText
-    tooltipText: root.totalDisplay.length
-                 ? ("Notepad Calc — " + root.totalDisplay)
-                 : "Notepad Calc"
-    onPressed: function(buttonCode) {
-      if (buttonCode === Qt.LeftButton)
-        root.toggle()
+    WidgetButton {
+      id: button
+      bar: root.bar
+      text: root.chipText
+      tooltipText: root.totalDisplay.length
+                   ? ("Notepad Calc — " + root.totalDisplay)
+                   : "Notepad Calc"
+      onPressed: function(buttonCode) {
+        if (buttonCode === Qt.LeftButton)
+          root.toggle()
+      }
     }
-  }
+
+    WidgetButton {
+      id: bindChip
+      bar: root.bar
+      text: root.bindLabel
+      tooltipText: root.offerNote
+      onPressed: function(buttonCode) {
+        if (buttonCode !== Qt.LeftButton)
+          return
+        if (root.bindInstalled)
+          root.bindMenuOpen = !root.bindMenuOpen
+        else
+          root.installBinds("")
+      }
+    }
+
+    WidgetButton {
+      visible: root.bindInstalled && root.bindMenuOpen
+      bar: root.bar
+      text: "Change"
+      tooltipText: "Use the next free suggested combo (skips occupied keys; never unbinds others)"
+      onPressed: function(buttonCode) {
+        if (buttonCode === Qt.LeftButton)
+          root.changeBinds("")
+      }
+    }
+
+    WidgetButton {
+      visible: root.bindInstalled && root.bindMenuOpen
+      bar: root.bar
+      text: "Remove"
+      tooltipText: "Remove this plugin's marked o.bind block from ~/.config/hypr/bindings.lua"
+      onPressed: function(buttonCode) {
+        if (buttonCode === Qt.LeftButton)
+          root.removeBinds("")
+      }
+    }
   }
 
   Process {
@@ -249,6 +329,8 @@ BarWidget {
     function hide(arg: string): string { return root.hide(arg) }
     function ping(arg: string): string { return "ok" }
     function installBinds(arg: string): string { return root.installBinds(arg) }
+    function changeBinds(arg: string): string { return root.changeBinds(arg) }
+    function removeBinds(arg: string): string { return root.removeBinds(arg) }
   }
 
   Component.onCompleted: Qt.callLater(root.scanBinds)

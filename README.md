@@ -35,6 +35,8 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 | Key | Action |
 |---|---|
 | Click Σ | Open / close the notepad |
+| Set hotkey | Opt-in Super+N toggle / Super+Alt+N summon (skips occupied; never unbinds others) |
+| Hotkey chip | Shows the installed combo; click for Change / Remove |
 | Esc | Close (or dismiss help / sheet switcher) |
 | Ctrl+K | Sheet switcher |
 | Ctrl+N | New sheet |
@@ -45,14 +47,16 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 
 The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument.
 
-Super+Shift+N is Omarchy's Editor bind and Super+Ctrl+N is nightlight, so summon uses Super+Alt+N. Super+N toggle is preferred. On first load the plugin writes those binds to `~/.config/hypr/bindings.lua` if the combos are free, then pops an Omarchy notification with the keys it assigned. Occupied shortcuts are skipped; Super+N falls back to Super+Alt+Shift+N. Hide stays click-based (Esc in the panel). It never unbinds someone else's key, and it will not notify again once its binds are already live. Bar-widget `claimAuto` keeps two monitors from double-notifying.
+Hotkeys are **opt-in from the bar**. First load does not write `~/.config/hypr/bindings.lua`. If none is installed, the chip next to **Σ** shows **Set hotkey** and suggests Super+N (toggle) and Super+Alt+N (summon). That click is the only thing that writes this plugin's marked `o.bind` block. Occupied combos are skipped; Super+N falls back to Super+Alt+Shift+N. Super+Shift+N is Omarchy's Editor bind and Super+Ctrl+N is nightlight, so those are never stolen. Once a hotkey is set, the chip shows it; click for **Change** (next free suggested combo) or **Remove** (deletes the marked block). Hide stays click-based (Esc in the panel). The plugin never `hl.unbind`s someone else's key.
 
 ```
-bind = SUPER, N, exec, omarchy-shell io.github.chris.notepad-calc toggle '{}'
-bind = SUPER ALT, N, exec, omarchy-shell io.github.chris.notepad-calc summon '{}'
+-- BEGIN io.github.chris.notepad-calc
+o.bind("SUPER + N", "Notepad Calc", "omarchy-shell io.github.chris.notepad-calc toggle '{}'")
+o.bind("SUPER + ALT + N", "Notepad Calc summon", "omarchy-shell io.github.chris.notepad-calc summon '{}'")
+-- END io.github.chris.notepad-calc
 ```
 
-`summon` / `hide` / `toggle` / `installBinds` are string-argument methods on the **bar-widget `IpcHandler`** (`BarWidget.qml`). `omarchy-shell shell call <id>` hits overlay/panel loaders only — this plugin is bar-widget-only, so that returns `unknown`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget. The nested panel is opened by `BarWidget.open`.
+`summon` / `hide` / `toggle` / `installBinds` / `changeBinds` / `removeBinds` are string-argument methods on the **bar-widget `IpcHandler`** (`BarWidget.qml`). `omarchy-shell shell call <id>` hits overlay/panel loaders only — this plugin is bar-widget-only, so that returns `unknown`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget. The nested panel is opened by `BarWidget.open`.
 
 ```
 omarchy-shell io.github.chris.notepad-calc toggle '{}'
@@ -117,6 +121,8 @@ Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). Ther
 omarchy plugin remove io.github.chris.notepad-calc
 ```
 
+Also remove this plugin's marked block from `~/.config/hypr/bindings.lua` (the lines between `-- BEGIN io.github.chris.notepad-calc` and `-- END io.github.chris.notepad-calc`). If the hotkey chip is still on the bar, **Remove** there deletes that block before uninstall. Hyprland reloads on save. Other keybindings are left alone.
+
 ## Honest limitations
 
 - **Grammar is frozen to the lines above and their compositions.** Natural-language improvisation will misfire; that is why the demo is the first-run sheet.
@@ -127,7 +133,7 @@ omarchy plugin remove io.github.chris.notepad-calc
 - **Row alignment** is wrap-free monospace. Long lines scroll horizontally; they do not wrap. That is deliberate.
 - **Helper binary is optional.** Missing `bin/notepad-calc-rates` falls back to `compat/rates-refresh.sh` (curl), then to the bundled snapshot.
 - **No second Quickshell process.** Everything runs inside `omarchy-shell`.
-- **Keybinds auto-assign on first load.** Occupied combos are skipped. Never `hl.unbind`. No notify once binds are already live.
+- **Keybinds are opt-in from the bar.** First load does not write `bindings.lua`. Occupied combos are skipped. Never `hl.unbind`.
 
 ## Tests
 
