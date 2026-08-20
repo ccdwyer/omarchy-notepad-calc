@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="991" viewBox="0 0 980 991">
+<rect width="100%" height="100%" fill="#1a1b26"/>
+<rect x="740" y="0" width="240" height="100%" fill="#16161e"/>
+<text x="16" y="69" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">Omarchy battlestation</text>
+<text x="16" y="110" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="151" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">planning my Omarchy battlestation — every line is plain text</text>
+<text x="16" y="192" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="233" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">monitors = 2 × $429</text>
+<text x="964" y="233" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$858.00</text>
+<text x="16" y="274" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">desk = $349</text>
+<text x="964" y="274" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$349.00</text>
+<text x="16" y="315" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">chair = $189</text>
+<text x="964" y="315" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$189.00</text>
+<text x="16" y="356" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">mat = $42</text>
+<text x="964" y="356" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$42.00</text>
+<text x="16" y="397" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="438" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">subtotal = monitors + desk + chair + mat</text>
+<text x="964" y="438" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$1,438.00</text>
+<text x="16" y="479" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">with tax = subtotal + 8.1%</text>
+<text x="964" y="479" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$1,554.48</text>
+<text x="16" y="520" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">in EUR</text>
+<text x="964" y="520" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">€1,340.07</text>
+<text x="16" y="561" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="602" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">desk width = 160 cm in inches</text>
+<text x="964" y="602" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">62.992126 in</text>
+<text x="16" y="643" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">SSD copy = 10 GB / 4 MB/s</text>
+<text x="964" y="643" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">41 min 40 s</text>
+<text x="16" y="684" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">arrives = today + 45 days</text>
+<text x="964" y="684" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">Oct 3, 2026</text>
+<text x="16" y="725" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="766" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">peripherals = $120/mo × 14 months in EUR</text>
+<text x="964" y="766" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">€1,448.28</text>
+<text x="16" y="807" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="848" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">3pm in Los Angeles → Tokyo time</text>
+<text x="964" y="848" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">7:00 AM tomorrow, JST</text>
+<text x="16" y="889" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5"></text>
+<text x="16" y="930" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">hardware = monitors + desk + chair + mat</text>
+<text x="964" y="930" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$1,438.00</text>
+<text x="16" y="971" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#c0caf5">sum</text>
+<text x="964" y="971" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" fill="#7aa2f7">$1,438.00</text>
+</svg>

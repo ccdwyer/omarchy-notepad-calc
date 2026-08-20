@@ -679,6 +679,10 @@ test("comma numbers", () => {
   assert.ok(approx(r.value, 1500, 1e-9), r.value)
 })
 
+test("canonical unit table is at least 120", () => {
+  assert.ok(Units.UNITS.length >= 120, "got " + Units.UNITS.length)
+})
+
 test("benchmark 200-line sheet < 50ms", () => {
   const lines = []
   lines.push("base = 1")
@@ -686,24 +690,38 @@ test("benchmark 200-line sheet < 50ms", () => {
   const t0 = Date.now()
   Engine.evalSheet(lines, ctx())
   const dt = Date.now() - t0
-  assert.ok(dt < 200, "took " + dt + "ms")
+  assert.ok(dt < 50, "took " + dt + "ms")
 })
 
+const Harness = require("./harness.js")
 const corpusPath = path.join(__dirname, "corpus.json")
-if (fs.existsSync(corpusPath)) {
-  const corpus = JSON.parse(fs.readFileSync(corpusPath, "utf8"))
-  corpus.forEach((c, i) => {
-    test("corpus " + (c.id || i) + ": " + c.name, () => {
-      const rs = evalLines(c.sheet)
-      const r = c.line != null ? rs[c.line] : rs[rs.length - 1]
-      if (c.kind) assert.strictEqual(r.kind, c.kind, JSON.stringify(r))
-      if (c.display) assert.strictEqual(r.display, c.display)
-      if (c.approx != null) assert.ok(approx(r.value, c.approx, c.eps || 1e-6), r.value)
-      if (c.currency) assert.strictEqual(r.currency, c.currency)
-      if (c.contains) assert.ok(String(r.display).indexOf(c.contains) >= 0, r.display)
-    })
+const corpus = JSON.parse(fs.readFileSync(corpusPath, "utf8"))
+
+test("shared corpus has 200+ cases", () => {
+  assert.ok(corpus.length >= 200, "corpus length " + corpus.length)
+})
+
+corpus.forEach((c, i) => {
+  test("corpus " + (c.id || i) + ": " + c.name, () => {
+    const rs = evalLines(c.sheet)
+    const r = Harness.lastOf(rs, c.line)
+    const err = Harness.checkCase(c, r)
+    assert.ok(!err, err)
   })
-}
+})
+
+const layout = require("./layout.js")
+test("layout goldens 1×/1.25×/2× wrap-free alignment", () => {
+  const r = layout.run()
+  assert.strictEqual(r.failed, 0, r.failures.join("\n"))
+})
+
+const soak = require("./soak.js")
+test("500-line soak", () => {
+  const r = soak.run()
+  assert.ok(r.lines >= 500, "lines " + r.lines)
+  assert.strictEqual(r.failed, 0)
+})
 
 process.stdout.write("\n" + passed + " passed, " + failed + " failed\n")
 if (failed) {

@@ -9,20 +9,20 @@ Conservative choices where the Omarchy / Quickshell API was not 100% certain. Au
 - **Settings are inline** on the `shell.json` bar entry (`defaultCurrency`). No plugin-owned settings file. Sheets and rates live under `~/.local/share/notepad-calc/` as *documents / cache*, not settings.
 - **`keepLoaded` is omitted.** The chip stays mounted while the widget is on the bar, so the nested `PanelWindow` can remain instantiated (`Loader { active: true }`) without a second kind.
 - **Injected properties:** `bar`, `shell`, `manifest`, `pluginRegistry`, plus schema keys (`defaultCurrency`). The widget still functions if some of these are missing.
-- **IPC:** `omarchy-shell shell call io.github.chris.notepad-calc toggle|open|close`. An `IpcHandler` on the bar widget uses the plugin id as `target`. If the host only routes `call` to service/panel kinds, the chip click is the documented path.
+- **IPC.** Quattro `call <id> <method> <arg>` reaches already-loaded plugins. This bar widget stays loaded, so `omarchy-shell shell call io.github.chris.notepad-calc toggle|summon|hide` is the documented path. IpcHandler verbs are `toggle` / `summon` / `hide` (Quattro's summon/hide/toggle vocabulary). Host-level `shell summon|hide|toggle <id>` is also valid for a loaded plugin.
 - **Third-party id** is `io.github.chris.notepad-calc` (not `omarchy.*`).
 - **Hot-reload:** saving under `~/.config/omarchy/plugins/` reloads; we do not call `rescanPlugins` ourselves.
 
 ## Quickshell
 
 - **Theme tokens** `Color.menu.*`, `Color.accent`, `Style.*`, `Border.*`, `WidgetButton`, `BarWidget`, `BorderSurface`, `PanelWindow`, `WlrLayershell` — copied from first-party clipboard / desktop-undo. Monospace: try `Style.font.monoFamily` then `Style.font.monospace`, then `JetBrains Mono`.
-- **Reduced motion:** `Style.reduceMotion` if present, else `OMARCHY_REDUCED_MOTION=1`. Pulse becomes a static highlight.
+- **Reduced motion:** `Style.reduceMotion` if present, else `OMARCHY_REDUCED_MOTION=1`. Pulse is a static 0.4 accent highlight that still **expires at `pulseMs` (300)** via `pulseTick` (the tick runs even when motion is reduced; otherwise the highlight would stick). Fade interpolation is skipped; duration is not.
 - **`FileView`:** `path`, `text()`, `setText`, `atomicWrites`, `printErrors`, `watchChanges`, `onLoaded` / `onLoadFailed` / `reload()` — same surface as desktop-undo's journal. Directory listing is **not** assumed; we `ls` via `Process`.
 - **`Process` + `StdioCollector { waitForEnd: true }`** for helper detection, `ls`, `mkdir`, `wl-copy`.
-- **Clipboard:** try `Quickshell.clipboardText` (may not exist); fall back to `wl-copy`. Isolated in `copyText()`.
+- **Clipboard** is `wl-copy` via `Process` only. `Quickshell.clipboardText` is **not** in the Quattro reference, so we do not call it. Isolated in `copyText()`.
 - **Plugin directory:** `Qt.resolvedUrl(".")` with the `file://` prefix stripped (same adapter as desktop-undo).
 - **JS imports:** `import "js/engine.js" as Engine` — no `.pragma library` (the engine is pure). `typeof module !== "undefined"` guards Node `module.exports`; QML does not define `module`.
-- **No invented Quickshell APIs.** No `QTimeZone` bridge (tribunal: it does not exist). Timezones are a bundled transition table in `js/tz.js`.
+- **No `QTimeZone` bridge** (tribunal: it does not exist). Timezones are a bundled transition table in `js/tz.js`. Other Quickshell surfaces used here are the documented set above plus `wl-copy`; anything not in the reference is avoided rather than invented.
 
 ## Engine / data
 
@@ -30,7 +30,8 @@ Conservative choices where the Omarchy / Quickshell API was not 100% certain. Au
 - **Timezone table** encodes well-known IANA DST rules (US, EU, AU-east, NZ, none) for 2024–2028 rather than parsing TZif at runtime. We do not have a live tz database in the plugin process. Abbreviations `IST` and `CST` are marked ambiguous and refused.
 - **`in` vs inches:** `in` before a unit/currency/zone is the conversion operator; `in` after a number with no conversion target is inches. `12 in in cm` is the spelled-out form.
 - **Money keeps its currency amount** (not SI-mixed with seconds). `$120/mo × 14 months` cancels via the tagged `perUnit`. Dimensionless `× 12` on a `/mo` quantity is treated as twelve of that period so the spec's year-cost line holds.
-- **Dual harness:** Node runs `tests/run.js` against the same `js/*.js`. A QML-runtime harness is `tests/EngineTest.qml` for `qmljs` when that binary exists; this machine cannot run it.
+- **Units:** 130 canonical ids (length/mass/time/data/area/volume/speed/temperature/data-rate/angle/frequency). Spec said "~120"; the table meets that as a count of canonical units, not aliases.
+- **Dual harness:** `tests/corpus.json` (210 cases) is the source of truth. Node `tests/run.js` and QML `tests/EngineTest.qml` (`import "corpus-data.js"`) consume it. CI runs both with networking disabled. Layout goldens at 1×/1.25×/2× and a 500-line soak run in Node (this Mac cannot rasterize Qt Quick).
 
 ## Helper
 

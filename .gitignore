@@ -5,3 +5,11 @@ src/rates-refresh/target/
 .DS_Store
 .impl_prompt.md
 .grok_impl.log
+.gpt_review_err.log
+.gpt_review_r1.md
+.review_prompt.md
+.gpt_review*
+.*_review*
+.fix_prompt*
+.serena/
+.*.log

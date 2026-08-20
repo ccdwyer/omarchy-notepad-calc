@@ -106,6 +106,12 @@ var UNITS = [
     U("au", D({ L: 1 }), 149597870700, ["au", "astronomical unit", "astronomical units"], "au"),
     U("fathom", D({ L: 1 }), 1.8288, ["fathom", "fathoms"], "fathom"),
     U("furlong", D({ L: 1 }), 201.168, ["furlong", "furlongs"], "furlong"),
+    U("pm", D({ L: 1 }), 1e-12, ["pm", "picometer", "picometers"], "pm"),
+    U("angstrom", D({ L: 1 }), 1e-10, ["angstrom", "angstroms", "Å"], "Å"),
+    U("pc", D({ L: 1 }), 3.085677581e16, ["pc", "parsec", "parsecs"], "pc"),
+    U("ly", D({ L: 1 }), 9.4607304725808e15, ["ly", "lightyear", "lightyears", "light year", "light years"], "ly"),
+    U("chain", D({ L: 1 }), 20.1168, ["chain", "chains"], "chain"),
+    U("rod", D({ L: 1 }), 5.0292, ["rod", "rods", "perch", "pole"], "rod"),
 
     // mass (canonical grams)
     U("g", D({ M: 1 }), 1, ["g", "gram", "grams", "gramme", "grammes"], "g"),
@@ -120,6 +126,8 @@ var UNITS = [
     U("grain", D({ M: 1 }), 0.06479891, ["grain", "grains", "gr"], "grain"),
     U("ct", D({ M: 1 }), 0.2, ["ct", "carat", "carats"], "ct"),
     U("slug", D({ M: 1 }), 14593.903, ["slug", "slugs"], "slug"),
+    U("lt", D({ M: 1 }), 1016046.9088, ["long ton", "long tons", "imperial ton"], "lt"),
+    U("dwt", D({ M: 1 }), 1.55517384, ["dwt", "pennyweight", "pennyweights"], "dwt"),
 
     // time (canonical seconds). calendar units also tagged for date arithmetic.
     U("s", D({ T: 1 }), 1, ["s", "sec", "secs", "second", "seconds"], "s"),
@@ -135,6 +143,8 @@ var UNITS = [
     U("fortnight", D({ T: 1 }), 1209600, ["fortnight", "fortnights"], "fortnight"),
     U("decade", D({ T: 1 }), 315569520, ["decade", "decades"], "decade", "year"),
     U("century", D({ T: 1 }), 3155695200, ["century", "centuries"], "century", "year"),
+    U("ps", D({ T: 1 }), 1e-12, ["ps", "picosecond", "picoseconds"], "ps"),
+    U("millennium", D({ T: 1 }), 31556952000, ["millennium", "millennia"], "millennium", "year"),
 
     // data (canonical bytes, SI for KB/MB/GB, IEC for KiB/MiB)
     U("B", D({ data: 1 }), 1, ["B", "byte", "bytes"], "B"),
@@ -152,6 +162,8 @@ var UNITS = [
     U("Mbit", D({ data: 1 }), 125000, ["Mbit", "Mb", "megabit", "megabits"], "Mbit"),
     U("Gbit", D({ data: 1 }), 1.25e8, ["Gbit", "Gb", "gigabit", "gigabits"], "Gbit"),
     U("Tbit", D({ data: 1 }), 1.25e11, ["Tbit", "Tb", "terabit", "terabits"], "Tbit"),
+    U("EB", D({ data: 1 }), 1e18, ["EB", "exabyte", "exabytes"], "EB"),
+    U("PiB", D({ data: 1 }), 1125899906842624, ["PiB", "pebibyte", "pebibytes"], "PiB"),
 
     // area
     U("m2", D({ L: 2 }), 1, ["m2", "m²", "sqm", "square meter", "square meters", "square metre", "square metres"], "m²"),
@@ -184,6 +196,9 @@ var UNITS = [
     U("ft3", D({ L: 3 }), 0.028316846592, ["ft3", "ft³", "cubic foot", "cubic feet"], "ft³"),
     U("bbl", D({ L: 3 }), 0.158987294928, ["bbl", "barrel", "barrels"], "bbl"),
     U("bushel", D({ L: 3 }), 0.03523907016688, ["bushel", "bushels", "bu"], "bu"),
+    U("kL", D({ L: 3 }), 1, ["kL", "kl", "kiloliter", "kiloliters"], "kL"),
+    U("yd3", D({ L: 3 }), 0.764554857984, ["yd3", "yd³", "cubic yard", "cubic yards"], "yd³"),
+    U("igal", D({ L: 3 }), 0.00454609, ["igal", "imperial gallon", "imperial gallons"], "igal"),
 
     // speed
     U("m/s", D({ L: 1, T: -1 }), 1, ["m/s", "mps", "meter/s", "meters/s", "metres per second"], "m/s"),
@@ -212,10 +227,18 @@ var UNITS = [
     U("Mbps", D({ data: 1, T: -1 }), 125000, ["Mbps", "mbps", "Mbit/s"], "Mbps"),
     U("kbps", D({ data: 1, T: -1 }), 125, ["kbps", "kbit/s"], "kbps"),
     U("Gbps", D({ data: 1, T: -1 }), 1.25e8, ["Gbps", "Gbit/s"], "Gbps"),
+    U("TB/s", D({ data: 1, T: -1 }), 1e12, ["TB/s", "TBps"], "TB/s"),
+    U("GiB/s", D({ data: 1, T: -1 }), 1073741824, ["GiB/s"], "GiB/s"),
 
     // angle (dimensionless-ish, tagged A so we don't mix with true dimensionless)
     U("deg", D({ A: 1 }), 1, ["deg", "degree", "degrees", "°"], "°"),
-    U("rad", D({ A: 1 }), 180 / Math.PI, ["rad", "radian", "radians"], "rad")
+    U("rad", D({ A: 1 }), 180 / Math.PI, ["rad", "radian", "radians"], "rad"),
+    U("turn", D({ A: 1 }), 360, ["turn", "turns", "rev", "revolution", "revolutions"], "turn"),
+    U("grad", D({ A: 1 }), 0.9, ["grad", "grads", "gon", "gons"], "grad"),
+    U("arcmin", D({ A: 1 }), 1 / 60, ["arcmin", "arcminute", "arcminutes"], "′"),
+    U("arcsec", D({ A: 1 }), 1 / 3600, ["arcsec", "arcsecond", "arcseconds"], "″"),
+    U("Hz", D({ T: -1 }), 1, ["Hz", "hertz"], "Hz"),
+    U("rpm", D({ T: -1 }), 1 / 60, ["rpm", "RPM"], "rpm")
 ]
 
 var LOOKUP_EXACT = null

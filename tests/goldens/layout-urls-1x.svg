@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="128" viewBox="0 0 980 128">
+<rect width="100%" height="100%" fill="#1a1b26"/>
+<rect x="740" y="0" width="240" height="100%" fill="#16161e"/>
+<text x="16" y="48" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#c0caf5">see https://example.com/path?x=1&amp;y=2</text>
+<text x="964" y="48" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#7aa2f7">?see</text>
+<text x="16" y="68" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#c0caf5">https://omarchy.org/plugins/notepad-calc</text>
+<text x="16" y="88" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#c0caf5">2 + 2</text>
+<text x="964" y="88" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#7aa2f7">4</text>
+<text x="16" y="108" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#c0caf5">version 2 of the plan</text>
+</svg>

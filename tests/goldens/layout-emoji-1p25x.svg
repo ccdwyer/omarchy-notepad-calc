@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="148" viewBox="0 0 980 148">
+<rect width="100%" height="100%" fill="#1a1b26"/>
+<rect x="740" y="0" width="240" height="100%" fill="#16161e"/>
+<text x="16" y="53" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#c0caf5">planning 🚀</text>
+<text x="16" y="78" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#c0caf5">desk = $349  DualSense 🎮</text>
+<text x="964" y="78" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#7aa2f7">$349.00</text>
+<text x="16" y="103" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#c0caf5">note: 日本語 mix ✨</text>
+<text x="16" y="128" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#c0caf5">sum</text>
+<text x="964" y="128" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" fill="#7aa2f7">$349.00</text>
+</svg>

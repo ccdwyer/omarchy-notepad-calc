@@ -1,0 +1,53 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  node-offline:
+    name: corpus (node, network off)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Engine corpus + layout goldens + soak (unshare --net)
+        run: |
+          chmod +x tests/offline.sh tests/run.js tests/helper.test.sh
+          if unshare --net --map-root-user true >/dev/null 2>&1; then
+            unshare --net --map-root-user bash -c 'ip link set lo up 2>/dev/null || true; node tests/run.js && tests/helper.test.sh'
+          else
+            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && node tests/run.js && tests/helper.test.sh'
+          fi
+
+  qml-offline:
+    name: corpus (qml, network off)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install qt6-declarative
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            qt6-declarative-dev qml6-module-qtquick qml6-module-qtqml
+      - name: QML corpus (unshare --net)
+        env:
+          REQUIRE_QML: "1"
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          chmod +x tests/run-qml.sh
+          QML_BIN=""
+          for c in qml6 qml qmlscene; do
+            if command -v "$c" >/dev/null 2>&1; then QML_BIN="$c"; break; fi
+          done
+          if [ -z "$QML_BIN" ]; then
+            QML_BIN=$(find /usr -name 'qml6' -o -name 'qml' 2>/dev/null | head -n 1 || true)
+          fi
+          echo "using $QML_BIN"
+          if unshare --net --map-root-user true >/dev/null 2>&1; then
+            unshare --net --map-root-user bash -c "ip link set lo up 2>/dev/null || true; REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen tests/run-qml.sh"
+          else
+            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen tests/run-qml.sh'
+          fi

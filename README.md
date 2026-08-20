@@ -1,5 +1,7 @@
 # Notepad Calc
 
+![Changing 2 × $429 monitors to 3 × ripples the downstream results](docs/ripple.gif)
+
 A living calculation notepad for the Omarchy bar. Type prose with numbers; every line that is actually math evaluates as you type, and changing one number ripples through the sheet.
 
 **Inspired by [Soulver](https://soulver.app).** The concept is Soulver's. This is a native, theme-aware, fully offline Omarchy implementation — not a clone of the product, and not affiliated with Acqualia.
@@ -41,13 +43,15 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 | Ctrl+S | Save now (also autosaves on idle) |
 | ? | Help |
 
-Summon from a keybind (the plugin does **not** write `hyprland.conf`):
+The widget stays loaded on the bar, so Quattro `call` reaches it. Bind (the plugin does **not** write `hyprland.conf`):
 
 ```
 bind = SUPER, N, exec, omarchy-shell shell call io.github.chris.notepad-calc toggle
+bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-calc summon
+bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide
 ```
 
-If `shell call` does not reach a bar-widget, click the chip. Same surface.
+`summon` / `hide` / `toggle` are the IpcHandler verbs. `shell toggle <id>` also works because the plugin is already loaded.
 
 ## Grammar (v1, frozen)
 
@@ -106,19 +110,23 @@ Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). Ther
 - **Grammar is frozen to the lines above and their compositions.** Natural-language improvisation will misfire; that is why the demo is the first-run sheet.
 - **~30 ECB currencies.** No crypto, no exotic pairs, no live ticker.
 - **~50 city / IANA zones**, DST-correct for 2024–2028 from bundled transition rules. City names are the documented form (`Los Angeles`, not `PST` in the demo). Ambiguous abbreviations (`IST`, `CST`) are refused rather than guessed.
+- **130 canonical units** (UCUM-ish subset: length, mass, time, data, area, volume, speed, temperature, data-rate, angle, frequency).
 - **`× 12` on a `$ /mo` quantity** treats 12 as twelve of that period so `(rent + utilities) × 12` is a year total. Prefer `× 12 months` if you want the unit algebra spelled out.
 - **Row alignment** is wrap-free monospace. Long lines scroll horizontally; they do not wrap. That is deliberate.
 - **Helper binary is optional.** Missing `bin/notepad-calc-rates` falls back to `compat/rates-refresh.sh` (curl), then to the bundled snapshot.
 - **No second Quickshell process.** Everything runs inside `omarchy-shell`.
 - **Keybinds are yours to add.**
 
-## Tests (off-device)
+## Tests
+
+The **same 210-case corpus** (`tests/corpus.json`, `tests/corpus-data.js`) runs under Node and under Qt's JS engine.
 
 ```sh
-node tests/run.js
-# optional:
+node tests/run.js                  # corpus + layout goldens 1×/1.25×/2× + 500-line soak
+tests/offline.sh                   # same, inside unshare --net when available
+tests/run-qml.sh                   # qml6 EngineTest.qml (qt6-declarative; required on Linux CI)
 ./build.sh && cargo test --manifest-path src/rates-refresh/Cargo.toml
 compat/rates-refresh.sh fetch --xml tests/fixtures/ecb-daily.xml --out /tmp/rates-out.json
 ```
 
-The engine is the same file QML imports (`js/engine.js`). No Qt, no `Intl`.
+CI (`.github/workflows/test.yml`) runs the Node corpus and the QML corpus **with networking disabled**. The engine is the same file QML imports (`js/engine.js`). No Qt globals, no `Intl`.

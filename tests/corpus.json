@@ -1,20 +1,1446 @@
 [
-  { "id": "g1", "name": "2 + 2", "sheet": "2 + 2", "kind": "result", "approx": 4 },
-  { "id": "g2", "name": "2 × 3 + 4", "sheet": "2 × 3 + 4", "kind": "result", "approx": 10 },
-  { "id": "g3", "name": "2 + 3 × 4", "sheet": "2 + 3 × 4", "kind": "result", "approx": 14 },
-  { "id": "g4", "name": "(2 + 3) × 4", "sheet": "(2 + 3) × 4", "kind": "result", "approx": 20 },
-  { "id": "g5", "name": "unary minus", "sheet": "-5 + 2", "kind": "result", "approx": -3 },
-  { "id": "g6", "name": "power", "sheet": "2 ^ 8", "kind": "result", "approx": 256 },
-  { "id": "g7", "name": "divide", "sheet": "84 / 2", "kind": "result", "approx": 42 },
-  { "id": "g8", "name": "nested paren", "sheet": "((1 + 2) × (3 + 4))", "kind": "result", "approx": 21 },
-  { "id": "u1", "name": "1 m in cm", "sheet": "1 m in cm", "contains": "100" },
-  { "id": "u2", "name": "12 in in cm", "sheet": "12 in in cm", "contains": "30" },
-  { "id": "u3", "name": "1 acre as m2", "sheet": "1 acre as m2", "kind": "result" },
-  { "id": "u4", "name": "1 gal in L", "sheet": "1 gal in L", "kind": "result" },
-  { "id": "c1", "name": "£10", "sheet": "£10", "kind": "result", "currency": "GBP", "approx": 10 },
-  { "id": "c2", "name": "¥1000", "sheet": "¥1000", "kind": "result", "currency": "JPY", "approx": 1000 },
-  { "id": "c3", "name": "USD code", "sheet": "25 USD", "kind": "result", "currency": "USD", "approx": 25 },
-  { "id": "d1", "name": "today", "sheet": "today", "kind": "result", "display": "today" },
-  { "id": "p1", "name": "blank", "sheet": "", "kind": "blank" },
-  { "id": "p2", "name": "spaces", "sheet": "   ", "kind": "blank" }
+  {
+    "id": "g-add",
+    "name": "2 + 2",
+    "sheet": "2 + 2",
+    "kind": "result",
+    "approx": 4
+  },
+  {
+    "id": "g-muladd",
+    "name": "2 × 3 + 4",
+    "sheet": "2 × 3 + 4",
+    "kind": "result",
+    "approx": 10
+  },
+  {
+    "id": "g-addmul",
+    "name": "2 + 3 × 4",
+    "sheet": "2 + 3 × 4",
+    "kind": "result",
+    "approx": 14
+  },
+  {
+    "id": "g-paren",
+    "name": "(2 + 3) × 4",
+    "sheet": "(2 + 3) × 4",
+    "kind": "result",
+    "approx": 20
+  },
+  {
+    "id": "g-unary",
+    "name": "unary minus",
+    "sheet": "-5 + 2",
+    "kind": "result",
+    "approx": -3
+  },
+  {
+    "id": "g-pow",
+    "name": "power",
+    "sheet": "2 ^ 8",
+    "kind": "result",
+    "approx": 256
+  },
+  {
+    "id": "g-div",
+    "name": "divide",
+    "sheet": "84 / 2",
+    "kind": "result",
+    "approx": 42
+  },
+  {
+    "id": "g-nested",
+    "name": "nested paren",
+    "sheet": "((1 + 2) × (3 + 4))",
+    "kind": "result",
+    "approx": 21
+  },
+  {
+    "id": "g-unicode",
+    "name": "unicode minus times",
+    "sheet": "10 − 3 × 4",
+    "kind": "result",
+    "approx": -2
+  },
+  {
+    "id": "g-comma",
+    "name": "comma thousands",
+    "sheet": "1,200 + 300",
+    "kind": "result",
+    "approx": 1500
+  },
+  {
+    "id": "g-chain",
+    "name": "1+2+3+4+5",
+    "sheet": "1 + 2 + 3 + 4 + 5",
+    "kind": "result",
+    "approx": 15
+  },
+  {
+    "id": "g-sub",
+    "name": "100 - 40",
+    "sheet": "100 - 40",
+    "kind": "result",
+    "approx": 60
+  },
+  {
+    "id": "g-frac",
+    "name": "7 / 2",
+    "sheet": "7 / 2",
+    "kind": "result",
+    "approx": 3.5
+  },
+  {
+    "id": "g-negmul",
+    "name": "-3 × 4",
+    "sheet": "-3 × 4",
+    "kind": "result",
+    "approx": -12
+  },
+  {
+    "id": "g-dblparen",
+    "name": "((8))",
+    "sheet": "((8))",
+    "kind": "result",
+    "approx": 8
+  },
+  {
+    "id": "g-powadd",
+    "name": "2 ^ 3 + 1",
+    "sheet": "2 ^ 3 + 1",
+    "kind": "result",
+    "approx": 9
+  },
+  {
+    "id": "g-xmul",
+    "name": "6 x 7",
+    "sheet": "6 x 7",
+    "kind": "result",
+    "approx": 42
+  },
+  {
+    "id": "g-zero",
+    "name": "0 + 0",
+    "sheet": "0 + 0",
+    "kind": "result",
+    "approx": 0
+  },
+  {
+    "id": "g-big",
+    "name": "1000000 / 8",
+    "sheet": "1,000,000 / 8",
+    "kind": "result",
+    "approx": 125000
+  },
+  {
+    "id": "g-prec",
+    "name": "8 / 2 × 3",
+    "sheet": "8 / 2 × 3",
+    "kind": "result",
+    "approx": 12
+  },
+  {
+    "id": "pct-soulver",
+    "name": "100 + 8%",
+    "sheet": "100 + 8%",
+    "kind": "result",
+    "approx": 108
+  },
+  {
+    "id": "pct-minus",
+    "name": "100 - 8%",
+    "sheet": "100 - 8%",
+    "kind": "result",
+    "approx": 92
+  },
+  {
+    "id": "pct-of",
+    "name": "50% of 80",
+    "sheet": "50% of 80",
+    "kind": "result",
+    "approx": 40
+  },
+  {
+    "id": "pct-of-16560",
+    "name": "8.1% of 16560",
+    "sheet": "8.1% of 16560",
+    "kind": "result",
+    "approx": 1341.3600000000001
+  },
+  {
+    "id": "pct-bare",
+    "name": "20%",
+    "sheet": "20%",
+    "kind": "result"
+  },
+  {
+    "id": "pct-add-tax",
+    "name": "200 + 10% tax",
+    "sheet": "200 + 10% tax",
+    "kind": "result",
+    "approx": 220
+  },
+  {
+    "id": "pct-zero",
+    "name": "50 + 0%",
+    "sheet": "50 + 0%",
+    "kind": "result",
+    "approx": 50
+  },
+  {
+    "id": "pct-of-money",
+    "name": "10% of $80",
+    "sheet": "10% of $80",
+    "kind": "result",
+    "approx": 8,
+    "currency": "USD"
+  },
+  {
+    "id": "pct-double",
+    "name": "100 + 8% + 8%",
+    "sheet": "100 + 8%",
+    "kind": "result",
+    "approx": 108
+  },
+  {
+    "id": "pct-yearcost",
+    "name": "year cost + 8.1%",
+    "sheet": "year cost = 16560\nyear cost + 8.1% tax",
+    "kind": "result",
+    "approx": 17901.36
+  },
+  {
+    "id": "acc-rent",
+    "name": "rent = $1,200/mo",
+    "sheet": "rent = $1,200/mo",
+    "kind": "result",
+    "currency": "USD"
+  },
+  {
+    "id": "acc-year",
+    "name": "year cost × 12",
+    "sheet": "rent = $1,200/mo\nutilities = $180/mo\nyear cost = (rent + utilities) × 12",
+    "kind": "result",
+    "approx": 16560,
+    "currency": "USD",
+    "contains": "16,560"
+  },
+  {
+    "id": "acc-eur",
+    "name": "in EUR applies to prev",
+    "sheet": "rent = $1,200/mo\nutilities = $180/mo\nyear cost = (rent + utilities) × 12\nin EUR",
+    "kind": "result",
+    "currency": "EUR",
+    "contains": "€"
+  },
+  {
+    "id": "acc-20pct",
+    "name": "20% of year cost",
+    "sheet": "rent = $1,200/mo\nutilities = $180/mo\nyear cost = (rent + utilities) × 12\n20% of year cost",
+    "kind": "result",
+    "approx": 3312,
+    "currency": "USD"
+  },
+  {
+    "id": "acc-risky",
+    "name": "$120/mo × 14 months in EUR",
+    "sheet": "$120/mo × 14 months in EUR",
+    "kind": "result",
+    "currency": "EUR",
+    "contains": "€"
+  },
+  {
+    "id": "acc-gb",
+    "name": "10 GB / 4 MB/s",
+    "sheet": "10 GB / 4 MB/s",
+    "kind": "result",
+    "approx": 2500,
+    "display": "41 min 40 s"
+  },
+  {
+    "id": "acc-tz",
+    "name": "3pm LA → Tokyo",
+    "sheet": "3pm in Los Angeles → Tokyo time",
+    "kind": "result",
+    "contains": "7:00 AM"
+  },
+  {
+    "id": "acc-today45",
+    "name": "today + 45 days",
+    "sheet": "today + 45 days",
+    "kind": "result",
+    "display": "Oct 3, 2026"
+  },
+  {
+    "id": "acc-1440",
+    "name": "1440 minutes as hours",
+    "sheet": "1440 minutes as hours",
+    "kind": "result",
+    "contains": "24"
+  },
+  {
+    "id": "acc-per",
+    "name": "$120 per month",
+    "sheet": "$120 per month",
+    "kind": "result",
+    "currency": "USD"
+  },
+  {
+    "id": "prose-1",
+    "name": "prose 1",
+    "sheet": "version 2 of the plan",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-2",
+    "name": "prose 2",
+    "sheet": "see chapter 3 for details",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-3",
+    "name": "prose 3",
+    "sheet": "the 2026 roadmap",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-4",
+    "name": "prose 4",
+    "sheet": "call me at noon maybe",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-5",
+    "name": "prose 5",
+    "sheet": "planning my Omarchy battlestation",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-6",
+    "name": "prose 6",
+    "sheet": "every line of this is plain text",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-7",
+    "name": "prose 7",
+    "sheet": "inspired by Soulver",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-8",
+    "name": "prose 8",
+    "sheet": "hello world",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-9",
+    "name": "prose 9",
+    "sheet": "TODO pick a monitor",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-10",
+    "name": "prose 10",
+    "sheet": "note: wait for the sale",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-11",
+    "name": "prose 11",
+    "sheet": "https://example.com/path?x=1",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-12",
+    "name": "prose 12",
+    "sheet": "emoji line 🚀🚀🚀",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-13",
+    "name": "prose 13",
+    "sheet": "Room 101 is downstairs",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-14",
+    "name": "prose 14",
+    "sheet": "Windows 11 vs Omarchy",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-15",
+    "name": "prose 15",
+    "sheet": "v2 of the API is ready",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-16",
+    "name": "prose 16",
+    "sheet": "section 4 of the README",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-17",
+    "name": "prose 17",
+    "sheet": "item 1 of the agenda",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-18",
+    "name": "prose 18",
+    "sheet": "page 12 of the book",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-19",
+    "name": "prose 19",
+    "sheet": "just words, no math here",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-20",
+    "name": "prose 20",
+    "sheet": "the first of many ideas",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-21",
+    "name": "prose 21",
+    "sheet": "Omarchy battlestation",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-22",
+    "name": "prose 22",
+    "sheet": "https://omarchy.org",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-23",
+    "name": "prose 23",
+    "sheet": "https://example.com/a/very/long/path?query=1&x=2",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-24",
+    "name": "prose 24",
+    "sheet": "🚀 desk arrives Friday maybe",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-blank",
+    "name": "blank line",
+    "sheet": "",
+    "kind": "blank"
+  },
+  {
+    "id": "prose-spaces",
+    "name": "spaces",
+    "sheet": "   ",
+    "kind": "blank"
+  },
+  {
+    "id": "typo-1",
+    "name": "typo 1",
+    "sheet": "budget = flights + hotl",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-2",
+    "name": "typo 2",
+    "sheet": "total = monitors + chiar",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-3",
+    "name": "typo 3",
+    "sheet": "x = alpha + betaa",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-4",
+    "name": "typo 4",
+    "sheet": "sumthing = rent + utilz",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-5",
+    "name": "typo 5",
+    "sheet": "cost = desk + chairr",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-6",
+    "name": "typo 6",
+    "sheet": "n = foo + bar + baz",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-7",
+    "name": "typo 7",
+    "sheet": "tax = subtottal + 8%",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-8",
+    "name": "typo 8",
+    "sheet": "y = widthh + 10",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-9",
+    "name": "typo 9",
+    "sheet": "z = aaa + bbb",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-10",
+    "name": "typo 10",
+    "sheet": "mix = known + unk",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-11",
+    "name": "typo 11",
+    "sheet": "price = monitrs × 2",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-12",
+    "name": "typo 12",
+    "sheet": "fee = shippng + 5",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-13",
+    "name": "typo 13",
+    "sheet": "amt = subtotl - 1",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-14",
+    "name": "typo 14",
+    "sheet": "q = missingname + 3",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "typo-15",
+    "name": "typo 15",
+    "sheet": "r = nope + nope",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "sum-n1",
+    "name": "sum of 1 ones",
+    "sheet": "1\nsum",
+    "kind": "result",
+    "approx": 1
+  },
+  {
+    "id": "sum-n2",
+    "name": "sum of 2 ones",
+    "sheet": "1\n1\nsum",
+    "kind": "result",
+    "approx": 2
+  },
+  {
+    "id": "sum-n3",
+    "name": "sum of 3 ones",
+    "sheet": "1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 3
+  },
+  {
+    "id": "sum-n4",
+    "name": "sum of 4 ones",
+    "sheet": "1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 4
+  },
+  {
+    "id": "sum-n5",
+    "name": "sum of 5 ones",
+    "sheet": "1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 5
+  },
+  {
+    "id": "sum-n6",
+    "name": "sum of 6 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 6
+  },
+  {
+    "id": "sum-n7",
+    "name": "sum of 7 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 7
+  },
+  {
+    "id": "sum-n8",
+    "name": "sum of 8 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 8
+  },
+  {
+    "id": "sum-n9",
+    "name": "sum of 9 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 9
+  },
+  {
+    "id": "sum-n10",
+    "name": "sum of 10 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 10
+  },
+  {
+    "id": "sum-n11",
+    "name": "sum of 11 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "sum-n12",
+    "name": "sum of 12 ones",
+    "sheet": "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\nsum",
+    "kind": "result",
+    "approx": 12
+  },
+  {
+    "id": "sum-blank",
+    "name": "sum stops at blank",
+    "sheet": "1\n2\n\n3\n4\nsum",
+    "kind": "result",
+    "approx": 7
+  },
+  {
+    "id": "sum-prose",
+    "name": "sum ignores prose",
+    "sheet": "10\nhello there\n20\nsum",
+    "kind": "result",
+    "approx": 30
+  },
+  {
+    "id": "sum-assign",
+    "name": "sum after assignment",
+    "sheet": "a = 5\nb = 7\nsum",
+    "kind": "result",
+    "approx": 12
+  },
+  {
+    "id": "sum-total",
+    "name": "total alias",
+    "sheet": "3\n4\ntotal",
+    "kind": "result",
+    "approx": 7
+  },
+  {
+    "id": "sum-avg",
+    "name": "avg of 2 and 8",
+    "sheet": "2\n8\navg",
+    "kind": "result",
+    "approx": 5
+  },
+  {
+    "id": "sum-money",
+    "name": "sum of money",
+    "sheet": "$10\n$15\nsum",
+    "kind": "result",
+    "approx": 25,
+    "currency": "USD"
+  },
+  {
+    "id": "sum-two-blocks",
+    "name": "two sum blocks",
+    "sheet": "1\n2\nsum\n\n10\n20\nsum",
+    "kind": "result",
+    "approx": 30
+  },
+  {
+    "id": "sum-currency-skip",
+    "name": "sum skips other currency",
+    "sheet": "$10\n€10\nsum",
+    "kind": "result",
+    "approx": 10
+  },
+  {
+    "id": "prev-plus",
+    "name": "prev + 5",
+    "sheet": "10\nprev + 5",
+    "kind": "result",
+    "approx": 15
+  },
+  {
+    "id": "var-year-rent",
+    "name": "year rent beats rent",
+    "sheet": "rent = 100\nyear rent = 1200\nyear rent + rent",
+    "kind": "result",
+    "approx": 1300
+  },
+  {
+    "id": "var-desk-width",
+    "name": "desk width spaces",
+    "sheet": "desk width = 160\ndesk width + 10",
+    "kind": "result",
+    "approx": 170
+  },
+  {
+    "id": "var-shadow",
+    "name": "redefinition shadows",
+    "sheet": "x = 1\ny = x\nx = 5\nz = x",
+    "kind": "result",
+    "approx": 5
+  },
+  {
+    "id": "var-forward",
+    "name": "forward ref unresolved",
+    "sheet": "y = x + 1\nx = 4",
+    "kind": "unresolved",
+    "line": 0,
+    "contains": "?"
+  },
+  {
+    "id": "var-long-0",
+    "name": "longest-match alpha",
+    "sheet": "alpha = 1\nalpha extra = 10\nalpha extra + alpha",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-1",
+    "name": "longest-match beta",
+    "sheet": "beta = 1\nbeta extra = 10\nbeta extra + beta",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-2",
+    "name": "longest-match gamma",
+    "sheet": "gamma = 1\ngamma extra = 10\ngamma extra + gamma",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-3",
+    "name": "longest-match delta",
+    "sheet": "delta = 1\ndelta extra = 10\ndelta extra + delta",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-4",
+    "name": "longest-match epsilon",
+    "sheet": "epsilon = 1\nepsilon extra = 10\nepsilon extra + epsilon",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-5",
+    "name": "longest-match zeta",
+    "sheet": "zeta = 1\nzeta extra = 10\nzeta extra + zeta",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-6",
+    "name": "longest-match eta",
+    "sheet": "eta = 1\neta extra = 10\neta extra + eta",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-7",
+    "name": "longest-match theta",
+    "sheet": "theta = 1\ntheta extra = 10\ntheta extra + theta",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-8",
+    "name": "longest-match iota",
+    "sheet": "iota = 1\niota extra = 10\niota extra + iota",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-9",
+    "name": "longest-match kappa",
+    "sheet": "kappa = 1\nkappa extra = 10\nkappa extra + kappa",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-10",
+    "name": "longest-match lambda",
+    "sheet": "lambda = 1\nlambda extra = 10\nlambda extra + lambda",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-11",
+    "name": "longest-match mu",
+    "sheet": "mu = 1\nmu extra = 10\nmu extra + mu",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-12",
+    "name": "longest-match nu",
+    "sheet": "nu = 1\nnu extra = 10\nnu extra + nu",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-13",
+    "name": "longest-match xi",
+    "sheet": "xi = 1\nxi extra = 10\nxi extra + xi",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-14",
+    "name": "longest-match omicron",
+    "sheet": "omicron = 1\nomicron extra = 10\nomicron extra + omicron",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-15",
+    "name": "longest-match pi",
+    "sheet": "pi = 1\npi extra = 10\npi extra + pi",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-16",
+    "name": "longest-match rho",
+    "sheet": "rho = 1\nrho extra = 10\nrho extra + rho",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "var-long-17",
+    "name": "longest-match sigma",
+    "sheet": "sigma = 1\nsigma extra = 10\nsigma extra + sigma",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "u-cm-in",
+    "name": "160 cm in inches",
+    "sheet": "160 cm in inches",
+    "kind": "result"
+  },
+  {
+    "id": "u-km-m",
+    "name": "1 km as m",
+    "sheet": "1 km as m",
+    "kind": "result",
+    "approx": 1000
+  },
+  {
+    "id": "u-kg-g",
+    "name": "5 kg + 500 g",
+    "sheet": "5 kg + 500 g",
+    "kind": "result",
+    "approx": 5500
+  },
+  {
+    "id": "u-mph",
+    "name": "60 mph in km/h",
+    "sheet": "60 mph in km/h",
+    "kind": "result"
+  },
+  {
+    "id": "u-c-f",
+    "name": "20 C in F",
+    "sheet": "20 C in F",
+    "kind": "result",
+    "approx": 68,
+    "eps": 0.05
+  },
+  {
+    "id": "u-f-c",
+    "name": "32 F in C",
+    "sheet": "32 F in C",
+    "kind": "result",
+    "approx": 0,
+    "eps": 0.05
+  },
+  {
+    "id": "u-h-min",
+    "name": "2 h + 30 min",
+    "sheet": "2 h + 30 min",
+    "kind": "result",
+    "approx": 9000
+  },
+  {
+    "id": "u-gib",
+    "name": "1 GiB / 1 MiB",
+    "sheet": "1 GiB / 1 MiB",
+    "kind": "result",
+    "approx": 1024
+  },
+  {
+    "id": "u-speed",
+    "name": "10 km / 2 h",
+    "sheet": "10 km / 2 h",
+    "kind": "result",
+    "approx": 1.3888888888888888
+  },
+  {
+    "id": "u-12in",
+    "name": "12 in in cm",
+    "sheet": "12 in in cm",
+    "kind": "result",
+    "contains": "30"
+  },
+  {
+    "id": "u-m-cm",
+    "name": "1 m in cm",
+    "sheet": "1 m in cm",
+    "kind": "result",
+    "contains": "100"
+  },
+  {
+    "id": "u-acre",
+    "name": "1 acre as m2",
+    "sheet": "1 acre as m2",
+    "kind": "result"
+  },
+  {
+    "id": "u-gal",
+    "name": "1 gal in L",
+    "sheet": "1 gal in L",
+    "kind": "result"
+  },
+  {
+    "id": "u-ft",
+    "name": "3 ft as in",
+    "sheet": "3 ft as in",
+    "kind": "result"
+  },
+  {
+    "id": "u-lb",
+    "name": "2 lb as oz",
+    "sheet": "2 lb as oz",
+    "kind": "result"
+  },
+  {
+    "id": "u-week",
+    "name": "2 weeks as days",
+    "sheet": "2 weeks as days",
+    "kind": "result"
+  },
+  {
+    "id": "u-ms",
+    "name": "500 ms as s",
+    "sheet": "500 ms as s",
+    "kind": "result",
+    "approx": 0.5,
+    "eps": 0.01
+  },
+  {
+    "id": "u-kib",
+    "name": "2 KiB as B",
+    "sheet": "2 KiB as B",
+    "kind": "result",
+    "approx": 2048
+  },
+  {
+    "id": "u-mm",
+    "name": "1000 mm as m",
+    "sheet": "1000 mm as m",
+    "kind": "result",
+    "approx": 1,
+    "eps": 0.01
+  },
+  {
+    "id": "u-l-ml",
+    "name": "2 L as mL",
+    "sheet": "2 L as mL",
+    "kind": "result"
+  },
+  {
+    "id": "u-kn",
+    "name": "10 kn",
+    "sheet": "10 kn",
+    "kind": "result"
+  },
+  {
+    "id": "u-ha",
+    "name": "1 ha as m2",
+    "sheet": "1 ha as m2",
+    "kind": "result"
+  },
+  {
+    "id": "u-tbsp",
+    "name": "3 tbsp",
+    "sheet": "3 tbsp",
+    "kind": "result"
+  },
+  {
+    "id": "u-nm",
+    "name": "10 nm",
+    "sheet": "10 nm",
+    "kind": "result"
+  },
+  {
+    "id": "u-deg",
+    "name": "180 deg",
+    "sheet": "180 deg",
+    "kind": "result"
+  },
+  {
+    "id": "u-hz",
+    "name": "60 Hz",
+    "sheet": "60 Hz",
+    "kind": "result"
+  },
+  {
+    "id": "u-angstrom",
+    "name": "1 angstrom as nm",
+    "sheet": "1 angstrom as nm",
+    "kind": "result"
+  },
+  {
+    "id": "u-yd3",
+    "name": "1 yd3",
+    "sheet": "1 yd3",
+    "kind": "result"
+  },
+  {
+    "id": "u-kL",
+    "name": "2 kL as L",
+    "sheet": "2 kL as L",
+    "kind": "result"
+  },
+  {
+    "id": "u-pm",
+    "name": "1000 pm as nm",
+    "sheet": "1000 pm as nm",
+    "kind": "result"
+  },
+  {
+    "id": "c-usd",
+    "name": "bare $99",
+    "sheet": "$99",
+    "kind": "result",
+    "currency": "USD",
+    "approx": 99
+  },
+  {
+    "id": "c-eur10",
+    "name": "€10 in USD",
+    "sheet": "€10 in USD",
+    "kind": "result",
+    "currency": "USD"
+  },
+  {
+    "id": "c-mix",
+    "name": "$10 + €10",
+    "sheet": "$10 + €10",
+    "kind": "result",
+    "currency": "USD"
+  },
+  {
+    "id": "c-gbp",
+    "name": "£10",
+    "sheet": "£10",
+    "kind": "result",
+    "currency": "GBP",
+    "approx": 10
+  },
+  {
+    "id": "c-jpy",
+    "name": "¥1000",
+    "sheet": "¥1000",
+    "kind": "result",
+    "currency": "JPY",
+    "approx": 1000
+  },
+  {
+    "id": "c-code",
+    "name": "25 USD",
+    "sheet": "25 USD",
+    "kind": "result",
+    "currency": "USD",
+    "approx": 25
+  },
+  {
+    "id": "c-eur-code",
+    "name": "12 EUR",
+    "sheet": "12 EUR",
+    "kind": "result",
+    "currency": "EUR",
+    "approx": 12
+  },
+  {
+    "id": "c-inr",
+    "name": "₹100",
+    "sheet": "₹100",
+    "kind": "result",
+    "currency": "INR",
+    "approx": 100
+  },
+  {
+    "id": "c-gbp-usd",
+    "name": "£10 in USD",
+    "sheet": "£10 in USD",
+    "kind": "result",
+    "currency": "USD"
+  },
+  {
+    "id": "c-add-same",
+    "name": "$20 + $5",
+    "sheet": "$20 + $5",
+    "kind": "result",
+    "approx": 25,
+    "currency": "USD"
+  },
+  {
+    "id": "c-sub",
+    "name": "$20 - $5",
+    "sheet": "$20 - $5",
+    "kind": "result",
+    "approx": 15,
+    "currency": "USD"
+  },
+  {
+    "id": "c-mul",
+    "name": "3 × $10",
+    "sheet": "3 × $10",
+    "kind": "result",
+    "approx": 30,
+    "currency": "USD"
+  },
+  {
+    "id": "c-mo14",
+    "name": "$120/mo × 14 months",
+    "sheet": "$120/mo × 14 months",
+    "kind": "result",
+    "approx": 1680,
+    "currency": "USD"
+  },
+  {
+    "id": "d-today",
+    "name": "today",
+    "sheet": "today",
+    "kind": "result",
+    "display": "today"
+  },
+  {
+    "id": "d-tomorrow",
+    "name": "tomorrow",
+    "sheet": "tomorrow",
+    "kind": "result",
+    "display": "tomorrow"
+  },
+  {
+    "id": "d-yesterday",
+    "name": "yesterday",
+    "sheet": "yesterday",
+    "kind": "result"
+  },
+  {
+    "id": "d-week",
+    "name": "today + 1 week",
+    "sheet": "today + 1 week",
+    "kind": "result"
+  },
+  {
+    "id": "d-month",
+    "name": "today + 1 month",
+    "sheet": "today + 1 month",
+    "kind": "result"
+  },
+  {
+    "id": "d-ago",
+    "name": "3 days ago",
+    "sheet": "3 days ago",
+    "kind": "result"
+  },
+  {
+    "id": "d-plus1",
+    "name": "today + 1 day",
+    "sheet": "today + 1 day",
+    "kind": "result",
+    "display": "tomorrow"
+  },
+  {
+    "id": "d-year",
+    "name": "today + 1 year",
+    "sheet": "today + 1 year",
+    "kind": "result"
+  },
+  {
+    "id": "tz-tokyo",
+    "name": "Tokyo offset no DST",
+    "sheet": "3pm in Tokyo → UTC",
+    "kind": "result"
+  },
+  {
+    "id": "tz-ny",
+    "name": "New York city",
+    "sheet": "3pm in New York → UTC",
+    "kind": "result"
+  },
+  {
+    "id": "tz-london",
+    "name": "London city",
+    "sheet": "12pm in London → UTC",
+    "kind": "result"
+  },
+  {
+    "id": "tz-sydney",
+    "name": "Sydney city",
+    "sheet": "9am in Sydney → UTC",
+    "kind": "result"
+  },
+  {
+    "id": "tz-phoenix",
+    "name": "Phoenix no DST",
+    "sheet": "3pm in Phoenix → UTC",
+    "kind": "result"
+  },
+  {
+    "id": "tz-ist-ambiguous",
+    "name": "IST ambiguous stays quiet or unresolved",
+    "sheet": "3pm in IST → Tokyo",
+    "kind": "prose"
+  },
+  {
+    "id": "tz-atlantis",
+    "name": "unknown zone",
+    "sheet": "3pm in Atlantis → Tokyo",
+    "kind": "prose"
+  },
+  {
+    "id": "tz-pst-dst",
+    "name": "PST honors August DST",
+    "sheet": "3pm in PST → Tokyo",
+    "kind": "result"
+  },
+  {
+    "id": "fr-monitors",
+    "name": "first-run monitors",
+    "sheet": "monitors = 2 × $429",
+    "kind": "result",
+    "approx": 858,
+    "currency": "USD"
+  },
+  {
+    "id": "fr-subtotal",
+    "name": "first-run subtotal",
+    "sheet": "monitors = 2 × $429\ndesk = $349\nchair = $189\nmat = $42\nsubtotal = monitors + desk + chair + mat",
+    "kind": "result",
+    "approx": 1438,
+    "currency": "USD"
+  },
+  {
+    "id": "fr-tax",
+    "name": "first-run tax",
+    "sheet": "subtotal = 1438\nwith tax = subtotal + 8.1%",
+    "kind": "result",
+    "approx": 1554.4779999999998,
+    "currency": null,
+    "eps": 0.05
+  },
+  {
+    "id": "fr-ssd",
+    "name": "first-run SSD copy",
+    "sheet": "SSD copy = 10 GB / 4 MB/s",
+    "kind": "result",
+    "display": "41 min 40 s"
+  },
+  {
+    "id": "fr-periph",
+    "name": "first-run peripherals",
+    "sheet": "peripherals = $120/mo × 14 months in EUR",
+    "kind": "result",
+    "currency": "EUR"
+  },
+  {
+    "id": "fr-desk",
+    "name": "first-run desk width",
+    "sheet": "desk width = 160 cm in inches",
+    "kind": "result"
+  },
+  {
+    "id": "fr-arrives",
+    "name": "first-run arrives",
+    "sheet": "arrives = today + 45 days",
+    "kind": "result",
+    "display": "Oct 3, 2026"
+  },
+  {
+    "id": "fr-hardware-sum",
+    "name": "first-run hardware sum",
+    "sheet": "monitors = 2 × $429\ndesk = $349\nchair = $189\nmat = $42\nhardware = monitors + desk + chair + mat\nsum",
+    "kind": "result",
+    "approx": 2876,
+    "currency": "USD"
+  },
+  {
+    "id": "comp-budget",
+    "name": "budget composition",
+    "sheet": "flights = $420\nhotel = $180\nbudget = flights + hotel\n20% of budget",
+    "kind": "result",
+    "approx": 120,
+    "currency": "USD"
+  },
+  {
+    "id": "comp-rate",
+    "name": "rate × hours",
+    "sheet": "rate = $45\nhours = 8\npay = rate × hours",
+    "kind": "result",
+    "approx": 360,
+    "currency": "USD"
+  },
+  {
+    "id": "comp-discount",
+    "name": "price - 15%",
+    "sheet": "price = $80\nprice - 15%",
+    "kind": "result",
+    "approx": 68,
+    "currency": "USD"
+  },
+  {
+    "id": "comp-tip",
+    "name": "bill + 18%",
+    "sheet": "bill = $64\nbill + 18%",
+    "kind": "result",
+    "approx": 75.52,
+    "currency": "USD"
+  },
+  {
+    "id": "comp-split",
+    "name": "90 / 3",
+    "sheet": "tab = $90\ntab / 3",
+    "kind": "result",
+    "approx": 30,
+    "currency": "USD"
+  },
+  {
+    "id": "arith-extra-0",
+    "name": "arith extra 0",
+    "sheet": "1 + 2",
+    "kind": "result",
+    "approx": 3
+  },
+  {
+    "id": "arith-extra-1",
+    "name": "arith extra 1",
+    "sheet": "2 + 3",
+    "kind": "result",
+    "approx": 5
+  },
+  {
+    "id": "arith-extra-2",
+    "name": "arith extra 2",
+    "sheet": "3 + 4",
+    "kind": "result",
+    "approx": 7
+  },
+  {
+    "id": "arith-extra-3",
+    "name": "arith extra 3",
+    "sheet": "4 + 5",
+    "kind": "result",
+    "approx": 9
+  },
+  {
+    "id": "arith-extra-4",
+    "name": "arith extra 4",
+    "sheet": "5 + 6",
+    "kind": "result",
+    "approx": 11
+  },
+  {
+    "id": "arith-extra-5",
+    "name": "arith extra 5",
+    "sheet": "6 + 7",
+    "kind": "result",
+    "approx": 13
+  },
+  {
+    "id": "arith-extra-6",
+    "name": "arith extra 6",
+    "sheet": "7 + 8",
+    "kind": "result",
+    "approx": 15
+  },
+  {
+    "id": "arith-extra-7",
+    "name": "arith extra 7",
+    "sheet": "8 + 9",
+    "kind": "result",
+    "approx": 17
+  },
+  {
+    "id": "arith-extra-8",
+    "name": "arith extra 8",
+    "sheet": "9 + 10",
+    "kind": "result",
+    "approx": 19
+  },
+  {
+    "id": "arith-extra-9",
+    "name": "arith extra 9",
+    "sheet": "10 + 11",
+    "kind": "result",
+    "approx": 21
+  },
+  {
+    "id": "arith-extra-10",
+    "name": "arith extra 10",
+    "sheet": "11 + 12",
+    "kind": "result",
+    "approx": 23
+  },
+  {
+    "id": "arith-extra-11",
+    "name": "arith extra 11",
+    "sheet": "12 + 13",
+    "kind": "result",
+    "approx": 25
+  },
+  {
+    "id": "arith-extra-12",
+    "name": "arith extra 12",
+    "sheet": "13 + 14",
+    "kind": "result",
+    "approx": 27
+  },
+  {
+    "id": "arith-extra-13",
+    "name": "arith extra 13",
+    "sheet": "14 + 15",
+    "kind": "result",
+    "approx": 29
+  }
 ]

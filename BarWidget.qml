@@ -131,8 +131,8 @@ BarWidget {
   IpcHandler {
     target: "io.github.chris.notepad-calc"
     function toggle(arg: string): string { root.toggle(); return "ok" }
-    function open(arg: string): string { root.open(); return "ok" }
-    function close(arg: string): string { root.close(); return "ok" }
+    function summon(arg: string): string { root.open(); return "ok" }
+    function hide(arg: string): string { root.close(); return "ok" }
     function ping(arg: string): string { return "ok" }
   }
 }

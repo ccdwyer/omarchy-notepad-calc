@@ -80,7 +80,7 @@ Item {
   property int lineHeight: Math.round(fontPx * 1.45)
   property int resultsWidth: Style.space(56)
   readonly property int motionMs: reduceMotion ? 0 : 150
-  readonly property int pulseMs: reduceMotion ? 0 : 300
+  readonly property int pulseMs: 300
 
   function boot() {
     rates.pluginDir = root.pluginDir
@@ -140,13 +140,19 @@ Item {
     for (var i = 0; i < results.length; i++) {
       var nd = results[i] && results[i].display ? results[i].display : ""
       var od = prev[i] && prev[i].display ? prev[i].display : ""
-      if (nd !== od && nd.length)
-        nextPulse[i] = now + 300
+      if (prev.length && nd !== od && nd.length)
+        nextPulse[i] = now + root.pulseMs
       else if (root.pulseUntil[i] && root.pulseUntil[i] > now)
         nextPulse[i] = root.pulseUntil[i]
     }
     root.lineResults = results
     root.pulseUntil = nextPulse
+    var anyPulse = false
+    for (var p = 0; p < nextPulse.length; p++) {
+      if (nextPulse[p]) anyPulse = true
+    }
+    if (anyPulse)
+      pulseTick.running = true
     if (lines.length)
       root.sheetTitle = String(lines[0]).replace(/^\s+|\s+$/g, "") || root.sheetName
     var tot = Engine.sheetTotal(results)
@@ -223,12 +229,6 @@ Item {
   }
 
   function copyText(s) {
-    try {
-      if (Quickshell.clipboardText !== undefined) {
-        Quickshell.clipboardText = s
-        return
-      }
-    } catch (e) {}
     copyProc.command = ["wl-copy", "--", s]
     copyProc.running = true
   }
@@ -249,7 +249,7 @@ Item {
     var left = until - Date.now()
     if (left <= 0) return 0
     if (root.reduceMotion) return 0.4
-    return 0.4 * (left / 300)
+    return 0.4 * (left / root.pulseMs)
   }
 
   function resultColor(r) {
@@ -379,14 +379,20 @@ Item {
     id: pulseTick
     interval: 40
     repeat: true
-    running: root.isOpen && !root.reduceMotion
+    running: false
     onTriggered: {
-      var any = false
       var now = Date.now()
+      var next = []
+      var any = false
       for (var i = 0; i < root.pulseUntil.length; i++) {
-        if (root.pulseUntil[i] && root.pulseUntil[i] > now) any = true
+        if (root.pulseUntil[i] && root.pulseUntil[i] > now) {
+          next[i] = root.pulseUntil[i]
+          any = true
+        }
       }
-      if (any) root.pulseUntil = root.pulseUntil.slice()
+      root.pulseUntil = next
+      if (!any)
+        pulseTick.running = false
     }
   }
 

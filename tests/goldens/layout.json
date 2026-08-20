@@ -1,0 +1,978 @@
+{
+  "version": 1,
+  "scales": [
+    1,
+    1.25,
+    2
+  ],
+  "sheets": {
+    "battlestation": {
+      "1": {
+        "name": "battlestation",
+        "scale": 1,
+        "fontPx": 14,
+        "lineHeight": 20,
+        "lineCount": 23,
+        "resultCount": 23,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 20,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 40,
+            "chars": 60,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 60,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 4,
+            "y": 80,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          },
+          {
+            "i": 5,
+            "y": 100,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 6,
+            "y": 120,
+            "chars": 12,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$189.00"
+          },
+          {
+            "i": 7,
+            "y": 140,
+            "chars": 9,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$42.00"
+          },
+          {
+            "i": 8,
+            "y": 160,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 9,
+            "y": 180,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 10,
+            "y": 200,
+            "chars": 26,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,554.48"
+          },
+          {
+            "i": 11,
+            "y": 220,
+            "chars": 6,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,340.07"
+          },
+          {
+            "i": 12,
+            "y": 240,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 13,
+            "y": 260,
+            "chars": 29,
+            "wrapped": false,
+            "kind": "result",
+            "display": "62.992126 in"
+          },
+          {
+            "i": 14,
+            "y": 280,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "41 min 40 s"
+          },
+          {
+            "i": 15,
+            "y": 300,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "Oct 3, 2026"
+          },
+          {
+            "i": 16,
+            "y": 320,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 17,
+            "y": 340,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,448.28"
+          },
+          {
+            "i": 18,
+            "y": 360,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 19,
+            "y": 380,
+            "chars": 31,
+            "wrapped": false,
+            "kind": "result",
+            "display": "7:00 AM tomorrow, JST"
+          },
+          {
+            "i": 20,
+            "y": 400,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 21,
+            "y": 420,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 22,
+            "y": 440,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          }
+        ]
+      },
+      "2": {
+        "name": "battlestation",
+        "scale": 2,
+        "fontPx": 28,
+        "lineHeight": 41,
+        "lineCount": 23,
+        "resultCount": 23,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 41,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 82,
+            "chars": 60,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 123,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 4,
+            "y": 164,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          },
+          {
+            "i": 5,
+            "y": 205,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 6,
+            "y": 246,
+            "chars": 12,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$189.00"
+          },
+          {
+            "i": 7,
+            "y": 287,
+            "chars": 9,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$42.00"
+          },
+          {
+            "i": 8,
+            "y": 328,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 9,
+            "y": 369,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 10,
+            "y": 410,
+            "chars": 26,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,554.48"
+          },
+          {
+            "i": 11,
+            "y": 451,
+            "chars": 6,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,340.07"
+          },
+          {
+            "i": 12,
+            "y": 492,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 13,
+            "y": 533,
+            "chars": 29,
+            "wrapped": false,
+            "kind": "result",
+            "display": "62.992126 in"
+          },
+          {
+            "i": 14,
+            "y": 574,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "41 min 40 s"
+          },
+          {
+            "i": 15,
+            "y": 615,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "Oct 3, 2026"
+          },
+          {
+            "i": 16,
+            "y": 656,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 17,
+            "y": 697,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,448.28"
+          },
+          {
+            "i": 18,
+            "y": 738,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 19,
+            "y": 779,
+            "chars": 31,
+            "wrapped": false,
+            "kind": "result",
+            "display": "7:00 AM tomorrow, JST"
+          },
+          {
+            "i": 20,
+            "y": 820,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 21,
+            "y": 861,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 22,
+            "y": 902,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          }
+        ]
+      },
+      "1.25": {
+        "name": "battlestation",
+        "scale": 1.25,
+        "fontPx": 18,
+        "lineHeight": 25,
+        "lineCount": 23,
+        "resultCount": 23,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 25,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 50,
+            "chars": 60,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 75,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 4,
+            "y": 100,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          },
+          {
+            "i": 5,
+            "y": 125,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 6,
+            "y": 150,
+            "chars": 12,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$189.00"
+          },
+          {
+            "i": 7,
+            "y": 175,
+            "chars": 9,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$42.00"
+          },
+          {
+            "i": 8,
+            "y": 200,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 9,
+            "y": 225,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 10,
+            "y": 250,
+            "chars": 26,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,554.48"
+          },
+          {
+            "i": 11,
+            "y": 275,
+            "chars": 6,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,340.07"
+          },
+          {
+            "i": 12,
+            "y": 300,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 13,
+            "y": 325,
+            "chars": 29,
+            "wrapped": false,
+            "kind": "result",
+            "display": "62.992126 in"
+          },
+          {
+            "i": 14,
+            "y": 350,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "41 min 40 s"
+          },
+          {
+            "i": 15,
+            "y": 375,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "Oct 3, 2026"
+          },
+          {
+            "i": 16,
+            "y": 400,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 17,
+            "y": 425,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "€1,448.28"
+          },
+          {
+            "i": 18,
+            "y": 450,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 19,
+            "y": 475,
+            "chars": 31,
+            "wrapped": false,
+            "kind": "result",
+            "display": "7:00 AM tomorrow, JST"
+          },
+          {
+            "i": 20,
+            "y": 500,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 21,
+            "y": 525,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          },
+          {
+            "i": 22,
+            "y": 550,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$1,438.00"
+          }
+        ]
+      }
+    },
+    "longline": {
+      "1": {
+        "name": "longline",
+        "scale": 1,
+        "fontPx": 14,
+        "lineHeight": 20,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 20,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 40,
+            "chars": 277,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?monitor"
+          },
+          {
+            "i": 3,
+            "y": 60,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          }
+        ]
+      },
+      "2": {
+        "name": "longline",
+        "scale": 2,
+        "fontPx": 28,
+        "lineHeight": 41,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 41,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 82,
+            "chars": 277,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?monitor"
+          },
+          {
+            "i": 3,
+            "y": 123,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          }
+        ]
+      },
+      "1.25": {
+        "name": "longline",
+        "scale": 1.25,
+        "fontPx": 18,
+        "lineHeight": 25,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 25,
+            "chars": 0,
+            "wrapped": false,
+            "kind": "blank",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 50,
+            "chars": 277,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?monitor"
+          },
+          {
+            "i": 3,
+            "y": 75,
+            "chars": 19,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$858.00"
+          }
+        ]
+      }
+    },
+    "emoji": {
+      "1": {
+        "name": "emoji",
+        "scale": 1,
+        "fontPx": 14,
+        "lineHeight": 20,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 20,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 2,
+            "y": 40,
+            "chars": 15,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 60,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          }
+        ]
+      },
+      "2": {
+        "name": "emoji",
+        "scale": 2,
+        "fontPx": 28,
+        "lineHeight": 41,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 41,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 2,
+            "y": 82,
+            "chars": 15,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 123,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          }
+        ]
+      },
+      "1.25": {
+        "name": "emoji",
+        "scale": 1.25,
+        "fontPx": 18,
+        "lineHeight": 25,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 11,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 1,
+            "y": 25,
+            "chars": 25,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          },
+          {
+            "i": 2,
+            "y": 50,
+            "chars": 15,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 3,
+            "y": 75,
+            "chars": 3,
+            "wrapped": false,
+            "kind": "result",
+            "display": "$349.00"
+          }
+        ]
+      }
+    },
+    "urls": {
+      "1": {
+        "name": "urls",
+        "scale": 1,
+        "fontPx": 14,
+        "lineHeight": 20,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 36,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?see"
+          },
+          {
+            "i": 1,
+            "y": 20,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 40,
+            "chars": 5,
+            "wrapped": false,
+            "kind": "result",
+            "display": "4"
+          },
+          {
+            "i": 3,
+            "y": 60,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          }
+        ]
+      },
+      "2": {
+        "name": "urls",
+        "scale": 2,
+        "fontPx": 28,
+        "lineHeight": 41,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 36,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?see"
+          },
+          {
+            "i": 1,
+            "y": 41,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 82,
+            "chars": 5,
+            "wrapped": false,
+            "kind": "result",
+            "display": "4"
+          },
+          {
+            "i": 3,
+            "y": 123,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          }
+        ]
+      },
+      "1.25": {
+        "name": "urls",
+        "scale": 1.25,
+        "fontPx": 18,
+        "lineHeight": 25,
+        "lineCount": 4,
+        "resultCount": 4,
+        "rows": [
+          {
+            "i": 0,
+            "y": 0,
+            "chars": 36,
+            "wrapped": false,
+            "kind": "unresolved",
+            "display": "?see"
+          },
+          {
+            "i": 1,
+            "y": 25,
+            "chars": 40,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          },
+          {
+            "i": 2,
+            "y": 50,
+            "chars": 5,
+            "wrapped": false,
+            "kind": "result",
+            "display": "4"
+          },
+          {
+            "i": 3,
+            "y": 75,
+            "chars": 21,
+            "wrapped": false,
+            "kind": "prose",
+            "display": ""
+          }
+        ]
+      }
+    }
+  }
+}
