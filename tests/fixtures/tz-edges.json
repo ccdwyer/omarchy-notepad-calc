@@ -1,0 +1,3446 @@
+[
+  {
+    "id": "UTC",
+    "ms": 1768478400000,
+    "offset": 0,
+    "abbr": "UTC",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "UTC",
+    "ms": 1784116800000,
+    "offset": 0,
+    "abbr": "UTC",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1768478400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1784116800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1710050400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1710057600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1730610000000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1730617200000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1741500000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1741507200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1762059600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1762066800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1772949600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1772956800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1793509200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1793516400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1805004000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1805011200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1825563600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1825570800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1836453600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1836460800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1857013200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/New_York",
+    "ms": 1857020400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1768478400000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1784116800000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1710054000000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h before 2024-03-10T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1710061200000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h after 2024-03-10T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1730613600000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h before 2024-11-03T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1730620800000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h after 2024-11-03T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1741503600000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h before 2025-03-09T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1741510800000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h after 2025-03-09T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1762063200000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h before 2025-11-02T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1762070400000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h after 2025-11-02T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1772953200000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h before 2026-03-08T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1772960400000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h after 2026-03-08T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1793512800000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h before 2026-11-01T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1793520000000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h after 2026-11-01T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1805007600000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h before 2027-03-14T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1805014800000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h after 2027-03-14T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1825567200000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h before 2027-11-07T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1825574400000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h after 2027-11-07T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1836457200000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h before 2028-03-12T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1836464400000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h after 2028-03-12T08:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1857016800000,
+    "offset": -18000,
+    "abbr": "CDT",
+    "label": "1h before 2028-11-05T07:00:00+00:00"
+  },
+  {
+    "id": "America/Chicago",
+    "ms": 1857024000000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "1h after 2028-11-05T07:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1768478400000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1784116800000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1710057600000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h before 2024-03-10T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1710064800000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h after 2024-03-10T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1730617200000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h before 2024-11-03T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1730624400000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2024-11-03T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1741507200000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h before 2025-03-09T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1741514400000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h after 2025-03-09T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1762066800000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h before 2025-11-02T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1762074000000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2025-11-02T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1772956800000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h before 2026-03-08T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1772964000000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h after 2026-03-08T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1793516400000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h before 2026-11-01T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1793523600000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2026-11-01T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1805011200000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h before 2027-03-14T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1805018400000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h after 2027-03-14T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1825570800000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h before 2027-11-07T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1825578000000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2027-11-07T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1836460800000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h before 2028-03-12T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1836468000000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h after 2028-03-12T09:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1857020400000,
+    "offset": -21600,
+    "abbr": "MDT",
+    "label": "1h before 2028-11-05T08:00:00+00:00"
+  },
+  {
+    "id": "America/Denver",
+    "ms": 1857027600000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2028-11-05T08:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1768478400000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1784116800000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1710061200000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2024-03-10T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1710068400000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2024-03-10T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1730620800000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2024-11-03T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1730628000000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2024-11-03T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1741510800000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2025-03-09T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1741518000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2025-03-09T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1762070400000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2025-11-02T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1762077600000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2025-11-02T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1772960400000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2026-03-08T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1772967600000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2026-03-08T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1793520000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2026-11-01T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1793527200000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2026-11-01T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1805014800000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2027-03-14T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1805022000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2027-03-14T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1825574400000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2027-11-07T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1825581600000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2027-11-07T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1836464400000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2028-03-12T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1836471600000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2028-03-12T10:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1857024000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2028-11-05T09:00:00+00:00"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "ms": 1857031200000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2028-11-05T09:00:00+00:00"
+  },
+  {
+    "id": "America/Phoenix",
+    "ms": 1768478400000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Phoenix",
+    "ms": 1784116800000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1768478400000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1784116800000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1710064800000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h before 2024-03-10T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1710072000000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h after 2024-03-10T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1730624400000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h before 2024-11-03T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1730631600000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h after 2024-11-03T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1741514400000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h before 2025-03-09T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1741521600000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h after 2025-03-09T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1762074000000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h before 2025-11-02T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1762081200000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h after 2025-11-02T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1772964000000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h before 2026-03-08T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1772971200000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h after 2026-03-08T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1793523600000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h before 2026-11-01T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1793530800000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h after 2026-11-01T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1805018400000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h before 2027-03-14T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1805025600000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h after 2027-03-14T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1825578000000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h before 2027-11-07T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1825585200000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h after 2027-11-07T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1836468000000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h before 2028-03-12T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1836475200000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h after 2028-03-12T11:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1857027600000,
+    "offset": -28800,
+    "abbr": "AKDT",
+    "label": "1h before 2028-11-05T10:00:00+00:00"
+  },
+  {
+    "id": "America/Anchorage",
+    "ms": 1857034800000,
+    "offset": -32400,
+    "abbr": "AKST",
+    "label": "1h after 2028-11-05T10:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Honolulu",
+    "ms": 1768478400000,
+    "offset": -36000,
+    "abbr": "HST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Honolulu",
+    "ms": 1784116800000,
+    "offset": -36000,
+    "abbr": "HST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1768478400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1784116800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1710050400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1710057600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1730610000000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1730617200000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1741500000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1741507200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1762059600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1762066800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1772949600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1772956800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1793509200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1793516400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1805004000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1805011200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1825563600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1825570800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1836453600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1836460800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1857013200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/Toronto",
+    "ms": 1857020400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1768478400000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1784116800000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1710061200000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2024-03-10T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1710068400000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2024-03-10T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1730620800000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2024-11-03T09:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1730628000000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2024-11-03T09:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1741510800000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2025-03-09T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1741518000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2025-03-09T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1762070400000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2025-11-02T09:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1762077600000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h after 2025-11-02T09:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1772960400000,
+    "offset": -28800,
+    "abbr": "PST",
+    "label": "1h before 2026-03-08T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1772967600000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h after 2026-03-08T10:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1793520000000,
+    "offset": -25200,
+    "abbr": "PDT",
+    "label": "1h before 2026-11-01T09:00:00+00:00"
+  },
+  {
+    "id": "America/Vancouver",
+    "ms": 1793527200000,
+    "offset": -25200,
+    "abbr": "MST",
+    "label": "1h after 2026-11-01T09:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1768478400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1784116800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1710050400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1710057600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2024-03-10T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1730610000000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1730617200000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2024-11-03T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1741500000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1741507200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2025-03-09T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1762059600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1762066800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2025-11-02T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1772949600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1772956800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2026-03-08T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1793509200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1793516400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2026-11-01T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1805004000000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1805011200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2027-03-14T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1825563600000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1825570800000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2027-11-07T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1836453600000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h before 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1836460800000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h after 2028-03-12T07:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1857013200000,
+    "offset": -14400,
+    "abbr": "EDT",
+    "label": "1h before 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/Montreal",
+    "ms": 1857020400000,
+    "offset": -18000,
+    "abbr": "EST",
+    "label": "1h after 2028-11-05T06:00:00+00:00"
+  },
+  {
+    "id": "America/Mexico_City",
+    "ms": 1768478400000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Mexico_City",
+    "ms": 1784116800000,
+    "offset": -21600,
+    "abbr": "CST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Sao_Paulo",
+    "ms": 1768478400000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Sao_Paulo",
+    "ms": 1784116800000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Buenos_Aires",
+    "ms": 1768478400000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Buenos_Aires",
+    "ms": 1784116800000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1768478400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1784116800000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1711843200000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1711850400000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h after 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1729987200000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h before 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1729994400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1743292800000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1743300000000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h after 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1761436800000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h before 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1761444000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1774742400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1774749600000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h after 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1792886400000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h before 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1792893600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1806192000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1806199200000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h after 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1824940800000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h before 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1824948000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1837641600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1837648800000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h after 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1856390400000,
+    "offset": 3600,
+    "abbr": "BST",
+    "label": "1h before 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/London",
+    "ms": 1856397600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1768478400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1784116800000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1711843200000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1711850400000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h after 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1729987200000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h before 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1729994400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1743292800000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1743300000000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h after 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1761436800000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h before 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1761444000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1774742400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1774749600000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h after 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1792886400000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h before 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1792893600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1806192000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1806199200000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h after 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1824940800000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h before 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1824948000000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1837641600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h before 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1837648800000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h after 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1856390400000,
+    "offset": 3600,
+    "abbr": "IST",
+    "label": "1h before 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Dublin",
+    "ms": 1856397600000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "1h after 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1768478400000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1784116800000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1711843200000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h before 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1711850400000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h after 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1729987200000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h before 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1729994400000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h after 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1743292800000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h before 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1743300000000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h after 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1761436800000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h before 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1761444000000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h after 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1774742400000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h before 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1774749600000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h after 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1792886400000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h before 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1792893600000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h after 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1806192000000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h before 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1806199200000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h after 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1824940800000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h before 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1824948000000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h after 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1837641600000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h before 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1837648800000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h after 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1856390400000,
+    "offset": 7200,
+    "abbr": "CEST",
+    "label": "1h before 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Paris",
+    "ms": 1856397600000,
+    "offset": 3600,
+    "abbr": "CET",
+    "label": "1h after 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1768478400000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1784116800000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1711843200000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h before 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1711850400000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h after 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1729987200000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h before 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1729994400000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h after 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1743292800000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h before 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1743300000000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h after 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1761436800000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h before 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1761444000000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h after 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1774742400000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h before 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1774749600000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h after 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1792886400000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h before 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1792893600000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h after 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1806192000000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h before 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1806199200000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h after 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1824940800000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h before 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1824948000000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h after 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1837641600000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h before 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1837648800000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h after 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1856390400000,
+    "offset": 3600,
+    "abbr": "WEST",
+    "label": "1h before 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "ms": 1856397600000,
+    "offset": 0,
+    "abbr": "WET",
+    "label": "1h after 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1768478400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1711843200000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1711850400000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2024-03-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1729987200000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1729994400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2024-10-27T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1743292800000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1743300000000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2025-03-30T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1761436800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1761444000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2025-10-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1774742400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1774749600000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2026-03-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1792886400000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1792893600000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2026-10-25T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1806192000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1806199200000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2027-03-28T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1824940800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1824948000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2027-10-31T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1837641600000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1837648800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2028-03-26T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1856390400000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "ms": 1856397600000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2028-10-29T01:00:00+00:00"
+  },
+  {
+    "id": "Europe/Moscow",
+    "ms": 1768478400000,
+    "offset": 10800,
+    "abbr": "MSK",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Moscow",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "MSK",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Europe/Istanbul",
+    "ms": 1768478400000,
+    "offset": 10800,
+    "abbr": "+03",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Europe/Istanbul",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "+03",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1768478400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1714078800000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2024-04-25T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1714086000000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2024-04-25T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1730404800000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2024-10-31T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1730412000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2024-10-31T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1745528400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2025-04-24T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1745535600000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2025-04-24T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1761854400000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2025-10-30T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1761861600000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2025-10-30T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1776978000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2026-04-23T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1776985200000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2026-04-23T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1793304000000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2026-10-29T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1793311200000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2026-10-29T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1809032400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2027-04-29T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1809039600000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2027-04-29T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1824753600000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2027-10-28T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1824760800000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2027-10-28T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1840482000000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h before 2028-04-27T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1840489200000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h after 2028-04-27T22:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1856203200000,
+    "offset": 10800,
+    "abbr": "EEST",
+    "label": "1h before 2028-10-26T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Cairo",
+    "ms": 1856210400000,
+    "offset": 7200,
+    "abbr": "EET",
+    "label": "1h after 2028-10-26T21:00:00+00:00"
+  },
+  {
+    "id": "Africa/Johannesburg",
+    "ms": 1768478400000,
+    "offset": 7200,
+    "abbr": "SAST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Africa/Johannesburg",
+    "ms": 1784116800000,
+    "offset": 7200,
+    "abbr": "SAST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Nairobi",
+    "ms": 1768478400000,
+    "offset": 10800,
+    "abbr": "EAT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Africa/Nairobi",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "EAT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Dubai",
+    "ms": 1768478400000,
+    "offset": 14400,
+    "abbr": "+04",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Dubai",
+    "ms": 1784116800000,
+    "offset": 14400,
+    "abbr": "+04",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1768478400000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1711666800000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h before 2024-03-29T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1711674000000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h after 2024-03-29T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1729980000000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h before 2024-10-26T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1729987200000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h after 2024-10-26T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1743116400000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h before 2025-03-28T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1743123600000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h after 2025-03-28T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1761429600000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h before 2025-10-25T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1761436800000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h after 2025-10-25T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1774566000000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h before 2026-03-27T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1774573200000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h after 2026-03-27T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1792879200000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h before 2026-10-24T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1792886400000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h after 2026-10-24T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1806015600000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h before 2027-03-26T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1806022800000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h after 2027-03-26T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1824933600000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h before 2027-10-30T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1824940800000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h after 2027-10-30T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1837465200000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h before 2028-03-24T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1837472400000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h after 2028-03-24T00:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1856383200000,
+    "offset": 10800,
+    "abbr": "IDT",
+    "label": "1h before 2028-10-28T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "ms": 1856390400000,
+    "offset": 7200,
+    "abbr": "IST",
+    "label": "1h after 2028-10-28T23:00:00+00:00"
+  },
+  {
+    "id": "Asia/Kolkata",
+    "ms": 1768478400000,
+    "offset": 19800,
+    "abbr": "IST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Kolkata",
+    "ms": 1784116800000,
+    "offset": 19800,
+    "abbr": "IST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Bangkok",
+    "ms": 1768478400000,
+    "offset": 25200,
+    "abbr": "+07",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Bangkok",
+    "ms": 1784116800000,
+    "offset": 25200,
+    "abbr": "+07",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Singapore",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "+08",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Singapore",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "+08",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Hong_Kong",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "HKT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Hong_Kong",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "HKT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Shanghai",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "CST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Shanghai",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "CST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Taipei",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "CST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Taipei",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "CST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Manila",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "PST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Manila",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "PST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Seoul",
+    "ms": 1768478400000,
+    "offset": 32400,
+    "abbr": "KST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Seoul",
+    "ms": 1784116800000,
+    "offset": 32400,
+    "abbr": "KST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Tokyo",
+    "ms": 1768478400000,
+    "offset": 32400,
+    "abbr": "JST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Tokyo",
+    "ms": 1784116800000,
+    "offset": 32400,
+    "abbr": "JST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1768478400000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1784116800000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1712415600000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h before 2024-04-06T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1712422800000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h after 2024-04-06T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1728140400000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h before 2024-10-05T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1728147600000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h after 2024-10-05T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1743865200000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h before 2025-04-05T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1743872400000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h after 2025-04-05T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1759590000000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h before 2025-10-04T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1759597200000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h after 2025-10-04T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1775314800000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h before 2026-04-04T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1775322000000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h after 2026-04-04T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1791039600000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h before 2026-10-03T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1791046800000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h after 2026-10-03T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1806764400000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h before 2027-04-03T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1806771600000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h after 2027-04-03T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1822489200000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h before 2027-10-02T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1822496400000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h after 2027-10-02T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1838214000000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h before 2028-04-01T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1838221200000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h after 2028-04-01T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1853938800000,
+    "offset": 36000,
+    "abbr": "AEST",
+    "label": "1h before 2028-09-30T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Sydney",
+    "ms": 1853946000000,
+    "offset": 39600,
+    "abbr": "AEDT",
+    "label": "1h after 2028-09-30T16:00:00+00:00"
+  },
+  {
+    "id": "Australia/Perth",
+    "ms": 1768478400000,
+    "offset": 28800,
+    "abbr": "AWST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Australia/Perth",
+    "ms": 1784116800000,
+    "offset": 28800,
+    "abbr": "AWST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1768478400000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1784116800000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1712408400000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h before 2024-04-06T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1712415600000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h after 2024-04-06T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1727528400000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h before 2024-09-28T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1727535600000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h after 2024-09-28T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1743858000000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h before 2025-04-05T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1743865200000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h after 2025-04-05T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1758978000000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h before 2025-09-27T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1758985200000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h after 2025-09-27T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1775307600000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h before 2026-04-04T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1775314800000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h after 2026-04-04T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1790427600000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h before 2026-09-26T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1790434800000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h after 2026-09-26T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1806757200000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h before 2027-04-03T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1806764400000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h after 2027-04-03T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1821877200000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h before 2027-09-25T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1821884400000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h after 2027-09-25T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1838206800000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h before 2028-04-01T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1838214000000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h after 2028-04-01T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1853326800000,
+    "offset": 43200,
+    "abbr": "NZST",
+    "label": "1h before 2028-09-23T14:00:00+00:00"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "ms": 1853334000000,
+    "offset": 46800,
+    "abbr": "NZDT",
+    "label": "1h after 2028-09-23T14:00:00+00:00"
+  },
+  {
+    "id": "America/Bogota",
+    "ms": 1768478400000,
+    "offset": -18000,
+    "abbr": "-05",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Bogota",
+    "ms": 1784116800000,
+    "offset": -18000,
+    "abbr": "-05",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Lima",
+    "ms": 1768478400000,
+    "offset": -18000,
+    "abbr": "-05",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Lima",
+    "ms": 1784116800000,
+    "offset": -18000,
+    "abbr": "-05",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1768478400000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1784116800000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1712455200000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h before 2024-04-07T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1712462400000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h after 2024-04-07T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1725764400000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h before 2024-09-08T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1725771600000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h after 2024-09-08T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1743904800000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h before 2025-04-06T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1743912000000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h after 2025-04-06T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1757214000000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h before 2025-09-07T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1757221200000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h after 2025-09-07T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1775354400000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h before 2026-04-05T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1775361600000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h after 2026-04-05T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1788663600000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h before 2026-09-06T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1788670800000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h after 2026-09-06T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1806804000000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h before 2027-04-04T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1806811200000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h after 2027-04-04T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1820113200000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h before 2027-09-05T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1820120400000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h after 2027-09-05T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1838253600000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h before 2028-04-02T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1838260800000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h after 2028-04-02T03:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1851562800000,
+    "offset": -14400,
+    "abbr": "-04",
+    "label": "1h before 2028-09-03T04:00:00+00:00"
+  },
+  {
+    "id": "America/Santiago",
+    "ms": 1851570000000,
+    "offset": -10800,
+    "abbr": "-03",
+    "label": "1h after 2028-09-03T04:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1768478400000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1784116800000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1710046800000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h before 2024-03-10T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1710054000000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h after 2024-03-10T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1730606400000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h before 2024-11-03T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1730613600000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h after 2024-11-03T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1741496400000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h before 2025-03-09T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1741503600000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h after 2025-03-09T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1762056000000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h before 2025-11-02T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1762063200000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h after 2025-11-02T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1772946000000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h before 2026-03-08T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1772953200000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h after 2026-03-08T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1793505600000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h before 2026-11-01T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1793512800000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h after 2026-11-01T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1805000400000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h before 2027-03-14T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1805007600000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h after 2027-03-14T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1825560000000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h before 2027-11-07T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1825567200000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h after 2027-11-07T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1836450000000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h before 2028-03-12T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1836457200000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h after 2028-03-12T06:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1857009600000,
+    "offset": -10800,
+    "abbr": "ADT",
+    "label": "1h before 2028-11-05T05:00:00+00:00"
+  },
+  {
+    "id": "America/Halifax",
+    "ms": 1857016800000,
+    "offset": -14400,
+    "abbr": "AST",
+    "label": "1h after 2028-11-05T05:00:00+00:00"
+  },
+  {
+    "id": "Atlantic/Reykjavik",
+    "ms": 1768478400000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Atlantic/Reykjavik",
+    "ms": 1784116800000,
+    "offset": 0,
+    "abbr": "GMT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Lagos",
+    "ms": 1768478400000,
+    "offset": 3600,
+    "abbr": "WAT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Africa/Lagos",
+    "ms": 1784116800000,
+    "offset": 3600,
+    "abbr": "WAT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1768478400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1784116800000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1710032400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h before 2024-03-10T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1710039600000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h after 2024-03-10T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1713056400000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h before 2024-04-14T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1713063600000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h after 2024-04-14T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1740272400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h before 2025-02-23T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1740279600000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h after 2025-02-23T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1743901200000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h before 2025-04-06T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1743908400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h after 2025-04-06T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1771117200000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h before 2026-02-15T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1771124400000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h after 2026-02-15T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1774141200000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h before 2026-03-22T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1774148400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h after 2026-03-22T02:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1789862400000,
+    "offset": 3600,
+    "abbr": "+01",
+    "label": "1h before 2026-09-20T01:00:00+00:00"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "ms": 1789869600000,
+    "offset": 0,
+    "abbr": "+00",
+    "label": "1h after 2026-09-20T01:00:00+00:00"
+  },
+  {
+    "id": "Asia/Riyadh",
+    "ms": 1768478400000,
+    "offset": 10800,
+    "abbr": "+03",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Riyadh",
+    "ms": 1784116800000,
+    "offset": 10800,
+    "abbr": "+03",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Karachi",
+    "ms": 1768478400000,
+    "offset": 18000,
+    "abbr": "PKT",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Karachi",
+    "ms": 1784116800000,
+    "offset": 18000,
+    "abbr": "PKT",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Dhaka",
+    "ms": 1768478400000,
+    "offset": 21600,
+    "abbr": "+06",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Dhaka",
+    "ms": 1784116800000,
+    "offset": 21600,
+    "abbr": "+06",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Yangon",
+    "ms": 1768478400000,
+    "offset": 23400,
+    "abbr": "+0630",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Yangon",
+    "ms": 1784116800000,
+    "offset": 23400,
+    "abbr": "+0630",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Asia/Ho_Chi_Minh",
+    "ms": 1768478400000,
+    "offset": 25200,
+    "abbr": "+07",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Asia/Ho_Chi_Minh",
+    "ms": 1784116800000,
+    "offset": 25200,
+    "abbr": "+07",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Guam",
+    "ms": 1768478400000,
+    "offset": 36000,
+    "abbr": "ChST",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Guam",
+    "ms": 1784116800000,
+    "offset": 36000,
+    "abbr": "ChST",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Fiji",
+    "ms": 1768478400000,
+    "offset": 43200,
+    "abbr": "+12",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Fiji",
+    "ms": 1784116800000,
+    "offset": 43200,
+    "abbr": "+12",
+    "label": "2026-07-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Port_Moresby",
+    "ms": 1768478400000,
+    "offset": 36000,
+    "abbr": "+10",
+    "label": "2026-01-15 noon UTC"
+  },
+  {
+    "id": "Pacific/Port_Moresby",
+    "ms": 1784116800000,
+    "offset": 36000,
+    "abbr": "+10",
+    "label": "2026-07-15 noon UTC"
+  }
+]

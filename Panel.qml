@@ -260,7 +260,11 @@ Item {
   }
 
   function copyText(s) {
-    copyProc.command = ["wl-copy", "--", s]
+    copyProc.command = [
+      "sh", "-c",
+      "if command -v wl-copy >/dev/null 2>&1; then wl-copy -- \"$1\"; echo OK; else echo MISSING; exit 1; fi",
+      "sh", s
+    ]
     copyProc.running = true
   }
 
@@ -350,7 +354,24 @@ Item {
   }
 
   Process { id: mkdirProc; running: false }
-  Process { id: copyProc; running: false }
+  Process {
+    id: copyProc
+    running: false
+    stdout: StdioCollector {
+      waitForEnd: true
+      onStreamFinished: {
+        var t = String(text || "").trim()
+        if (t === "MISSING")
+          root.statusMsg = "wl-copy not found — install wl-clipboard to copy"
+      }
+    }
+    onExited: {
+      if (exitCode !== 0) {
+        if (!root.statusMsg || root.statusMsg.indexOf("wl-copy") < 0)
+          root.statusMsg = "copy failed (wl-copy)"
+      }
+    }
+  }
 
   Process {
     id: seedProc

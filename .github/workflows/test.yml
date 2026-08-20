@@ -117,3 +117,25 @@ jobs:
             tests/goldens/ui/*.png
             /tmp/notepad-calc-ui-captures/*.png
           if-no-files-found: ignore
+
+  rust-helper:
+    name: rust rates helper (cargo test + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: cargo test
+        run: cargo test --manifest-path src/rates-refresh/Cargo.toml
+      - name: cargo build --release
+        run: cargo build --release --manifest-path src/rates-refresh/Cargo.toml
+      - name: Empty-cube XML is rejected
+        run: |
+          set -e
+          XML=$(mktemp)
+          OUT=$(mktemp)
+          echo '<Cube time="2026-08-18"></Cube>' >"$XML"
+          if ./src/rates-refresh/target/release/notepad-calc-rates fetch --xml "$XML" --out "$OUT"; then
+            echo "FAIL helper accepted XML with a date and zero currencies"
+            exit 1
+          fi
+          echo "ok  rust helper rejects empty cubes"

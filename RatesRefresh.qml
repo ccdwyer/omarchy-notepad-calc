@@ -69,12 +69,21 @@ Item {
     var st = root.readState()
     var lastAttempt = st.lastRatesAttempt || st.lastRatesFetch || ""
     if (lastAttempt === today) return
-    st.lastRatesAttempt = today
-    root.writeState(st)
-    root.appendJournal("attempt " + today + " " + new Date().toISOString())
-    console.log("RATES_ATTEMPT " + today)
+    // Lock immediately, then mkdir + persist the attempt marker in one
+    // process so a same-day reload cannot race an empty dataDir.
     root.inFlight = true
-    whichProc.running = true
+    markProc.command = [
+      "sh", "-c",
+      "DIR=\"$1\"; TODAY=\"$2\"; ST=\"$DIR/state.json\"; mkdir -p \"$DIR\" \"$DIR/sheets\"; " +
+      "if [ -f \"$ST\" ] && grep -F \"\\\"lastRatesAttempt\\\": \\\"$TODAY\\\"\" \"$ST\" >/dev/null 2>&1; then echo SKIP; exit 0; fi; " +
+      "if [ -f \"$ST\" ] && grep -F \"\\\"lastRatesFetch\\\": \\\"$TODAY\\\"\" \"$ST\" >/dev/null 2>&1; then echo SKIP; exit 0; fi; " +
+      "FETCH=\"\"; if [ -f \"$ST\" ]; then FETCH=$(sed -n 's/.*\"lastRatesFetch\": \"\\([^\"]*\\)\".*/\\1/p' \"$ST\" | head -n 1); fi; " +
+      "{ printf '{\\n  \"lastRatesAttempt\": \"%s\"' \"$TODAY\"; " +
+      "if [ -n \"$FETCH\" ]; then printf ',\\n  \"lastRatesFetch\": \"%s\"' \"$FETCH\"; fi; " +
+      "printf '\\n}\\n'; } > \"$ST.tmp\" && mv \"$ST.tmp\" \"$ST\"; echo GO",
+      "sh", root.dataDir, today
+    ]
+    markProc.running = true
   }
 
   function recordSuccess() {
@@ -83,6 +92,32 @@ Item {
     st.lastRatesFetch = root.todayStamp()
     root.writeState(st)
     root.appendJournal("success " + root.todayStamp())
+  }
+
+  Process {
+    id: markProc
+    running: false
+    stdout: StdioCollector {
+      waitForEnd: true
+      onStreamFinished: {
+        var kind = String(text || "").trim()
+        if (kind === "SKIP") {
+          root.inFlight = false
+          return
+        }
+        stateFile.reload()
+        var today = root.todayStamp()
+        root.appendJournal("attempt " + today + " " + new Date().toISOString())
+        console.log("RATES_ATTEMPT " + today)
+        whichProc.running = true
+      }
+    }
+    onExited: {
+      if (exitCode !== 0) {
+        root.inFlight = false
+        root.lastError = "could not write rates attempt marker"
+      }
+    }
   }
 
   Process {

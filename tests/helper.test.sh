@@ -23,6 +23,33 @@ else
   echo "skip helper binary (not built)"
 fi
 
+EMPTY="$ROOT/tests/fixtures/ecb-empty-cubes.xml"
+KEEP=$(mktemp)
+cp "$OUT" "$KEEP"
+set +e
+"$SH" fetch --xml "$EMPTY" --out "$KEEP"
+EMPTY_ST=$?
+set -e
+if [ "$EMPTY_ST" -eq 0 ]; then
+  echo "FAIL shell helper accepted XML with a date and zero currencies"
+  exit 1
+fi
+grep -q '"USD": 1.1600' "$KEEP"
+echo "ok  empty-cube XML rejected (cached snapshot kept)"
+if [ -x "$ROOT/bin/notepad-calc-rates" ]; then
+  set +e
+  "$ROOT/bin/notepad-calc-rates" fetch --xml "$EMPTY" --out "$KEEP"
+  BIN_ST=$?
+  set -e
+  if [ "$BIN_ST" -eq 0 ]; then
+    echo "FAIL rust helper accepted XML with a date and zero currencies"
+    exit 1
+  fi
+  grep -q '"USD": 1.1600' "$KEEP"
+  echo "ok  rust helper rejects empty cubes"
+fi
+rm -f "$KEEP"
+
 # Quattro shell call invokes methods on the loaded entry point (BarWidget root),
 # not only on a nested IpcHandler.
 ROOT_QML=$(awk 'BEGIN{p=1} /IpcHandler/{p=0} p' "$ROOT/BarWidget.qml")

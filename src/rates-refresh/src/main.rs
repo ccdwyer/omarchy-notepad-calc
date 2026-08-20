@@ -215,4 +215,10 @@ mod tests {
     fn rejects_empty() {
         assert!(parse_ecb("<cube/>").is_err());
     }
+
+    #[test]
+    fn rejects_date_without_currencies() {
+        let xml = r#"<Cube time="2026-08-18"></Cube>"#;
+        assert!(parse_ecb(xml).unwrap_err().contains("no currency cubes"));
+    }
 }

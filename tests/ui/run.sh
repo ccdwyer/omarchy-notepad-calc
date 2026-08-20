@@ -82,5 +82,22 @@ if [ "${UPDATE_UI_GOLDENS:-}" = "1" ]; then
   exit 0
 fi
 
+GOLD_OK=1
+for f in demo-1x.png demo-1p25x.png demo-2x.png \
+         longline-1x.png longline-1p25x.png longline-2x.png \
+         emoji-1x.png emoji-1p25x.png emoji-2x.png \
+         url-1x.png url-1p25x.png url-2x.png; do
+  if [ ! -f "$GOLD/$f" ]; then
+    GOLD_OK=0
+  fi
+done
+if [ "$GOLD_OK" -eq 0 ]; then
+  echo "WARN UI golden baselines absent under $GOLD"
+  echo "WARN skipping pixel-diff (this Mac cannot produce grabToImage captures)."
+  echo "WARN Linux: UPDATE_UI_GOLDENS=1 tests/ui/run.sh then commit tests/goldens/ui/*.png"
+  echo "WARN CI uploads grabToImage PNGs as artifact notepad-calc-ui-captures."
+  exit 0
+fi
+
 python3 "$ROOT/tests/ui/pixeldiff.py" "$CAP" "$GOLD"
 echo "ok  ui pixel diffs vs committed goldens"

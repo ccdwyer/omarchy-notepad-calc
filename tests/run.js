@@ -509,6 +509,60 @@ test("Sydney DST in January", () => {
   assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 5, 15)), 10 * 3600)
 })
 
+test("Cairo uses TZDB DST (not a fixed +2)", () => {
+  const z = Tz.zoneById("Africa/Cairo")
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 0, 15, 12)), 2 * 3600)
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 6, 15, 12)), 3 * 3600)
+})
+
+test("Jerusalem DST is not the EU last-Sunday-March rule", () => {
+  const z = Tz.zoneById("Asia/Jerusalem")
+  // 2026-03-27 00:00 UTC is the TZDB spring-forward, a Friday, not EU Sunday.
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 2, 26, 12)), 2 * 3600)
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 2, 27, 12)), 3 * 3600)
+})
+
+test("Santiago observes southern-hemisphere DST", () => {
+  const z = Tz.zoneById("America/Santiago")
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 0, 15, 12)), -3 * 3600)
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 6, 15, 12)), -4 * 3600)
+})
+
+test("Casablanca Ramadan suspension is in the TZDB table", () => {
+  const z = Tz.zoneById("Africa/Casablanca")
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 1, 1, 12)), 3600)
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 2, 1, 12)), 0)
+  assert.strictEqual(Tz.offsetAt(z, Date.UTC(2026, 5, 1, 12)), 3600)
+})
+
+{
+  const tzEdges = JSON.parse(
+    fs.readFileSync(path.join(ROOT, "tests/fixtures/tz-edges.json"), "utf8")
+  )
+  const seen = new Set()
+  for (const e of tzEdges) {
+    seen.add(e.id)
+    test("tzdb " + e.id + " " + e.label, () => {
+      const z = Tz.zoneById(e.id)
+      assert.ok(z, e.id)
+      assert.strictEqual(Tz.offsetAt(z, e.ms), e.offset, e.id + " " + e.label)
+    })
+  }
+  test("tzdb edge file covers every advertised zone", () => {
+    for (const z of Tz.ZONES) {
+      assert.ok(seen.has(z.id), "no TZDB edge samples for " + z.id)
+    }
+  })
+}
+
+test("fileurl decodes percent-escaped paths", () => {
+  const FileUrl = require(path.join(ROOT, "js/fileurl.js"))
+  assert.strictEqual(
+    FileUrl.fromResolved("file:///home/user/My%20Plugins/notepad-calc/"),
+    "/home/user/My Plugins/notepad-calc"
+  )
+})
+
 test("unknown zone poisons to prose/unresolved", () => {
   const r = evalLines("3pm in Atlantis → Tokyo")[0]
   assert.ok(r.kind === "prose" || r.kind === "unresolved", r.kind)

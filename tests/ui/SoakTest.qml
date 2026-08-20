@@ -1,6 +1,7 @@
 // CI-only. 500-line keystroke-replay soak against Panel.qml.
 import QtQuick
 import QtQuick.Window
+import "js/fileurl.js" as FileUrl
 
 Window {
   id: runner
@@ -9,14 +10,7 @@ Window {
   height: 8
   title: "notepad-calc-soak"
 
-  property string pluginDir: {
-    var u = String(Qt.resolvedUrl("../../"))
-    if (u.indexOf("file://") === 0)
-      u = u.slice(7)
-    if (u.length > 1 && u.charAt(u.length - 1) === "/")
-      u = u.slice(0, u.length - 1)
-    return u
-  }
+  property string pluginDir: FileUrl.fromResolved(Qt.resolvedUrl("../../"))
   property int soakMs: {
     var args = Qt.application.arguments
     var i

@@ -109,7 +109,7 @@ Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). Ther
 
 - **Grammar is frozen to the lines above and their compositions.** Natural-language improvisation will misfire; that is why the demo is the first-run sheet.
 - **~30 ECB currencies.** No crypto, no exotic pairs, no live ticker.
-- **~50 city / IANA zones**, DST-correct for 2024–2028 from bundled transition rules. City names are the documented form (`Los Angeles`, not `PST` in the demo). Ambiguous abbreviations (`IST`, `CST`) are refused rather than guessed.
+- **~50 city / IANA zones**, DST-correct for 2024–2028 from **bundled TZDB transition timestamps** (`tools/tzgen.py`, not generic US/EU rules). City names are the documented form (`Los Angeles`, not `PST` in the demo). Ambiguous abbreviations (`IST`, `CST`) are refused rather than guessed.
 - **130 canonical units** (UCUM-ish subset: length, mass, time, data, area, volume, speed, temperature, data-rate, angle, frequency).
 - **`× 12` on a `$ /mo` quantity** treats 12 as twelve of that period so `(rent + utilities) × 12` is a year total. Prefer `× 12 months` if you want the unit algebra spelled out.
 - **Row alignment** is wrap-free monospace. Long lines scroll horizontally; they do not wrap. That is deliberate.
@@ -135,7 +135,8 @@ Linux CI (`.github/workflows/test.yml`, network disabled):
 
 ```sh
 tests/run-qml.sh                   # same corpus under qml6
-tests/ui/run.sh                    # loads Panel.qml, synthetic edits, grabToImage 1×/1.25×/2×, pixel-diff
+tests/ui/run.sh                    # grabToImage; pixel-diff vs committed goldens (skip-warn if absent)
 tests/ui/demo.sh                   # fresh HOME, plugin install, battlestation demo
 tests/ui/soak.sh                   # 500-line keystroke replay, RSS < 5MB, exactly one rate attempt, 1 hour
+cargo test --manifest-path src/rates-refresh/Cargo.toml
 ```

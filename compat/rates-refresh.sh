@@ -52,6 +52,12 @@ if [ -z "$DATE" ]; then
   exit 2
 fi
 
+CUBES=$(sed -n 's/.*currency="\([A-Z][A-Z][A-Z]\)" rate="\([0-9.][0-9.]*\)".*/\1 \2/p' "$TMPXML")
+if [ -z "$CUBES" ]; then
+  echo "rates-refresh: no currency cubes" >&2
+  exit 2
+fi
+
 mkdir -p "$(dirname "$OUT")"
 {
   echo "{"
@@ -59,7 +65,7 @@ mkdir -p "$(dirname "$OUT")"
   echo "  \"base\": \"EUR\","
   echo "  \"source\": \"ECB daily reference\","
   echo "  \"rates\": {"
-  sed -n 's/.*currency="\([A-Z][A-Z][A-Z]\)" rate="\([0-9.][0-9.]*\)".*/\1 \2/p' "$TMPXML" \
+  printf '%s\n' "$CUBES" \
     | awk 'NF==2 { printf "    \"%s\": %s,\n", $1, $2 }' \
     | sed '$ s/,$//'
   echo "  }"

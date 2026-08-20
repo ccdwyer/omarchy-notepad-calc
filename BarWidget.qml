@@ -8,6 +8,7 @@ import "js/format.js" as Format
 import "js/units.js" as Units
 import "js/tz.js" as Tz
 import "js/rates.js" as Rates
+import "js/fileurl.js" as FileUrl
 
 BarWidget {
   id: root
@@ -25,14 +26,7 @@ BarWidget {
   property string rateDate: ""
   readonly property var notepad: panelLoader.item
 
-  readonly property string pluginDir: {
-    var u = String(Qt.resolvedUrl("."))
-    if (u.indexOf("file://") === 0)
-      u = u.slice(7)
-    if (u.length > 1 && u.charAt(u.length - 1) === "/")
-      u = u.slice(0, u.length - 1)
-    return u
-  }
+  readonly property string pluginDir: FileUrl.fromResolved(Qt.resolvedUrl("."))
 
   readonly property bool reduceMotion: {
     try {

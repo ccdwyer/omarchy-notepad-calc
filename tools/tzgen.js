@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Rebuild tests/fixtures/tz-table.json from js/tz.js so the transition
-// table is inspectable. Runtime still uses js/tz.js directly (no Qt/OS tz).
+// Rebuild tests/fixtures/tz-table.json from the TZDB-backed js/tz.js.
+// To regenerate transitions from IANA zoneinfo, run: python3 tools/tzgen.py
 
 "use strict"
 
@@ -26,4 +26,4 @@ const out = Tz.ZONES.map((z) => ({
 
 const dest = path.join(__dirname, "../tests/fixtures/tz-table.json")
 fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n")
-process.stdout.write("wrote " + dest + " (" + out.length + " zones)\n")
+process.stdout.write("wrote " + dest + " (" + out.length + " zones, TZDB transitions)\n")

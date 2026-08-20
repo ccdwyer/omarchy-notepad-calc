@@ -1,6 +1,7 @@
 // CI-only. Loads Panel.qml, synthetic edits, grabToImage on the chrome Item.
 import QtQuick
 import QtQuick.Window
+import "js/fileurl.js" as FileUrl
 
 Window {
   id: runner
@@ -10,14 +11,7 @@ Window {
   title: "notepad-calc-ui"
   color: "#00000000"
 
-  property string pluginDir: {
-    var u = String(Qt.resolvedUrl("../../"))
-    if (u.indexOf("file://") === 0)
-      u = u.slice(7)
-    if (u.length > 1 && u.charAt(u.length - 1) === "/")
-      u = u.slice(0, u.length - 1)
-    return u
-  }
+  property string pluginDir: FileUrl.fromResolved(Qt.resolvedUrl("../../"))
   property string outDir: ""
   property int failed: 0
   property int doneGrabs: 0
