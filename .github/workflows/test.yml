@@ -64,8 +64,13 @@ jobs:
     name: Panel.qml UI + soak + fresh demo (Linux Qt, network off)
     runs-on: ubuntu-latest
     timeout-minutes: 100
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
       - name: Install qt6-declarative, Nix Quickshell, matching QML runtime
         run: |
           sudo apt-get update
@@ -117,6 +122,27 @@ jobs:
             tests/goldens/ui/*.png
             /tmp/notepad-calc-ui-captures/*.png
           if-no-files-found: ignore
+      - name: Commit bootstrapped UI goldens
+        if: always()
+        run: |
+          set -e
+          if ! ls tests/goldens/ui/*.png >/dev/null 2>&1; then
+            echo "no grabToImage goldens on disk"
+            exit 0
+          fi
+          git add tests/goldens/ui/*.png
+          if git diff --cached --quiet; then
+            echo "UI goldens already in git; pixel-diff gate is live"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: bootstrap Linux Item.grabToImage UI goldens"
+          if git push; then
+            echo "UI baselines bootstrapped and pushed"
+          else
+            echo "WARN could not push (fork PR?); artifact notepad-calc-ui-captures has the PNGs"
+          fi
 
   rust-helper:
     name: rust rates helper (cargo test + build)
