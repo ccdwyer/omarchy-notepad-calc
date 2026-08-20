@@ -50,8 +50,8 @@ if [ -x "$ROOT/bin/notepad-calc-rates" ]; then
 fi
 rm -f "$KEEP"
 
-# Quattro shell call invokes methods on the loaded entry point (BarWidget root),
-# not only on a nested IpcHandler.
+# Bar-widget IpcHandler is the bind path; root still exposes summon/hide/toggle
+# so a loaded entry point can dispatch them too.
 ROOT_QML=$(awk 'BEGIN{p=1} /IpcHandler/{p=0} p' "$ROOT/BarWidget.qml")
 echo "$ROOT_QML" | grep -q 'function summon('
 echo "$ROOT_QML" | grep -q 'function hide('

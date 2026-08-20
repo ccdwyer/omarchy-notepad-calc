@@ -112,7 +112,7 @@ Item {
         whichProc.running = true
       }
     }
-    onExited: {
+    onExited: function(exitCode) {
       if (exitCode !== 0) {
         root.inFlight = false
         root.lastError = "could not write rates attempt marker"
@@ -154,7 +154,7 @@ Item {
           root.recordSuccess()
       }
     }
-    onExited: {
+    onExited: function(exitCode) {
       root.inFlight = false
       if (exitCode !== 0)
         root.lastError = "refresh failed"
