@@ -43,15 +43,21 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 | Ctrl+S | Save now (also autosaves on idle) |
 | ? | Help |
 
-The widget stays loaded on the bar, so Quattro `call` reaches it. Bind (the plugin does **not** write `hyprland.conf`):
+The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument. Bind (the plugin does **not** write `hyprland.conf`):
 
 ```
-bind = SUPER, N, exec, omarchy-shell shell call io.github.chris.notepad-calc toggle
-bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-calc summon
-bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide
+bind = SUPER, N, exec, omarchy-shell shell call io.github.chris.notepad-calc toggle '{}'
+bind = SUPER SHIFT, N, exec, omarchy-shell shell call io.github.chris.notepad-calc summon '{}'
+bind = SUPER SHIFT, Escape, exec, omarchy-shell shell call io.github.chris.notepad-calc hide '{}'
 ```
 
-`summon` / `hide` / `toggle` are the IpcHandler verbs. `shell toggle <id>` also works because the plugin is already loaded.
+Host-level verbs (the `shell` IPC target, not `call`) are separate:
+
+```
+omarchy-shell shell summon io.github.chris.notepad-calc '{}'
+omarchy-shell shell hide io.github.chris.notepad-calc
+omarchy-shell shell toggle io.github.chris.notepad-calc '{}'
+```
 
 ## Grammar (v1, frozen)
 
@@ -119,14 +125,21 @@ Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). Ther
 
 ## Tests
 
-The **same 210-case corpus** (`tests/corpus.json`, `tests/corpus-data.js`) runs under Node and under Qt's JS engine.
+**This Mac cannot run Quickshell or Qt Quick.** Node is the local gate. QML UI, soak, and the fresh-machine demo run in Linux CI.
+
+Local:
 
 ```sh
-node tests/run.js                  # corpus + layout goldens 1×/1.25×/2× + 500-line soak
-tests/offline.sh                   # same, inside unshare --net when available
-tests/run-qml.sh                   # qml6 EngineTest.qml (qt6-declarative; required on Linux CI)
+node tests/run.js                  # shared engine corpus (≥200 cases)
 ./build.sh && cargo test --manifest-path src/rates-refresh/Cargo.toml
 compat/rates-refresh.sh fetch --xml tests/fixtures/ecb-daily.xml --out /tmp/rates-out.json
 ```
 
-CI (`.github/workflows/test.yml`) runs the Node corpus and the QML corpus **with networking disabled**. The engine is the same file QML imports (`js/engine.js`). No Qt globals, no `Intl`.
+Linux CI (`.github/workflows/test.yml`, network disabled):
+
+```sh
+tests/run-qml.sh                   # same corpus under qml6
+tests/ui/run.sh                    # loads Panel.qml, synthetic edits, grabToImage 1×/1.25×/2×, pixel-diff
+tests/ui/demo.sh                   # fresh HOME, plugin install, battlestation demo
+tests/ui/soak.sh                   # 500-line keystroke replay, RSS < 5MB, ≤1 rate attempt
+```

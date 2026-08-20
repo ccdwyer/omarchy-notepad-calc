@@ -75,7 +75,8 @@ BarWidget {
       rates: rates,
       ratesMod: Rates,
       now: new Date(),
-      format: Format.formatQty
+      format: Format.formatQty,
+      defaultCurrency: root.defaultCurrency || "USD"
     }
   }
 
@@ -125,6 +126,8 @@ BarWidget {
       item.opened.connect(function() { root.panelOpen = true })
       if (item.boot)
         item.boot()
+      if (item.startDailyRates)
+        item.startDailyRates()
     }
   }
 

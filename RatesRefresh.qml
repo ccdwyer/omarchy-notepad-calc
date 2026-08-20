@@ -42,29 +42,47 @@ Item {
     return false
   }
 
+  function readState() {
+    try {
+      return JSON.parse(stateFile.text() || "{}")
+    } catch (e) {
+      return {}
+    }
+  }
+
+  function writeState(obj) {
+    stateFile.setText(JSON.stringify(obj, null, 2) + "\n")
+  }
+
+  function appendJournal(line) {
+    journalProc.command = [
+      "sh", "-c",
+      "mkdir -p \"$1\"; echo \"$2\" >> \"$1/refresh.journal\"",
+      "sh", root.dataDir, line
+    ]
+    journalProc.running = true
+  }
+
   function maybeRefresh() {
     if (root.inFlight) return
-    var st = stateFile.text()
-    var last = ""
-    try {
-      var s = JSON.parse(st || "{}")
-      last = s.lastRatesFetch || ""
-    } catch (e2) {}
-    if (last === root.todayStamp()) return
+    var today = root.todayStamp()
+    var st = root.readState()
+    var lastAttempt = st.lastRatesAttempt || st.lastRatesFetch || ""
+    if (lastAttempt === today) return
+    st.lastRatesAttempt = today
+    root.writeState(st)
+    root.appendJournal("attempt " + today + " " + new Date().toISOString())
+    console.log("RATES_ATTEMPT " + today)
     root.inFlight = true
     whichProc.running = true
   }
 
-  function recordFetch() {
-    var obj = { lastRatesFetch: root.todayStamp() }
-    try {
-      var prev = JSON.parse(stateFile.text() || "{}")
-      for (var k in prev) {
-        if (prev.hasOwnProperty(k) && k !== "lastRatesFetch")
-          obj[k] = prev[k]
-      }
-    } catch (e) {}
-    stateFile.setText(JSON.stringify(obj, null, 2) + "\n")
+  function recordSuccess() {
+    var st = root.readState()
+    st.lastRatesAttempt = root.todayStamp()
+    st.lastRatesFetch = root.todayStamp()
+    root.writeState(st)
+    root.appendJournal("success " + root.todayStamp())
   }
 
   Process {
@@ -98,7 +116,7 @@ Item {
       onStreamFinished: {
         var line = String(text || "").trim()
         if (line.indexOf("ok ") === 0)
-          root.recordFetch()
+          root.recordSuccess()
       }
     }
     onExited: {
@@ -107,6 +125,11 @@ Item {
         root.lastError = "refresh failed"
       userRates.reload()
     }
+  }
+
+  Process {
+    id: journalProc
+    running: false
   }
 
   FileView {

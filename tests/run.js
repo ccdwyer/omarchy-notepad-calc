@@ -24,7 +24,8 @@ function ctx(extra) {
     ratesMod: Rates,
     now: new Date(Date.UTC(2026, 7, 19, 12, 0, 0)),
     nowDate: { y: 2026, m: 8, d: 19 },
-    format: Format.formatQty
+    format: Format.formatQty,
+    defaultCurrency: "USD"
   }
   if (extra) {
     for (const k of Object.keys(extra)) c[k] = extra[k]
@@ -683,6 +684,18 @@ test("canonical unit table is at least 120", () => {
   assert.ok(Units.UNITS.length >= 120, "got " + Units.UNITS.length)
 })
 
+test("URL in prose stays prose", () => {
+  const r = evalLines("see https://example.com/path?x=1&y=2")[0]
+  assert.strictEqual(r.kind, "prose", r.kind + " " + r.display)
+})
+
+test("defaultCurrency converts bare 100 in EUR from USD", () => {
+  const r = lastResult("100 in EUR")
+  assert.strictEqual(r.kind, "result")
+  assert.strictEqual(r.currency, "EUR")
+  assert.ok(approx(r.value, 100 / bundledRates.rates.USD, 0.05), r.value)
+})
+
 test("benchmark 200-line sheet < 50ms", () => {
   const lines = []
   lines.push("base = 1")
@@ -710,18 +723,7 @@ corpus.forEach((c, i) => {
   })
 })
 
-const layout = require("./layout.js")
-test("layout goldens 1×/1.25×/2× wrap-free alignment", () => {
-  const r = layout.run()
-  assert.strictEqual(r.failed, 0, r.failures.join("\n"))
-})
 
-const soak = require("./soak.js")
-test("500-line soak", () => {
-  const r = soak.run()
-  assert.ok(r.lines >= 500, "lines " + r.lines)
-  assert.strictEqual(r.failed, 0)
-})
 
 process.stdout.write("\n" + passed + " passed, " + failed + " failed\n")
 if (failed) {

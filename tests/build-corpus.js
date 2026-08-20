@@ -66,6 +66,7 @@ const PROSE = [
   "TODO pick a monitor",
   "note: wait for the sale",
   "https://example.com/path?x=1",
+  "see https://example.com/path?x=1&y=2",
   "emoji line 🚀🚀🚀",
   "Room 101 is downstairs",
   "Windows 11 vs Omarchy",

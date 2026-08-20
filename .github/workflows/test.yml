@@ -6,24 +6,24 @@ on:
 
 jobs:
   node-offline:
-    name: corpus (node, network off)
+    name: engine corpus (node, network off)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Engine corpus + layout goldens + soak (unshare --net)
+      - name: Engine corpus (unshare --net)
         run: |
-          chmod +x tests/offline.sh tests/run.js tests/helper.test.sh
+          chmod +x tests/run.js tests/helper.test.sh tests/offline.sh
           if unshare --net --map-root-user true >/dev/null 2>&1; then
             unshare --net --map-root-user bash -c 'ip link set lo up 2>/dev/null || true; node tests/run.js && tests/helper.test.sh'
           else
             sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && node tests/run.js && tests/helper.test.sh'
           fi
 
-  qml-offline:
-    name: corpus (qml, network off)
+  qml-corpus:
+    name: engine corpus (qml, network off)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,23 +31,93 @@ jobs:
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            qt6-declarative-dev qml6-module-qtquick qml6-module-qtqml
+            qt6-declarative-dev qml6-module-qtquick qml6-module-qtqml qml6-module-qtquick-window \
+            qml6-module-qtquick-layouts
+      - name: Locate qml binary
+        run: |
+          QML_BIN=""
+          for c in qml6 qml qmlscene; do
+            if command -v "$c" >/dev/null 2>&1; then QML_BIN=$(command -v "$c"); break; fi
+          done
+          if [ -z "$QML_BIN" ]; then
+            QML_BIN=$(find /usr -type f \( -name qml6 -o -name qml \) 2>/dev/null | head -n 1 || true)
+          fi
+          echo "QML_BIN=$QML_BIN"
+          echo "QML_BIN=$QML_BIN" >> "$GITHUB_ENV"
+          if [ -n "$QML_BIN" ]; then
+            echo "PATH=$(dirname "$QML_BIN"):$PATH" >> "$GITHUB_ENV"
+          fi
       - name: QML corpus (unshare --net)
         env:
           REQUIRE_QML: "1"
           QT_QPA_PLATFORM: offscreen
         run: |
           chmod +x tests/run-qml.sh
+          export QML_BIN
+          if unshare --net --map-root-user true >/dev/null 2>&1; then
+            unshare --net --map-root-user bash -c "ip link set lo up 2>/dev/null || true; export QML_BIN='$QML_BIN' REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen PATH='$PATH'; tests/run-qml.sh"
+          else
+            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && export QML_BIN='"$QML_BIN"' REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen && tests/run-qml.sh'
+          fi
+
+  qml-ui-soak-demo:
+    name: Panel.qml UI + soak + fresh demo (Linux Qt, network off)
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install qt6-declarative, quickshell, imagemagick
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            qt6-declarative-dev qml6-module-qtquick qml6-module-qtqml qml6-module-qtquick-window \
+            qml6-module-qtquick-layouts qt6-wayland python3
+          if ! command -v quickshell >/dev/null 2>&1; then
+            curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+            . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+            nix --extra-experimental-features 'nix-command flakes' profile install nixpkgs#quickshell || \
+              echo "quickshell nix install failed; tests/stubs/Quickshell will be used"
+          fi
+      - name: Locate qml binary
+        run: |
           QML_BIN=""
           for c in qml6 qml qmlscene; do
-            if command -v "$c" >/dev/null 2>&1; then QML_BIN="$c"; break; fi
+            if command -v "$c" >/dev/null 2>&1; then QML_BIN=$(command -v "$c"); break; fi
           done
           if [ -z "$QML_BIN" ]; then
-            QML_BIN=$(find /usr -name 'qml6' -o -name 'qml' 2>/dev/null | head -n 1 || true)
+            QML_BIN=$(find /usr -type f \( -name qml6 -o -name qml \) 2>/dev/null | head -n 1 || true)
           fi
-          echo "using $QML_BIN"
+          echo "QML_BIN=$QML_BIN"
+          echo "QML_BIN=$QML_BIN" >> "$GITHUB_ENV"
+          if [ -n "$QML_BIN" ]; then
+            echo "PATH=$(dirname "$QML_BIN"):$PATH" >> "$GITHUB_ENV"
+          fi
+          if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+            echo "NIX_SOURCED=1" >> "$GITHUB_ENV"
+          fi
+      - name: UI grabs, soak, fresh-machine demo (unshare --net)
+        env:
+          REQUIRE_QML_UI: "1"
+          QT_QPA_PLATFORM: offscreen
+          NOTEPAD_CALC_SOAK_MS: "120000"
+        run: |
+          if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+            . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+          fi
+          chmod +x tests/ui/run.sh tests/ui/soak.sh tests/ui/demo.sh tests/ui/pixeldiff.py
+          export QML_BIN REQUIRE_QML_UI QT_QPA_PLATFORM NOTEPAD_CALC_SOAK_MS PATH
+          WRAP=""
           if unshare --net --map-root-user true >/dev/null 2>&1; then
-            unshare --net --map-root-user bash -c "ip link set lo up 2>/dev/null || true; REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen tests/run-qml.sh"
-          else
-            sudo unshare --net bash -c 'ip link set lo up 2>/dev/null || true; cd '"$PWD"' && REQUIRE_QML=1 QT_QPA_PLATFORM=offscreen tests/run-qml.sh'
+            WRAP="unshare --net --map-root-user"
+            ip link set lo up 2>/dev/null || true
           fi
+          $WRAP tests/ui/run.sh
+          $WRAP tests/ui/demo.sh
+          $WRAP tests/ui/soak.sh "$NOTEPAD_CALC_SOAK_MS"
+      - name: Upload UI captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: notepad-calc-ui-captures
+          path: tests/goldens/ui/*.png
+          if-no-files-found: ignore

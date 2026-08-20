@@ -11,5 +11,7 @@ src/rates-refresh/target/
 .gpt_review*
 .*_review*
 .fix_prompt*
+.review_prompt2.md
+.review_prompt*.md
 .serena/
 .*.log

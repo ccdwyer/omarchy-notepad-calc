@@ -354,78 +354,84 @@
   {
     "id": "prose-12",
     "name": "prose 12",
-    "sheet": "emoji line 🚀🚀🚀",
+    "sheet": "see https://example.com/path?x=1&y=2",
     "kind": "prose"
   },
   {
     "id": "prose-13",
     "name": "prose 13",
-    "sheet": "Room 101 is downstairs",
+    "sheet": "emoji line 🚀🚀🚀",
     "kind": "prose"
   },
   {
     "id": "prose-14",
     "name": "prose 14",
-    "sheet": "Windows 11 vs Omarchy",
+    "sheet": "Room 101 is downstairs",
     "kind": "prose"
   },
   {
     "id": "prose-15",
     "name": "prose 15",
-    "sheet": "v2 of the API is ready",
+    "sheet": "Windows 11 vs Omarchy",
     "kind": "prose"
   },
   {
     "id": "prose-16",
     "name": "prose 16",
-    "sheet": "section 4 of the README",
+    "sheet": "v2 of the API is ready",
     "kind": "prose"
   },
   {
     "id": "prose-17",
     "name": "prose 17",
-    "sheet": "item 1 of the agenda",
+    "sheet": "section 4 of the README",
     "kind": "prose"
   },
   {
     "id": "prose-18",
     "name": "prose 18",
-    "sheet": "page 12 of the book",
+    "sheet": "item 1 of the agenda",
     "kind": "prose"
   },
   {
     "id": "prose-19",
     "name": "prose 19",
-    "sheet": "just words, no math here",
+    "sheet": "page 12 of the book",
     "kind": "prose"
   },
   {
     "id": "prose-20",
     "name": "prose 20",
-    "sheet": "the first of many ideas",
+    "sheet": "just words, no math here",
     "kind": "prose"
   },
   {
     "id": "prose-21",
     "name": "prose 21",
-    "sheet": "Omarchy battlestation",
+    "sheet": "the first of many ideas",
     "kind": "prose"
   },
   {
     "id": "prose-22",
     "name": "prose 22",
-    "sheet": "https://omarchy.org",
+    "sheet": "Omarchy battlestation",
     "kind": "prose"
   },
   {
     "id": "prose-23",
     "name": "prose 23",
-    "sheet": "https://example.com/a/very/long/path?query=1&x=2",
+    "sheet": "https://omarchy.org",
     "kind": "prose"
   },
   {
     "id": "prose-24",
     "name": "prose 24",
+    "sheet": "https://example.com/a/very/long/path?query=1&x=2",
+    "kind": "prose"
+  },
+  {
+    "id": "prose-25",
+    "name": "prose 25",
     "sheet": "🚀 desk arrives Friday maybe",
     "kind": "prose"
   },
@@ -1435,12 +1441,5 @@
     "sheet": "13 + 14",
     "kind": "result",
     "approx": 27
-  },
-  {
-    "id": "arith-extra-13",
-    "name": "arith extra 13",
-    "sheet": "14 + 15",
-    "kind": "result",
-    "approx": 29
   }
 ]

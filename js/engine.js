@@ -1144,8 +1144,15 @@ Parser.prototype.toCurrency = function (left, code) {
     }
     if (left.kind === "unresolved") return left
     if (!left.currency) {
-        if (dimZero(left.dim, this.ctx))
+        if (dimZero(left.dim, this.ctx)) {
+            var from = this.ctx && this.ctx.defaultCurrency
+            if (from && String(from).toUpperCase() !== String(code).toUpperCase()) {
+                var asDefault = convertMoney(left.value, from, code, this.ctx)
+                if (asDefault !== null)
+                    return qtyMoney(asDefault, code)
+            }
             return qtyMoney(left.value, code)
+        }
         return left
     }
     var conv = convertMoney(left.value, left.currency, code, this.ctx)
@@ -1393,7 +1400,7 @@ function evalLine(line, ctx, env) {
     var raw = String(line)
     var trimmed = raw.replace(/^\s+|\s+$/g, "")
     if (!trimmed) return blankResult()
-    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed) || /www\./i.test(trimmed))
+    if (/[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed) || /www\./i.test(trimmed))
         return proseResult()
 
     var assign = splitAssign(raw)

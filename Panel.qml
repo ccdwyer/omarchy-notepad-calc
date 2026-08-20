@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Window
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
@@ -22,6 +23,10 @@ Item {
   property string defaultCurrency: "USD"
   property bool reduceMotion: false
   property bool isOpen: false
+  property bool testHarness: false
+  property int testWidth: 980
+  property int testHeight: 640
+  property bool ratesArmed: false
   property var ratesObj: null
   property string ratesDate: ""
 
@@ -87,6 +92,14 @@ Item {
     rates.dataDir = root.dataDir
     ensureDirs()
     seedFirstRun()
+  }
+
+  function startDailyRates() {
+    if (root.ratesArmed)
+      return
+    root.ratesArmed = true
+    rates.pluginDir = root.pluginDir
+    rates.dataDir = root.dataDir
     rates.maybeRefresh()
   }
 
@@ -120,7 +133,8 @@ Item {
       rates: ratesVal,
       ratesMod: Rates,
       now: new Date(),
-      format: Format.formatQty
+      format: Format.formatQty,
+      defaultCurrency: root.defaultCurrency || "USD"
     }
   }
 
@@ -166,8 +180,25 @@ Item {
   }
 
   function seedFirstRun() {
-    seedProc.command = ["sh", "-c", "mkdir -p \"$1\"; if [ ! -f \"$1/battlestation.calc\" ]; then echo SEED; else echo HAS; fi", "sh", root.sheetsDir]
+    seedProc.command = [
+      "sh", "-c",
+      "mkdir -p \"$1\"; DST=\"$1/battlestation.calc\"; SRC=\"$2/data/first-run.calc\"; if [ -f \"$DST\" ]; then echo HAS; elif [ -f \"$SRC\" ]; then cp \"$SRC\" \"$DST\" && echo SEEDED; else echo MISSING; fi",
+      "sh", root.sheetsDir, root.pluginDir
+    ]
     seedProc.running = true
+  }
+
+  function setTestText(t) {
+    editor.text = t
+    reeval()
+  }
+
+  function insertTestText(t) {
+    editor.insert(editor.cursorPosition, t)
+  }
+
+  function grabTarget() {
+    return root.testHarness ? testWin : panel
   }
 
   function loadActiveSheet() {
@@ -328,13 +359,13 @@ Item {
       waitForEnd: true
       onStreamFinished: {
         var kind = String(text || "").trim()
-        if (kind === "SEED") {
-          var seed = firstRunFile.text()
-          if (seed && seed.length) {
-            root.sheetName = "battlestation.calc"
+        root.sheetName = "battlestation.calc"
+        if (kind === "MISSING") {
+          var fallback = firstRunFile.text()
+          if (fallback && fallback.length) {
             sheetFile.path = root.activePath
-            sheetFile.setText(seed)
-            editor.text = seed
+            sheetFile.setText(fallback)
+            editor.text = fallback
             root.reeval()
           }
         }
@@ -402,9 +433,18 @@ Item {
     onTriggered: root.copiedFlash = ""
   }
 
+  Window {
+    id: testWin
+    visible: root.testHarness
+    width: root.testWidth
+    height: root.testHeight
+    title: "notepad-calc-test"
+    color: "transparent"
+  }
+
   PanelWindow {
     id: panel
-    visible: root.isOpen
+    visible: root.testHarness ? false : root.isOpen
     anchors { top: true; bottom: true; left: true; right: true }
     color: "transparent"
     WlrLayershell.namespace: "notepad-calc"
@@ -412,10 +452,15 @@ Item {
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
     exclusionMode: ExclusionMode.Ignore
 
+    Item {
+      id: chrome
+      parent: root.testHarness ? testWin.contentItem : panel
+      anchors.fill: parent
+
     Rectangle {
       anchors.fill: parent
       color: root.scrim
-      opacity: root.isOpen ? 1 : 0
+      opacity: (root.isOpen || root.testHarness) ? 1 : 0
       Behavior on opacity { NumberAnimation { duration: root.motionMs } }
     }
 
@@ -426,14 +471,14 @@ Item {
 
     BorderSurface {
       id: frame
-      width: Math.min(Style.space(980), panel.width - Style.gapsOut * 2)
-      height: Math.min(Style.space(640), panel.height - Style.gapsOut * 2)
+      width: Math.min(Style.space(980), (root.testHarness ? testWin.width : panel.width) - Style.gapsOut * 2)
+      height: Math.min(Style.space(640), (root.testHarness ? testWin.height : panel.height) - Style.gapsOut * 2)
       radius: root.cornerRadius
       anchors.centerIn: parent
       color: root.background
       borderSpec: root.borderSpec
-      opacity: root.isOpen ? 1 : 0
-      scale: root.isOpen ? 1 : 0.98
+      opacity: (root.isOpen || root.testHarness) ? 1 : 0
+      scale: (root.isOpen || root.testHarness) ? 1 : 0.98
       Behavior on opacity { NumberAnimation { duration: root.motionMs } }
       Behavior on scale { NumberAnimation { duration: root.motionMs } }
 
@@ -727,6 +772,7 @@ Item {
           }
         }
       }
+    }
     }
   }
 }
