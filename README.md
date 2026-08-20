@@ -43,15 +43,21 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 | Ctrl+S | Save now (also autosaves on idle) |
 | ? | Help |
 
-The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument. Bind (the plugin does **not** write `hyprland.conf`):
+The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument.
+
+Super+Shift+N is Omarchy's Editor bind, so summon uses Super+Alt+N. Super+N toggle is preferred. If those combos are free, a **keys** chip on the bar offers **Add keybindings**. That writes `o.bind` lines to `~/.config/hypr/bindings.lua` (Hyprland reloads on save). Combos you already use are skipped; Super+N falls back to Super+Alt+Shift+N. Hide stays click-based (Esc in the panel). The plugin never unbinds someone else's shortcut.
 
 ```
 bind = SUPER, N, exec, omarchy-shell io.github.chris.notepad-calc toggle '{}'
-bind = SUPER SHIFT, N, exec, omarchy-shell io.github.chris.notepad-calc summon '{}'
-bind = SUPER SHIFT, Escape, exec, omarchy-shell io.github.chris.notepad-calc hide '{}'
+bind = SUPER ALT, N, exec, omarchy-shell io.github.chris.notepad-calc summon '{}'
 ```
 
-`summon` / `hide` / `toggle` are string-argument methods on the **bar-widget `IpcHandler`** (`BarWidget.qml`). `omarchy-shell shell call <id>` hits overlay/panel loaders only — this plugin is bar-widget-only, so that returns `unknown`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget. The nested panel is opened by `BarWidget.open`.
+`summon` / `hide` / `toggle` / `installBinds` are string-argument methods on the **bar-widget `IpcHandler`** (`BarWidget.qml`). `omarchy-shell shell call <id>` hits overlay/panel loaders only — this plugin is bar-widget-only, so that returns `unknown`. Host-level `shell summon|hide|toggle <id>` is for panel/overlay kinds and is not used for this widget. The nested panel is opened by `BarWidget.open`.
+
+```
+omarchy-shell io.github.chris.notepad-calc toggle '{}'
+omarchy-shell io.github.chris.notepad-calc installBinds ''
+```
 
 ## Grammar (v1, frozen)
 

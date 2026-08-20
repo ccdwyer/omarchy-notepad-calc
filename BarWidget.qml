@@ -9,6 +9,7 @@ import "js/units.js" as Units
 import "js/tz.js" as Tz
 import "js/rates.js" as Rates
 import "js/fileurl.js" as FileUrl
+import "js/Binds.js" as Binds
 
 BarWidget {
   id: root
@@ -24,7 +25,12 @@ BarWidget {
   property string totalDisplay: ""
   property bool panelOpen: false
   property string rateDate: ""
+  property bool offerBinds: false
+  property string offerNote: ""
+  property var workQueue: []
+  property var workCurrent: null
   readonly property var notepad: panelLoader.item
+  readonly property string pluginId: "io.github.chris.notepad-calc"
 
   readonly property string pluginDir: FileUrl.fromResolved(Qt.resolvedUrl("."))
 
@@ -72,6 +78,59 @@ BarWidget {
     return "ok"
   }
 
+  function applyBindPlan(plan) {
+    var p = plan || Binds.offer
+    root.offerBinds = !!p.needed
+    root.offerNote = String(p.note || "")
+    Binds.setOffer(p)
+  }
+
+  function enqueueWork(command, done) {
+    workQueue.push({ command: command, done: done || null })
+    runWork()
+  }
+
+  function runWork() {
+    if (workProc.running || root.workCurrent)
+      return
+    if (!workQueue.length)
+      return
+    root.workCurrent = workQueue.shift()
+    workProc.command = root.workCurrent.command
+    workProc.running = true
+  }
+
+  function scanBinds() {
+    enqueueWork(["hyprctl", "-j", "binds"], function(text, code) {
+      if (Number(code) !== 0)
+        return
+      root.applyBindPlan(Binds.applyScan(text))
+    })
+  }
+
+  function installBinds(arg) {
+    enqueueWork(["hyprctl", "-j", "binds"], function(text, code) {
+      if (Number(code) !== 0) {
+        root.offerNote = "could not read keybinds"
+        return
+      }
+      var plan = Binds.applyScan(text)
+      if (!plan.toAdd || !plan.toAdd.length) {
+        root.applyBindPlan(plan)
+        return
+      }
+      var lua = Binds.luaBlock(plan.toAdd)
+      enqueueWork(["python3", root.pluginDir + "/compat/install-binds.py", root.pluginId, lua], function(out, instCode) {
+        if (Number(instCode) !== 0) {
+          root.offerNote = "could not write ~/.config/hypr/bindings.lua"
+          return
+        }
+        Qt.callLater(root.scanBinds)
+      })
+    })
+    return "ok"
+  }
+
   function evalCtx() {
     var rates = null
     if (panelLoader.item && panelLoader.item.ratesObj)
@@ -98,12 +157,15 @@ BarWidget {
     root.chipText = root.totalDisplay.length ? ("Σ " + root.totalDisplay) : "Σ"
   }
 
-  implicitWidth: button.implicitWidth
-  implicitHeight: button.implicitHeight
+  implicitWidth: row.implicitWidth
+  implicitHeight: row.implicitHeight
+
+  Row {
+    id: row
+    spacing: Style.space(4)
 
   WidgetButton {
     id: button
-    anchors.fill: parent
     bar: root.bar
     text: root.chipText
     tooltipText: root.totalDisplay.length
@@ -113,6 +175,48 @@ BarWidget {
       if (buttonCode === Qt.LeftButton)
         root.toggle()
     }
+  }
+
+    WidgetButton {
+      visible: root.offerBinds
+      bar: root.bar
+      text: "keys"
+      tooltipText: root.offerNote.length ? root.offerNote : "Add Super+N toggle / Super+Alt+N summon (skips combos you already use)"
+      onPressed: function(buttonCode) {
+        if (buttonCode === Qt.LeftButton)
+          root.installBinds("")
+      }
+    }
+  }
+
+  Process {
+    id: workProc
+    running: false
+    stdout: StdioCollector {
+      id: workOut
+      waitForEnd: true
+    }
+    onExited: function(exitCode) {
+      var text = workOut.text
+      var job = root.workCurrent
+      root.workCurrent = null
+      if (job && job.done) {
+        try {
+          job.done(text, exitCode)
+        } catch (e) {
+          console.warn("notepad-calc: work callback failed", e)
+        }
+      }
+      root.runWork()
+    }
+  }
+
+  Timer {
+    id: bindScanTimer
+    interval: 3000
+    repeat: true
+    running: true
+    onTriggered: root.scanBinds()
   }
 
   Loader {
@@ -144,5 +248,8 @@ BarWidget {
     function summon(arg: string): string { return root.summon(arg) }
     function hide(arg: string): string { return root.hide(arg) }
     function ping(arg: string): string { return "ok" }
+    function installBinds(arg: string): string { return root.installBinds(arg) }
   }
+
+  Component.onCompleted: Qt.callLater(root.scanBinds)
 }

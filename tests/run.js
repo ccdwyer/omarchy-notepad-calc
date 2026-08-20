@@ -873,6 +873,76 @@ corpus.forEach((c, i) => {
 
 
 
+function loadPragma(file) {
+  const src = fs
+    .readFileSync(path.join(ROOT, "js", file), "utf8")
+    .replace(/^\.pragma library\s*\n/, "")
+  const vm = require("vm")
+  const sandbox = {
+    console,
+    Date,
+    Math,
+    JSON,
+    String,
+    Number,
+    Array,
+    Object,
+    parseInt,
+    isNaN,
+    exports: {},
+    module: { exports: {} }
+  }
+  vm.createContext(sandbox)
+  vm.runInContext(src, sandbox, { filename: file })
+  const exported = {}
+  for (const key of Object.keys(sandbox)) {
+    if (["console", "Date", "Math", "JSON", "String", "Number", "Array", "Object", "parseInt", "isNaN", "exports", "module"].indexOf(key) >= 0)
+      continue
+    exported[key] = sandbox[key]
+  }
+  return exported
+}
+
+const Binds = loadPragma("Binds.js")
+
+test("binds: empty live list offers SUPER+N toggle and SUPER+ALT+N summon", () => {
+  const p = Binds.plan([])
+  assert.strictEqual(p.needed, true)
+  assert.strictEqual(p.toAdd.length, 2)
+  assert.strictEqual(p.toAdd[0].chosen, "SUPER + N")
+  assert.strictEqual(p.toAdd[1].chosen, "SUPER + ALT + N")
+  const lua = Binds.luaBlock(p.toAdd)
+  assert.ok(lua.indexOf("o.bind(\"SUPER + N\"") === 0)
+  assert.ok(p.toAdd.every((x) => x.chosen !== "SUPER + SHIFT + N"))
+})
+
+test("binds: stock Editor SUPER+SHIFT+N is not stolen", () => {
+  const live = [
+    { modmask: 65, key: "N", dispatcher: "__lua", arg: "286", description: "Editor" }
+  ]
+  const p = Binds.plan(live)
+  assert.strictEqual(p.toAdd[0].chosen, "SUPER + N")
+  assert.strictEqual(p.toAdd[1].chosen, "SUPER + ALT + N")
+})
+
+test("binds: occupied toggle uses SUPER+ALT+SHIFT+N", () => {
+  const live = [
+    { modmask: 64, key: "N", dispatcher: "exec", arg: "other", description: "taken" }
+  ]
+  const p = Binds.plan(live)
+  const toggle = p.toAdd.filter((x) => x.desc === "Notepad Calc")[0]
+  assert.strictEqual(toggle.chosen, "SUPER + ALT + SHIFT + N")
+})
+
+test("binds: already-ours via lua description hides the offer", () => {
+  const live = [
+    { modmask: 64, key: "N", dispatcher: "__lua", arg: "15", description: "Notepad Calc" }
+  ]
+  const p = Binds.plan(live)
+  assert.strictEqual(p.needed, false)
+  assert.strictEqual(p.toAdd.length, 0)
+})
+
 process.stdout.write("\n" + passed + " passed, " + failed + " failed\n")
 if (failed) {
   process.stderr.write("Failed:\n" + failures.map((f) => "  - " + f).join("\n") + "\n")

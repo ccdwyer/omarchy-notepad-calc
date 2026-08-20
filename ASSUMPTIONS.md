@@ -76,6 +76,6 @@ Ship source with `./pack.sh` (`git archive`), never a working-tree tarball. `bin
 ## Out of scope (intentional)
 
 - A second Quickshell process.
-- Writing Hyprland config.
+- Writing Hyprland config except an opt-in `Add keybindings` control that appends a marked `o.bind` block to `~/.config/hypr/bindings.lua` after checking `hyprctl -j binds`. Occupied combos are skipped or replaced with Super+Alt+Shift+N. Super+Shift+N (Editor) is never stolen. Hide stays click-based. Never `hl.unbind`.
 - Click-to-cycle display units.
 - `Intl` / Qt globals in `engine.js`.
