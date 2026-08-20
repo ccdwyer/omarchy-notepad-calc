@@ -943,6 +943,30 @@ test("binds: already-ours via lua description hides the offer", () => {
   assert.strictEqual(p.toAdd.length, 0)
 })
 
+test("binds: notify body lists assigned keys", () => {
+  const body = Binds.notifyBody([{ chosen: "SUPER + N", desc: "Notepad Calc" }], [])
+  assert.ok(body.indexOf("SUPER + N — Notepad Calc") === 0)
+  const argv = Binds.notifyArgv("Notepad Calc", "Notepad Calc keybindings", body)
+  assert.strictEqual(argv[0], "omarchy")
+  assert.strictEqual(argv[1], "notification")
+  assert.strictEqual(argv[2], "send")
+  assert.strictEqual(argv[4], "Notepad Calc")
+  assert.strictEqual(argv[7], "Notepad Calc keybindings")
+})
+
+test("binds: claimAuto is one-shot", () => {
+  assert.strictEqual(Binds.claimAuto(), true)
+  assert.strictEqual(Binds.claimAuto(), false)
+})
+
+test("qml: no keys chip; bar widget auto-claims", () => {
+  const src = fs.readFileSync(path.join(ROOT, "BarWidget.qml"), "utf8")
+  assert.ok(src.indexOf("Add keybindings") < 0)
+  assert.ok(src.indexOf('text: "keys"') < 0)
+  assert.ok(src.indexOf("Binds.claimAuto()") >= 0)
+  assert.ok(src.indexOf("notifyArgv(") >= 0)
+})
+
 process.stdout.write("\n" + passed + " passed, " + failed + " failed\n")
 if (failed) {
   process.stderr.write("Failed:\n" + failures.map((f) => "  - " + f).join("\n") + "\n")

@@ -76,6 +76,6 @@ Ship source with `./pack.sh` (`git archive`), never a working-tree tarball. `bin
 ## Out of scope (intentional)
 
 - A second Quickshell process.
-- Writing Hyprland config except an opt-in `Add keybindings` control that appends a marked `o.bind` block to `~/.config/hypr/bindings.lua` after checking `hyprctl -j binds`. Occupied combos are skipped or replaced with Super+Alt+Shift+N. Super+Shift+N (Editor) is never stolen. Hide stays click-based. Never `hl.unbind`.
+- Writing Hyprland config: on first load the bar widget assigns free combos (never Super+Shift+N Editor or Super+Ctrl+N nightlight) into a marked `o.bind` block in `~/.config/hypr/bindings.lua`, then `omarchy notification send`s the assigned keys. Occupied combos are skipped or replaced with Super+Alt+Shift+N. Hide stays click-based. `Binds.claimAuto()` is one-shot so two monitors do not double-notify. Never `hl.unbind`. No notify once binds are already live.
 - Click-to-cycle display units.
 - `Intl` / Qt globals in `engine.js`.

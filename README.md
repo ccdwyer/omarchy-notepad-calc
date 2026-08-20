@@ -45,7 +45,7 @@ Click the **Σ** chip (it shows the focused sheet's `total`). The first-run shee
 
 The widget stays loaded on the bar, so Quattro `call` reaches it. Every `call` takes a final argument.
 
-Super+Shift+N is Omarchy's Editor bind, so summon uses Super+Alt+N. Super+N toggle is preferred. If those combos are free, a **keys** chip on the bar offers **Add keybindings**. That writes `o.bind` lines to `~/.config/hypr/bindings.lua` (Hyprland reloads on save). Combos you already use are skipped; Super+N falls back to Super+Alt+Shift+N. Hide stays click-based (Esc in the panel). The plugin never unbinds someone else's shortcut.
+Super+Shift+N is Omarchy's Editor bind and Super+Ctrl+N is nightlight, so summon uses Super+Alt+N. Super+N toggle is preferred. On first load the plugin writes those binds to `~/.config/hypr/bindings.lua` if the combos are free, then pops an Omarchy notification with the keys it assigned. Occupied shortcuts are skipped; Super+N falls back to Super+Alt+Shift+N. Hide stays click-based (Esc in the panel). It never unbinds someone else's key, and it will not notify again once its binds are already live. Bar-widget `claimAuto` keeps two monitors from double-notifying.
 
 ```
 bind = SUPER, N, exec, omarchy-shell io.github.chris.notepad-calc toggle '{}'
@@ -121,7 +121,7 @@ Settings live **inline on the `shell.json` bar entry** (`defaultCurrency`). Ther
 - **Row alignment** is wrap-free monospace. Long lines scroll horizontally; they do not wrap. That is deliberate.
 - **Helper binary is optional.** Missing `bin/notepad-calc-rates` falls back to `compat/rates-refresh.sh` (curl), then to the bundled snapshot.
 - **No second Quickshell process.** Everything runs inside `omarchy-shell`.
-- **Keybinds are yours to add.**
+- **Keybinds auto-assign on first load.** Occupied combos are skipped. Never `hl.unbind`. No notify once binds are already live.
 
 ## Tests
 
