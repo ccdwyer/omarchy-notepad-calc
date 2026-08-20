@@ -123,3 +123,18 @@ i = 1 * 12 + 2 * 3
 assert pix[i:i+3] == bytes([20, 20, 30]), pix[i:i+3]
 print("ok  png filter 2 reconstructs")
 PY
+
+python3 - <<'PY'
+from pathlib import Path
+py = Path("tools/tzgen.py").read_text()
+js = Path("js/tz.js").read_text()
+needles = [
+    "if (candidates.length === 1) return candidates[0]",
+    "if (utc == null) return null",
+    "seen[String(utc)]",
+]
+for n in needles:
+    if n not in py or n not in js:
+        raise SystemExit("FAIL tzgen.py/js/tz.js missing DST gap-fold handling: " + n)
+print("ok  tzgen.py regeneration-parity (DST gap/fold)")
+PY

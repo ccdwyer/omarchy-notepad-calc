@@ -93,9 +93,14 @@ for f in demo-1x.png demo-1p25x.png demo-2x.png \
 done
 if [ "$GOLD_OK" -eq 0 ]; then
   echo "WARN UI golden baselines absent under $GOLD"
-  echo "WARN skipping pixel-diff (this Mac cannot produce grabToImage captures)."
+  echo "WARN this Mac cannot produce grabToImage captures; Linux CI bootstraps them."
   echo "WARN Linux: UPDATE_UI_GOLDENS=1 tests/ui/run.sh then commit tests/goldens/ui/*.png"
   echo "WARN CI uploads grabToImage PNGs as artifact notepad-calc-ui-captures."
+  if [ "${REQUIRE_QML_UI:-}" = "1" ]; then
+    echo "FAIL visual gate is not pinned; commit the 12 Linux grabToImage PNGs"
+    exit 1
+  fi
+  echo "WARN skipping pixel-diff (no qml goldens on this host)"
   exit 0
 fi
 

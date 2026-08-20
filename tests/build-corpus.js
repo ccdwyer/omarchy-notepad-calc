@@ -128,6 +128,10 @@ add({ id: "var-year-rent", name: "year rent beats rent", sheet: "rent = 100\nyea
 add({ id: "var-desk-width", name: "desk width spaces", sheet: "desk width = 160\ndesk width + 10", kind: "result", approx: 170 })
 add({ id: "var-shadow", name: "redefinition shadows", sheet: "x = 1\ny = x\nx = 5\nz = x", kind: "result", approx: 5 })
 add({ id: "var-forward", name: "forward ref unresolved", sheet: "y = x + 1\nx = 4", kind: "unresolved", line: 0, contains: "?" })
+add({ id: "err-dim", name: "incompatible dim conversion", sheet: "5 kg in meters", kind: "unresolved", contains: "?" })
+add({ id: "err-rate", name: "missing rate", sheet: "$10 in XYZ", kind: "unresolved", contains: "?" })
+add({ id: "err-div0", name: "division by zero", sheet: "10 / 0", kind: "unresolved", contains: "?" })
+add({ id: "err-add-dim", name: "incompatible add", sheet: "2 kg + 3 m", kind: "unresolved", contains: "?" })
 const VAR_WORDS = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma"]
 VAR_WORDS.forEach((w, i) => {
   add({

@@ -44,7 +44,7 @@ function isLetter(ch) {
 }
 
 function isIdentChar(ch) {
-    return isLetter(ch) || ch === "'" || ch === "_"
+    return isLetter(ch) || isDigit(ch) || ch === "'" || ch === "_"
 }
 
 function lower(s) {
@@ -550,6 +550,7 @@ function isConvertTarget(tok, ctx, env) {
     if (tok.type !== "word") return false
     var lw = tok.low || lower(tok.raw)
     if (isCurrencyCode(tok.raw, ctx)) return true
+    if (/^[A-Z]{3}$/.test(tok.raw || "")) return true
     if (lookupZone(tok.raw, ctx)) return true
     if (lw !== "in" && lookupUnit(tok.raw, ctx)) return true
     return false
@@ -1050,7 +1051,8 @@ Parser.prototype.parseConvert = function (left, op) {
         var w2 = this.next()
         var u2 = lookupUnit(w2.raw, this.ctx)
         if (u2) return this.toUnit(left, u2, op === "as")
-        if (isCurrencyCode(w2.raw, this.ctx)) return this.toCurrency(left, w2.raw.toUpperCase())
+        if (isCurrencyCode(w2.raw, this.ctx) || /^[A-Z]{3}$/.test(w2.raw))
+            return this.toCurrency(left, w2.raw.toUpperCase())
         var z2 = lookupZone(w2.raw, this.ctx)
         if (z2) return this.convertZone(left, z2, null)
         this.unresolved.push(w2.low)
@@ -1152,13 +1154,14 @@ Parser.prototype.toCurrency = function (left, code) {
                 var asDefault = convertMoney(left.value, from, code, this.ctx)
                 if (asDefault !== null)
                     return qtyMoney(asDefault, code)
+                return unresolvedResult(["rate"])
             }
             return qtyMoney(left.value, code)
         }
-        return left
+        return unresolvedResult(["unit"])
     }
     var conv = convertMoney(left.value, left.currency, code, this.ctx)
-    if (conv === null) return left
+    if (conv === null) return unresolvedResult(["rate"])
     var q = qtyMoney(conv, code)
     q.dim = {
         L: left.dim.L || 0, M: left.dim.M || 0, T: left.dim.T || 0,
@@ -1190,7 +1193,7 @@ Parser.prototype.toUnit = function (left, u, asFlag) {
         if (dimZero(left.dim, this.ctx)) {
             return this.applyUnit(left, u)
         }
-        return left
+        return unresolvedResult(["unit"])
     }
     var out = cloneQty(left)
     out.unitHint = u.id
@@ -1222,7 +1225,7 @@ Parser.prototype.add = function (a, b) {
     }
     if (a.currency && b.currency && a.currency !== b.currency) {
         var bv = convertMoney(b.value, b.currency, a.currency, this.ctx)
-        if (bv === null) return a
+        if (bv === null) return unresolvedResult(["rate"])
         b = qtyMoney(bv, a.currency)
         b.dim = b.dim
     }
@@ -1231,7 +1234,7 @@ Parser.prototype.add = function (a, b) {
         m.value = a.value + b.value
         return m
     }
-    if (!dimEq(a.dim, b.dim, this.ctx)) return a
+    if (!dimEq(a.dim, b.dim, this.ctx)) return unresolvedResult(["unit"])
     var o = cloneQty(a)
     o.value = a.value + b.value
     return o
@@ -1260,10 +1263,10 @@ Parser.prototype.sub = function (a, b) {
     }
     if (a.currency && b.currency && a.currency !== b.currency) {
         var bv = convertMoney(b.value, b.currency, a.currency, this.ctx)
-        if (bv === null) return a
+        if (bv === null) return unresolvedResult(["rate"])
         b = qtyMoney(bv, a.currency)
     }
-    if (!dimEq(a.dim, b.dim, this.ctx)) return a
+    if (!dimEq(a.dim, b.dim, this.ctx)) return unresolvedResult(["unit"])
     var o = cloneQty(a)
     o.value = a.value - b.value
     return o
@@ -1318,7 +1321,7 @@ Parser.prototype.mul = function (a, b) {
 }
 
 Parser.prototype.div = function (a, b) {
-    if (!b || b.value === 0) return a
+    if (!b || b.value === 0) return unresolvedResult(["0"])
     if (b.isPercent) return this.div(a, qtyNumber(b.value))
     if (a.currency && dimDuration(b.dim, this.ctx)) {
         var dq = cloneQty(a)
@@ -1516,12 +1519,14 @@ function evalSheet(lines, ctx) {
         var r
         try {
             r = evalLine(line, ctx, env)
+            if (!r) r = unresolvedResult(["error"])
+            r.lineIndex = i
+            applyFormat(r, ctx)
         } catch (e) {
-            r = proseResult()
+            r = unresolvedResult(["error"])
+            r.lineIndex = i
+            applyFormat(r, ctx)
         }
-        if (!r) r = proseResult()
-        r.lineIndex = i
-        applyFormat(r, ctx)
         results.push(r)
         if (r.kind === "result") env.prevResult = r
     }

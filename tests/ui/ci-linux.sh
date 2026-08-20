@@ -37,15 +37,21 @@ for f in demo-1x.png demo-1p25x.png demo-2x.png \
   fi
 done
 
+need_commit=0
 if [ "$gold_ok" -eq 0 ]; then
-  echo "WARN committed UI goldens missing; generating Item.grabToImage captures"
+  echo "WARN committed UI goldens missing; generating Item.grabToImage captures for artifacts"
   UPDATE_UI_GOLDENS=1 "$ROOT/tests/ui/run.sh"
-  echo "WARN pixel-diff skipped this run (no pinned baseline in git)."
-  echo "WARN Bootstrap: download artifact notepad-calc-ui-captures, copy PNGs"
-  echo "WARN into tests/goldens/ui/, commit, and subsequent CI runs will diff."
+  need_commit=1
 else
   "$ROOT/tests/ui/run.sh"
 fi
 
 "$ROOT/tests/ui/demo.sh"
 "$ROOT/tests/ui/soak.sh"
+
+if [ "$need_commit" -eq 1 ]; then
+  echo "FAIL visual gate is not pinned in git."
+  echo "Bootstrap: download artifact notepad-calc-ui-captures, copy the 12 PNGs"
+  echo "into tests/goldens/ui/, commit, and the next CI run will pixel-diff."
+  exit 1
+fi

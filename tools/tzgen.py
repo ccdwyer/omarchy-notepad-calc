@@ -335,12 +335,25 @@ function abbrAt(zone, utcMs) {
 
 function localToUtc(y, m, d, hh, mm, zone) {
     var asIfUtc = Date.UTC(y, m - 1, d, hh, mm, 0)
-    var guess = asIfUtc - zone.stdOffset * 1000
-    var off1 = offsetAt(zone, guess)
-    var utc = asIfUtc - off1 * 1000
-    var off2 = offsetAt(zone, utc)
-    if (off2 !== off1) utc = asIfUtc - off2 * 1000
-    return utc
+    var offsets = [zone.stdOffset, zone.dstOffset]
+    if (zone.transitions) {
+        for (var i = 0; i < zone.transitions.length; i++)
+            offsets.push(zone.transitions[i].offset)
+    }
+    var candidates = []
+    var seen = {}
+    for (var j = 0; j < offsets.length; j++) {
+        var off = offsets[j]
+        var utc = asIfUtc - off * 1000
+        if (seen[String(utc)]) continue
+        seen[String(utc)] = 1
+        if (offsetAt(zone, utc) !== off) continue
+        var loc = utcToLocal(utc, zone)
+        if (loc.y === y && loc.m === m && loc.d === d && loc.hh === hh && loc.mm === mm)
+            candidates.push(utc)
+    }
+    if (candidates.length === 1) return candidates[0]
+    return null
 }
 
 function utcToLocal(utcMs, zone) {
@@ -362,6 +375,7 @@ function utcToLocal(utcMs, zone) {
 
 function convertWall(y, m, d, hh, mm, fromZone, toZone) {
     var utc = localToUtc(y, m, d, hh, mm, fromZone)
+    if (utc == null) return null
     return utcToLocal(utc, toZone)
 }
 

@@ -730,6 +730,34 @@
     "contains": "?"
   },
   {
+    "id": "err-dim",
+    "name": "incompatible dim conversion",
+    "sheet": "5 kg in meters",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "err-rate",
+    "name": "missing rate",
+    "sheet": "$10 in XYZ",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "err-div0",
+    "name": "division by zero",
+    "sheet": "10 / 0",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
+    "id": "err-add-dim",
+    "name": "incompatible add",
+    "sheet": "2 kg + 3 m",
+    "kind": "unresolved",
+    "contains": "?"
+  },
+  {
     "id": "var-long-0",
     "name": "longest-match alpha",
     "sheet": "alpha = 1\nalpha extra = 10\nalpha extra + alpha",
@@ -1350,96 +1378,5 @@
     "kind": "result",
     "approx": 30,
     "currency": "USD"
-  },
-  {
-    "id": "arith-extra-0",
-    "name": "arith extra 0",
-    "sheet": "1 + 2",
-    "kind": "result",
-    "approx": 3
-  },
-  {
-    "id": "arith-extra-1",
-    "name": "arith extra 1",
-    "sheet": "2 + 3",
-    "kind": "result",
-    "approx": 5
-  },
-  {
-    "id": "arith-extra-2",
-    "name": "arith extra 2",
-    "sheet": "3 + 4",
-    "kind": "result",
-    "approx": 7
-  },
-  {
-    "id": "arith-extra-3",
-    "name": "arith extra 3",
-    "sheet": "4 + 5",
-    "kind": "result",
-    "approx": 9
-  },
-  {
-    "id": "arith-extra-4",
-    "name": "arith extra 4",
-    "sheet": "5 + 6",
-    "kind": "result",
-    "approx": 11
-  },
-  {
-    "id": "arith-extra-5",
-    "name": "arith extra 5",
-    "sheet": "6 + 7",
-    "kind": "result",
-    "approx": 13
-  },
-  {
-    "id": "arith-extra-6",
-    "name": "arith extra 6",
-    "sheet": "7 + 8",
-    "kind": "result",
-    "approx": 15
-  },
-  {
-    "id": "arith-extra-7",
-    "name": "arith extra 7",
-    "sheet": "8 + 9",
-    "kind": "result",
-    "approx": 17
-  },
-  {
-    "id": "arith-extra-8",
-    "name": "arith extra 8",
-    "sheet": "9 + 10",
-    "kind": "result",
-    "approx": 19
-  },
-  {
-    "id": "arith-extra-9",
-    "name": "arith extra 9",
-    "sheet": "10 + 11",
-    "kind": "result",
-    "approx": 21
-  },
-  {
-    "id": "arith-extra-10",
-    "name": "arith extra 10",
-    "sheet": "11 + 12",
-    "kind": "result",
-    "approx": 23
-  },
-  {
-    "id": "arith-extra-11",
-    "name": "arith extra 11",
-    "sheet": "12 + 13",
-    "kind": "result",
-    "approx": 25
-  },
-  {
-    "id": "arith-extra-12",
-    "name": "arith extra 12",
-    "sheet": "13 + 14",
-    "kind": "result",
-    "approx": 27
   }
 ]

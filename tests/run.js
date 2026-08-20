@@ -237,6 +237,38 @@ const TYPOS = [
   ["mix = known + unk", "unk"]
 ]
 
+test("incompatible-dimension conversion is explicit error", () => {
+  const r = lastResult("5 kg in meters")
+  assert.strictEqual(r.kind, "unresolved")
+  assert.ok(String(r.display).charAt(0) === "?", r.display)
+  assert.ok(!r.value, "must not keep a numeric left operand")
+})
+
+test("unknown currency / missing rate is explicit error", () => {
+  const missing = evalLines("$10 in XYZ")[0]
+  assert.strictEqual(missing.kind, "unresolved")
+  assert.ok(String(missing.display).indexOf("?") === 0, missing.display)
+  const thin = evalLines("$10 in JPY", {
+    rates: { date: "2026-08-18", base: "EUR", rates: { EUR: 1, USD: 1.16 } }
+  })[0]
+  assert.strictEqual(thin.kind, "unresolved")
+  assert.ok(String(thin.display).indexOf("?") === 0, thin.display)
+})
+
+test("division by zero is explicit error", () => {
+  const r = lastResult("10 / 0")
+  assert.strictEqual(r.kind, "unresolved")
+  assert.ok(String(r.display).charAt(0) === "?", r.display)
+})
+
+test("evaluation exception is explicit error, not prose or a number", () => {
+  const r = Engine.evalSheet(["2 + 2"], ctx({
+    format: function () { throw new Error("boom") }
+  }))[0]
+  assert.strictEqual(r.kind, "unresolved", r.kind)
+  assert.ok(String(r.display).charAt(0) === "?", r.display)
+})
+
 test("typo: budget = flights + hotl → ?hotl", () => {
   const r = evalLines("budget = flights + hotl")[0]
   assert.strictEqual(r.kind, "unresolved")

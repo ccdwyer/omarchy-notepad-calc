@@ -6,8 +6,10 @@ This macOS checkout **cannot** produce them.
 
 ## Gate
 
-- **Baselines absent:** `tests/ui/run.sh` skip-warns (does not fail). Linux CI still
-  captures with `UPDATE_UI_GOLDENS=1` and uploads artifact `notepad-calc-ui-captures`.
+- **Baselines absent on macOS:** `tests/ui/run.sh` skip-warns (no qml runtime).
+- **Baselines absent on Linux CI (`REQUIRE_QML_UI=1`):** the job generates
+  grabToImage captures, uploads artifact `notepad-calc-ui-captures`, then **fails**.
+  That is a one-time bootstrap, not a permanent green skip.
 - **Baselines present in git:** a **fresh** temp capture is pixel-diffed against
   these files (2% AE). That is the real regression gate — not a same-run compare.
 

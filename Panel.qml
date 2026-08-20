@@ -147,6 +147,9 @@ Item {
       results = Engine.evalSheet(lines, makeCtx())
     } catch (e) {
       results = []
+      var ei
+      for (ei = 0; ei < lines.length; ei++)
+        results.push({ kind: "unresolved", names: ["error"], display: "?error", lineIndex: ei })
     }
     var prev = root.lineResults
     var nextPulse = []

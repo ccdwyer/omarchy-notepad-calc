@@ -14,10 +14,10 @@ tests/ui/soak.sh    # 500-line keystroke replay, RSS, exactly one rate attempt, 
 and a compatible `qml` binary, and exports both on `QML2_IMPORT_PATH` / `QML_BIN`.
 `qs.Commons` / `qs.Ui` stubs under `tests/stubs/qs` stand in for Omarchy theme tokens only.
 
-Goldens cannot be generated on macOS. If `tests/goldens/ui/*.png` are missing,
-`run.sh` **skips pixel-diff with a warning**. Linux CI generates them
-(`UPDATE_UI_GOLDENS=1`), uploads artifact `notepad-calc-ui-captures`, and skips
-the diff that run. After you commit those PNGs, pixel-diff is a real gate.
+Goldens cannot be generated on macOS. Missing baselines skip-warn locally.
+Linux CI (`REQUIRE_QML_UI=1`) generates grabToImage captures, uploads
+`notepad-calc-ui-captures`, then **fails until those 12 PNGs are committed**.
+After they are in git, pixel-diff is a real (non-tautological) gate.
 
 ```sh
 UPDATE_UI_GOLDENS=1 REQUIRE_QML_UI=1 tests/ui/run.sh
