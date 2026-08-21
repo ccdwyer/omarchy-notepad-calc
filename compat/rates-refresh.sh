@@ -27,8 +27,18 @@ if [ -z "$OUT" ]; then
   OUT="${XDG_DATA_HOME:-$HOME/.local/share}/notepad-calc/rates.json"
 fi
 
-TMPXML="${TMPDIR:-/tmp}/notepad-calc-ecb-$$.xml"
-TMPJSON="$OUT.tmp"
+if [ -L "$OUT" ]; then
+  echo "rates-refresh: refusing symlink $OUT" >&2
+  exit 1
+fi
+OUTDIR=$(dirname "$OUT")
+mkdir -p "$OUTDIR"
+if [ -L "$OUTDIR" ]; then
+  echo "rates-refresh: refusing symlink directory $OUTDIR" >&2
+  exit 1
+fi
+TMPXML=$(mktemp "$OUTDIR/.ecb.XXXXXX")
+TMPJSON=$(mktemp "$OUTDIR/.rates.XXXXXX")
 cleanup() { rm -f "$TMPXML" "$TMPJSON"; }
 trap cleanup EXIT
 
@@ -58,7 +68,6 @@ if [ -z "$CUBES" ]; then
   exit 2
 fi
 
-mkdir -p "$(dirname "$OUT")"
 {
   echo "{"
   echo "  \"date\": \"$DATE\","

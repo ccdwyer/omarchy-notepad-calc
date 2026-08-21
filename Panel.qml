@@ -519,6 +519,7 @@ Item {
 
           Text {
             text: "Σ  " + (root.sheetTitle || "Notepad Calc")
+            textFormat: Text.PlainText
             color: root.foreground
             font.family: root.uiFont
             font.pixelSize: Style.font.heading
@@ -591,6 +592,7 @@ Item {
               font.hintingPreference: Font.PreferFullHinting
               tabStopDistance: root.fontPx * 2
               persistentSelection: true
+              textFormat: TextEdit.PlainText
               text: ""
               onTextChanged: debounce.restart()
               onCursorPositionChanged: root.cursorLine = root.currentLine()
@@ -759,6 +761,7 @@ Item {
                 font.family: root.fontFamily
                 font.pixelSize: root.fontPx
                 text: root.switcherQuery
+                textFormat: Text.PlainText
                 onTextChanged: root.switcherQuery = text
                 Keys.onPressed: function(event) {
                   var list = root.filteredSheets()
@@ -785,6 +788,7 @@ Item {
                   required property int index
                   required property var modelData
                   text: modelData
+                  textFormat: Text.PlainText
                   color: index === root.switcherIndex ? root.accent : root.foreground
                   font.family: root.fontFamily
                   font.pixelSize: root.fontPx

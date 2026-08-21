@@ -75,12 +75,14 @@ Item {
     markProc.command = [
       "sh", "-c",
       "DIR=\"$1\"; TODAY=\"$2\"; ST=\"$DIR/state.json\"; mkdir -p \"$DIR\" \"$DIR/sheets\"; " +
+      "if [ -L \"$DIR\" ] || [ -L \"$ST\" ]; then echo SKIP; exit 1; fi; " +
       "if [ -f \"$ST\" ] && grep -F \"\\\"lastRatesAttempt\\\": \\\"$TODAY\\\"\" \"$ST\" >/dev/null 2>&1; then echo SKIP; exit 0; fi; " +
       "if [ -f \"$ST\" ] && grep -F \"\\\"lastRatesFetch\\\": \\\"$TODAY\\\"\" \"$ST\" >/dev/null 2>&1; then echo SKIP; exit 0; fi; " +
       "FETCH=\"\"; if [ -f \"$ST\" ]; then FETCH=$(sed -n 's/.*\"lastRatesFetch\": \"\\([^\"]*\\)\".*/\\1/p' \"$ST\" | head -n 1); fi; " +
+      "TMP=$(mktemp \"$DIR/.state.XXXXXX\"); " +
       "{ printf '{\\n  \"lastRatesAttempt\": \"%s\"' \"$TODAY\"; " +
       "if [ -n \"$FETCH\" ]; then printf ',\\n  \"lastRatesFetch\": \"%s\"' \"$FETCH\"; fi; " +
-      "printf '\\n}\\n'; } > \"$ST.tmp\" && mv \"$ST.tmp\" \"$ST\"; echo GO",
+      "printf '\\n}\\n'; } > \"$TMP\" && mv -f \"$TMP\" \"$ST\"; echo GO",
       "sh", root.dataDir, today
     ]
     markProc.running = true
